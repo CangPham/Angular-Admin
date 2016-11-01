@@ -18,29 +18,26 @@
   <!-- endbower -->
   <!-- endbuild -->
 
+  <link rel="stylesheet" ng-href="{{settings.hideMenus ? 'app/auth.css':'app/main.css'}}">
+  <!--<link ng-if="!settings.hideMenus" rel="stylesheet" href="app/main.css">-->
 
-  <!-- build:css({.tmp/serve,src}) styles/app.css -->
-  <!-- inject:css -->
-  <!-- css files will be automatically insert here -->
-  <!-- endinject -->
-  <!-- endbuild -->
-
-  <link ng-if="settings.hideMenus" rel="stylesheet" href="app/auth.css">
+  <!--<link ng-if="settings.hideMenus" rel="stylesheet" href="app/auth.css">-->
+  <!--<link ng-if="settings.hideMenus" rel="stylesheet" href="app/auth.css">-->
 
 </head>
 <body>
 <div class="body-bg"></div>
-<main ng-if="$pageFinishedLoading && !settings.hideMenus" ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }">
-  <ba-sidebar ></ba-sidebar>
-  <page-top ></page-top>
-  <div class="al-main">
-    <div class="al-content">
-      <content-top ></content-top>
-      <div ui-view></div>
+<main ng-if="$pageFinishedLoading" ng-class="($baSidebarService.isMenuCollapsed() && !settings.hideMenus) ? 'menu-collapsed' : 'full-height'">
+  <ba-sidebar ng-if="!settings.hideMenus"></ba-sidebar>
+  <page-top ng-if="!settings.hideMenus"></page-top>
+  <div ng-class="!settings.hideMenus ? 'al-main': 'full-height'">
+    <div ng-class="!settings.hideMenus ? 'al-content': 'full-height'">
+      <content-top ng-if="!settings.hideMenus"></content-top>
+      <div ui-view ng-class="!settings.hideMenus ? '' : 'auth-main'"></div>
     </div>
   </div>
 
-  <footer class="al-footer clearfix">
+  <footer ng-if="!settings.hideMenus" class="al-footer clearfix">
     <div class="al-footer-right">Created with <i class="ion-heart"></i></div>
     <div class="al-footer-main clearfix">
       <div class="al-copy">Shop Admin 2016</div>
@@ -53,11 +50,9 @@
     </div>
   </footer>
 
-  <back-top></back-top>
+  <back-top ng-if="!settings.hideMenus"></back-top>
 </main>
-<div ng-if="$pageFinishedLoading && settings.hideMenus">
-  <div ui-view></div>
-</div>
+
 <div id="preloader" ng-show="!$pageFinishedLoading">
   <div></div>
 </div>
