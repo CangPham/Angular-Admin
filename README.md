@@ -1,30 +1,37 @@
-[![Build Status](https://travis-ci.org/akveo/blur-admin.svg?branch=master)](https://travis-ci.org/akveo/blur-admin)
 
-# BlurAdmin Angular admin panel front-end framework
+# Angular admin panel front-end framework
 
-Customizable admin panel framework made with :heart: by [Akveo team](http://akveo.com/). Follow us on [Twitter](https://twitter.com/akveo_inc) to get latest news about this template first!
 
 ### Demo
-**[Mint version demo](http://akveo.com/blur-admin-mint/)**             |  **[Blur version demo](http://akveo.com/blur-admin/)**
+**[Mint version demo]**             |  **[Blur version demo]**
 :-------------------------:|:-------------------------:
 ![Mint version demo](http://i.imgur.com/A3TMviJ.png)  |  ![Blur version demo](http://i.imgur.com/EAoiK2O.jpg)
 
-## Angular 2 version
-Here you can find Angular2 based version: [ng2-admin](https://github.com/akveo/ng2-admin).
-
 ### Documentation
-Installation, customization and other useful articles: https://akveo.github.io/blur-admin/
+Install tools
+If you don’t havee any of these tools installed already, you will need to:
 
-*If you have problems installing and just want to download JS and css files, you can find download links here*: http://akveo.github.io/blur-admin/articles/091-downloads/
+## Download and install git
+Download and install nodejs https://nodejs.org
+Note: It seems like there are some problems with some libraries used in this template and old node versions. That’s why we suggest you to have one of the latest.
 
-## How can I support developers?
-- Star our GitHub repo
-- Create pull requests, submit bugs, suggest new features or documentation updates
-- Follow us on [Twitter](https://twitter.com/akveo_inc)
-- Like our page on [Facebook](https://www.facebook.com/akveo/)
+## Clone repository and install dependencies
+You will need to clone source code of BlurAdmin GitHub repository. To do this open console and execute following lines:
 
-## Can I hire you guys?
-Yes! We are available for hire. Visit [our homepage](http://akveo.com/) or simply leave us a note to contact@akveo.com. We will be happy to work with you!
+git clone https://github.com/CangPham/Angular-Admin.git
+
+After repository is cloned, go inside of repository directory and install dependencies there:
+
+cd Angular-Admin
+
+npm install
+
+This will setup a working copy of Angular-Admin on your local machine
+
+## Running local copy
+To run local copy in development mode, execute:
+
+gulp serve
 
 ## Features
 * Responsive layout
@@ -41,8 +48,3 @@ Yes! We are available for hire. Visit [our homepage](http://akveo.com/) or simpl
 License
 -------------
 <a href=/LICENSE.txt target="_blank">MIT</a> license.
-
-### From akveo
-
-Enjoy!
-We're always happy to hear your feedback.

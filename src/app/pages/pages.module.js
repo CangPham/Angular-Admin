@@ -14,6 +14,7 @@
     'MyApp.pages.maps',
     'MyApp.pages.profile',
     'MyApp.pages.authentication',
+    'MyApp.pages.categories',
   ])
       .config(routeConfig);
 
@@ -42,18 +43,9 @@
       }]
     });
     baSidebarServiceProvider.addStaticItem({
-      title: 'Menu Level 1',
+      title: 'Categories',
       icon: 'ion-ios-more',
-      subMenu: [{
-        title: 'Menu Level 1.1',
-        disabled: true
-      }, {
-        title: 'Menu Level 1.2',
-        subMenu: [{
-          title: 'Menu Level 1.2.1',
-          disabled: true
-        }]
-      }]
+      stateRef: 'listCategory'
     });
   }
 
