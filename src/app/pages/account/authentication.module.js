@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('MyApp.pages.authentication', [])
+    angular.module('MyApp.pages.authentication', ['ngMessages'])
         .config(routeConfig);
 
     /** @ngInject */
@@ -9,8 +9,10 @@
         $stateProvider
             .state('login', {
                 url: '/login',
+                settings: {
+                    hideMenus: true
+                },
                 templateUrl: 'app/pages/account/login.html',
-                title: 'Login',
                 controller: 'LoginPageCtrl',
                 controllerAs: 'vm'
             });

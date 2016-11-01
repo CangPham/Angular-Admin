@@ -5,7 +5,8 @@
         .module('MyApp.pages.authentication')
         .controller('LoginPageCtrl', LoginPageCtrl);
 
-    function LoginPageCtrl($location, AuthenticationService) {
+    function LoginPageCtrl($location, $state, $rootScope, AuthenticationService) {
+        $rootScope.settings = $state.current.settings;
         var vm = this;
 
         vm.login = login;

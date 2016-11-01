@@ -6,7 +6,7 @@
         .factory('AuthenticationService', Service);
 
     /** @ngInject */
-    function Service($http, $localStorage) {
+    function Service($http, $rootScope, $localStorage) {
         var service = {};
 
         service.Login = Login;
@@ -26,6 +26,7 @@
                         // add jwt token to auth header for all requests made by the $http service
                         $http.defaults.headers.common.Authorization = 'Bearer ' + response.UserData.token;
 
+                        $rootScope.settings.hideMenus = false;
                         // execute callback with true to indicate successful login
                         callback(true);
                     } else {

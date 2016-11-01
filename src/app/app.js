@@ -34,5 +34,6 @@ function run($rootScope, $http, $location, $localStorage) {
   });
 
   $rootScope.servicePrefix = 'https://cloudorder.vn/api';
+  $rootScope.settings = {hideMenus: false};
   //$rootScope.isPlainPages = MyApp.pages.authentication.isPlainPages;
 }

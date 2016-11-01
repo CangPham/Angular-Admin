@@ -54,7 +54,8 @@
     "textAngular": "~1.4.6",
     "angular-xeditable": "~0.1.9",
     "ng-js-tree": "~0.0.7",
-    "ngstorage": "^0.3.11"
+    "ngstorage": "^0.3.11",
+    "angular-messages": "^1.5.8"
   },
   "resolutions": {
     "angular": "~1.5.8"
