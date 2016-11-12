@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('MyApp.pages.categories', ['ngMessages'])
+    angular.module('MyApp.pages.categories', [])
         .config(routeConfig);
 
     /** @ngInject */
@@ -11,7 +11,12 @@
                 url: '/categories',
                 templateUrl: 'app/pages/categories/listCategory.html',
                 controller: 'CategoriesPageCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'vm',
+                title: 'Categories',
+                sidebarMeta: {
+                    icon: 'ion-grid',
+                    order: 1,
+                },
             });
     }
 

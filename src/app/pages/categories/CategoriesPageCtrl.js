@@ -5,7 +5,7 @@
         .module('MyApp.pages.categories')
         .controller('CategoriesPageCtrl', CategoriesPageCtrl);
 
-    function CategoriesPageCtrl($scope, $filter, editableOptions, editableThemes, CategoryService) {
+    function CategoriesPageCtrl($scope, $filter, editableOptions, editableThemes, CategoryService, toastr) {
         var vm = this;
         vm.removeCategory = function(id) {
             //vm.categories.splice(index, 1);
@@ -42,18 +42,9 @@
             var ret = CategoryService.getAll();
             ret.then(function (result) {
                 vm.categories = result.Categories;
-            }, showError);
+                toastr.success('Categories load successfully!');
+            });
         };
-
-        function showError(errObj) {
-            if (window.console) {
-                console.log(errObj, "Failed to retrieve category list. Please try again later.");
-            }
-            $scope.messages = [{
-                msg: 'Failed to retrieve category list',
-                type: 'danger'
-            }];
-        }
 
         vm.getCategories();
 

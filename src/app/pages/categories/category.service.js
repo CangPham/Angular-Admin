@@ -3,7 +3,11 @@
 
     angular
         .module('MyApp.pages.categories')
-        .factory('CategoryService', Service);
+        .factory('CategoryService', Service)
+        // Decorate the service...
+        .config(function (errorHandlerProvider, $provide) {
+            errorHandlerProvider.decorate($provide, ['CategoryService']);
+        });
 
     /** @ngInject */
     function Service($http, $rootScope, RequestService) {
@@ -22,11 +26,16 @@
         }
 
         function getAll() {
-            return RequestService.get('/categories/getList.json');
+            return RequestService.get('/categories/getList.json')
+                .then(function (result) {
+                    return result;
+                });
         }
-        
+        // Provide the description of each method, which also functions as documentation. :-)
+        getAll.description = 'load categories';
+
         function save(params) {
-            return RequestService.post('/categories/edit.json', params)
+            return RequestService.post('/categories/update.json', params)
         }
 
         function create(data) {
