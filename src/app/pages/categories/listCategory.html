@@ -2,7 +2,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div ba-panel ba-panel-title="Editable Rows" ba-panel-class="with-scroll">
+            <div ba-panel ba-panel-title="Category List" ba-panel-class="with-scroll">
                 <div class="add-row-editable-table">
                     <button class="btn btn-primary" ng-click="vm.addCategory()">Add row</button>
                 </div>
@@ -31,7 +31,7 @@
                             <form editable-form name="rowform" ng-show="rowform.$visible"
                                   class="form-buttons form-inline"
                                   shown="vm.inserted == category">
-                                <button type="submit" ng-click="vm.save(category.CategoryId, rowform.$data)" ng-disabled="rowform.$waiting"
+                                <button type="submit" ng-click="vm.saveCategory(category.CategoryId, rowform.$data)" ng-disabled="rowform.$waiting"
                                         class="btn btn-primary editable-table-button btn-xs">
                                     Save
                                 </button>

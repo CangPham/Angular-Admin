@@ -5,9 +5,17 @@
         .module('MyApp.pages.products')
         .controller('productsPageCtrl', ProductsPageCtrl);
 
-    function ProductsPageCtrl($scope, ProductService, toastr) {
+    function ProductsPageCtrl($scope, ProductService, toastr, $state) {
         var vm = this;
         this.productPageSize = 10;
+
+        vm.addProduct = function () {
+            $state.go('productCreate');
+        };
+
+        vm.viewProduct = function (item) {
+            $state.go('productEdit', {id: item.ProductId});
+        };
 
         vm.getProducts = function () {
             var ret = ProductService.getAll();

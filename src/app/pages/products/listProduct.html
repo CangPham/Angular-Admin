@@ -1,14 +1,17 @@
 <div class="widgets">
     <div class="row">
         <div class="col-md-12">
-            <div ba-panel>
+            <div ba-panel ba-panel-title="Product List" ba-panel-class="with-scroll">
                 <div class="horizontal-scroll">
                     <div class="form-group select-page-size-wrap ">
-                        <label>Rows on page
-                            <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
-                                    ng-model="vm.productPageSize" ng-options="i for i in [5,10,15,20,25]">
-                            </select>
-                        </label>
+                        <!--<label>Rows on page-->
+                        <!--<select class="form-control selectpicker show-tick" title="Rows on page" selectpicker-->
+                        <!--ng-model="vm.productPageSize" ng-options="i for i in [5,10,15,20,25]">-->
+                        <!--</select>-->
+                        <!--</label>-->
+                        <div class="add-row-editable-table">
+                            <button class="btn btn-primary" ng-click="vm.addProduct()">Create</button>
+                        </div>
                     </div>
                     <table class="table" st-table="vm.displayedData" st-safe-src="vm.products">
                         <thead>
@@ -34,7 +37,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="item in vm.displayedData">
+                        <tr ng-repeat="item in vm.displayedData" ng-click="vm.viewProduct(item)">
                             <td>{{item.ProductName}}</td>
                             <td>{{item.ProductDescription}}</td>
                             <td>{{item.CategoryId}}</td>

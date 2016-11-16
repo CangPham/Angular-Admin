@@ -21,7 +21,7 @@
             vm.categories.push(vm.inserted);
         };
 
-        vm.save = function (id, category) {
+        vm.saveCategory = function (id, category) {
             var data = {
                 "CategoryName": category.CategoryName,
                 "CategoryDescription": category.CategoryDescription

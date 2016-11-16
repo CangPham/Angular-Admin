@@ -23,6 +23,14 @@
                 templateUrl: 'app/pages/products/editProduct.html',
                 controller: 'editProductPageCtrl',
                 controllerAs: 'vm',
+                title: 'Edit Product',
+            })
+            .state('productCreate', {
+                url: '/product/create',
+                templateUrl: 'app/pages/products/editProduct.html',
+                controller: 'createProductPageCtrl',
+                controllerAs: 'vm',
+                title: 'Create Product',
             });
     }
 
