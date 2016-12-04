@@ -21,8 +21,11 @@
 
         return service;
 
-        function get(categoryId) {
-            return RequestService.get('/products/view', {categoryId: categoryId});
+        function get(id) {
+            var params = {
+                ProductId: id
+            };
+            return RequestService.get('/products/view.json', {params: params});
         }
 
         function getAll() {

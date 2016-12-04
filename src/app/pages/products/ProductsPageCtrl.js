@@ -17,6 +17,14 @@
             $state.go('productEdit', {id: item.ProductId});
         };
 
+        vm.deleteProduct = function (id) {
+            var ret = ProductService.remove(id);
+            ret.then(function (result) {
+                vm.getProducts();
+                toastr.success('Delete product successfully!');
+            });
+        };
+
         vm.getProducts = function () {
             var ret = ProductService.getAll();
             ret.then(function (result) {

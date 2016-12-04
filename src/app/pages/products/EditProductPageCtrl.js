@@ -5,16 +5,36 @@
         .module('MyApp.pages.products')
         .controller('editProductPageCtrl', EditProductPageCtrl);
 
-    function EditProductPageCtrl($scope, ProductService) {
+    function EditProductPageCtrl($scope, $state, ProductService, CategoryService) {
         var vm = this;
+        var productid = $state.params.id;
 
-        vm.getProduct = function (id) {
-            var ret = ProductService.get(id);
+        vm.saveCategory = function () {
+
+        };
+
+        vm.getProduct = function () {
+            var ret = ProductService.get(productid);
             ret.then(function (result) {
-                vm.product = result;
+                vm.product = result.Product;
             });
         };
-        vm.getProduct();
+
+        vm.getCategories = function () {
+            var ret = CategoryService.getAll();
+            ret.then(function (result) {
+                vm.categories = result.Categories;
+            });
+        };
+
+        vm.Init = function () {
+            vm.getProduct();
+            vm.getCategories();
+        };
+
+        vm.Init();
     }
+
+
 
 })();
