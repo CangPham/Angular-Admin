@@ -6,7 +6,7 @@
                     ba-panel
                     ba-panel-title="Edit Product"
                     ba-panel-class="with-scroll">
-                <form class="form-horizontal" name="ValidationForm">
+                <form class="form-horizontal" name="validationForm">
                     <div class="form-group">
                         <label for="ProductName" class="col-sm-2 control-label">Product Name</label>
                         <div class="col-sm-10">
@@ -47,7 +47,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" ng-click="vm.saveProduct()" class="btn btn-warning">Save</button>
+                            <button type="submit" ng-click="vm.saveProduct(validationForm)" class="btn btn-warning">Save</button>
                         </div>
                     </div>
                 </form>

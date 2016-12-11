@@ -9,8 +9,24 @@
         var vm = this;
         var productid = $state.params.id;
 
-        vm.saveCategory = function () {
-
+        vm.saveCategory = function (validationForm) {
+            if (!validationForm.$valid) {
+                return false;
+            }
+            var data = {
+                "CategoryName": category.CategoryName,
+                "CategoryDescription": category.CategoryDescription
+            };
+            if(id){
+                data.CategoryId = id;
+                CategoryService.save(data).then(function (result) {
+                    console.log(result);
+                });
+            } else {
+                CategoryService.create(data).then(function (result) {
+                    console.log(result);
+                });
+            }
         };
 
         vm.getProduct = function () {
