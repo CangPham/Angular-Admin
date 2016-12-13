@@ -14,19 +14,16 @@
                 return false;
             }
             var data = {
-                "CategoryName": category.CategoryName,
-                "CategoryDescription": category.CategoryDescription
+                "ProductId": productid,
+                "ProductName": category.CategoryName,
+                "ProductDescription": category.CategoryDescription,
+                "ProductPrice": 2000,
+                "ProductImage": ''
             };
-            if(id){
-                data.CategoryId = id;
-                CategoryService.save(data).then(function (result) {
-                    console.log(result);
-                });
-            } else {
-                CategoryService.create(data).then(function (result) {
-                    console.log(result);
-                });
-            }
+            ProductService.save(data).then(function (result) {
+                console.log(result);
+            });
+
         };
 
         vm.getProduct = function () {
@@ -50,7 +47,6 @@
 
         vm.Init();
     }
-
 
 
 })();

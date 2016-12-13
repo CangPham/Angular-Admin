@@ -13,6 +13,7 @@ angular.module('MyApp', [
     'ngJsTree',
     'angular-progress-button-styles',
     'ngStorage',
+    'ngFileUpload',
 
     'MyApp.theme',
     'MyApp.pages'

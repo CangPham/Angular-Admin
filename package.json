@@ -1,6 +1,5 @@
 {
   "name": "Angular_admin",
-  "version": "1.0",
   "devDependencies": {
     "browser-sync": "~2.9.11",
     "browser-sync-spa": "~1.0.3",
