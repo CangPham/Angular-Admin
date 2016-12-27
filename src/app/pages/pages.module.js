@@ -6,9 +6,9 @@
     'ui.router',
     'MyApp.pages.errorHandler',
     'MyApp.pages.dashboard',
-    // 'MyApp.pages.ui',
-    // 'MyApp.pages.components',
-    // 'MyApp.pages.form',
+    'MyApp.pages.ui',
+    //'MyApp.pages.components',
+     'MyApp.pages.form',
      'MyApp.pages.tables',
     // 'MyApp.pages.charts',
     // 'MyApp.pages.maps',
@@ -16,6 +16,8 @@
     'MyApp.pages.authentication',
     'MyApp.pages.categories',
     'MyApp.pages.products',
+      'MyApp.pages.shops',
+      'MyApp.pages.staff',
   ])
       .config(routeConfig);
 
