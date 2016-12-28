@@ -5,40 +5,23 @@
         .module('MyApp.pages.staff')
         .controller('StaffPageCtrl', StaffPageCtrl);
 
-    function StaffPageCtrl($scope, $filter, editableOptions, editableThemes, StaffService, toastr) {
+    function StaffPageCtrl($scope, $filter, editableOptions, editableThemes, StaffService, toastr, $state) {
         var vm = this;
+        this.staffPageSize = 10;
         vm.removeStaff = function(id) {
             //vm.categories.splice(index, 1);
             StaffService.remove(id).then(function (result) {
                 console.log(result);
             });
         };
-        vm.addStaff = function() {
-            vm.inserted = {
-                FirstName: '',
-                LastName: '',
-                UserPhoneNumber: '',
-                UserName: ''
-            };
-            vm.staff.push(vm.inserted);
+
+
+        vm.addStaff = function () {
+            $state.go('staffCreate');
         };
 
-        vm.saveStaff = function (id, staff) {
-            var data = {
-                "FirstName": staff.FirstName,
-                "LastName": staff.LastName,
-                "UserPhoneNumber": staff.UserPhoneNumber
-            };
-            if(id){
-                data.UserId = id;
-                StaffService.save(data).then(function (result) {
-                    console.log(result);
-                });
-            } else {
-                StaffService.create(data).then(function (result) {
-                    console.log(result);
-                });
-            }
+        vm.viewStaff = function () {
+            $state.go('staffEdit');
         };
 
         vm.getStaff = function () {

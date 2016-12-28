@@ -1,69 +1,67 @@
-<div class="widgets">
 
+
+<div class="widgets">
     <div class="row">
         <div class="col-md-12">
-            <div ba-panel ba-panel-title="Category List" ba-panel-class="with-scroll">
-                <div class="add-row-editable-table">
-                    <button class="btn btn-primary" ng-click="vm.addShop()">Add row</button>
+            <div ba-panel ba-panel-title="Staff List" ba-panel-class="with-scroll">
+                <div class="horizontal-scroll">
+                    <div class="form-group select-page-size-wrap ">
+
+                        <div class="add-row-editable-table">
+                            <button class="btn btn-primary" ng-click="vm.addStaff()">Create</button>
+                        </div>
+                    </div>
+                    <table class="table" st-table="vm.displayedData" st-safe-src="vm.products">
+                        <thead>
+                        <tr class="sortable ">
+                            <th st-sort="FirstName">First Name</th>
+                            <th st-sort="LastName">Last Name</th>
+                            <th st-sort="UserPhoneNumber">Phone</th>
+                            <th st-sort="UserName">Email</th>
+                            <th st-sort="UserStatus">Status</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th><input st-search="FirstName" placeholder="Search firstname"
+                                       class="input-sm form-control search-input"
+                                       type="search"/></th>
+                            <th><input st-search="LastName" placeholder="Search lastname"
+                                       class="input-sm form-control search-input"
+                                       type="search"/></th>
+                            <th><input st-search="UserPhoneNumber" placeholder="Search phone number"
+                                       class="input-sm form-control search-input"
+                                       type="search"/></th>
+                            <th><input st-search="UserName" placeholder="Search email"
+                                       class="input-sm form-control search-input" type="search"/>
+                            </th>
+                            <th></th>
+                            <th></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="staff in vm.staff">
+                            <td>{{staff.FirstName}}</td>
+                            <td>{{staff.LastName}}</td>
+                            <td>{{staff.UserPhoneNumber}}</td>
+                            <td>{{staff.UserName}}</td>
+                            <td>{{staff.UserStatus}}</td>
+                            <td>
+                                <button class="btn btn-default btn-rounded btn-sm" ng-click="vm.viewStaff(staff)"><span class="fa fa-pencil"></span></button>
+                                <button class="btn btn-danger btn-rounded btn-sm" ng-click="vm.deleteStaff(staff.UserId)"><span class="fa fa-times"></span></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <div st-pagination="" st-items-by-page="vm.staffPageSize"
+                                     st-displayed-pages="5"></div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
-                <table class="table table-bordered table-hover table-condensed">
-                    <tr>
-                        <td></td>
-                        <td>First Name</td>
-                        <td>Last Name</td>
-                        <td>Staff Phone</td>
-                        <td>Staff Email</td>
-                        <td>Actions</td>
-                    </tr>
-                    <tr ng-repeat="staff in vm.staff" class="editable-row">
-                        <td>
-                            {{$index}}
-                        </td>
-                        <td>
-                            <span editable-text="staff.FirstName" e-name="FirstName" e-form="rowform" e-required>
-                              {{ staff.FirstName || 'empty' }}
-                            </span>
-                        </td>
-                        <td>
-                            <span editable-text="staff.LastName" e-name="LastName" e-form="rowform">
-                              {{ staff.LastName }}
-                            </span>
-                        </td>
-                        <td>
-                            <span editable-text="staff.UserPhoneNumber" e-name="UserPhoneNumber" e-form="rowform">
-                              {{ staff.UserPhoneNumber }}
-                            </span>
-                        </td><td>
-                            <span editable-text="staff.UserName" e-name="UserName" e-form="rowform">
-                              {{ staff.UserName }}
-                            </span>
-                    </td>
-
-                        <td>
-                            <form editable-form name="rowform" ng-show="rowform.$visible"
-                                  class="form-buttons form-inline"
-                                  shown="vm.inserted == staff">
-                                <button type="submit" ng-click="vm.saveStaff(staff.UserId, rowform.$data)" ng-disabled="rowform.$waiting"
-                                        class="btn btn-primary editable-table-button btn-xs">
-                                    Save
-                                </button>
-                                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()"
-                                        class="btn btn-default editable-table-button btn-xs">
-                                    Cancel
-                                </button>
-                            </form>
-                            <div class="buttons" ng-show="!rowform.$visible">
-                                <button class="btn btn-primary editable-table-button btn-xs" ng-click="rowform.$show()">
-                                    Edit
-                                </button>
-                                <button class="btn btn-danger editable-table-button btn-xs"
-                                        ng-click="vm.removeStaff(staff.UserId)">Delete
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-
             </div>
         </div>
     </div>
