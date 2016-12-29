@@ -21,6 +21,7 @@
         service.save = save;
         service.create = create;
         service.remove = remove;
+        service.removeMany = removeMany;
         service.getShopProducts = getShopProducts;
 
         return service;
@@ -48,18 +49,22 @@
 
 
         // Provide the description of each method, which also functions as documentation. :-)
-        getAll.description = 'load shops';
+        getAll.description = 'load shop products';
 
         function save(params) {
-            return RequestService.post('/shopcategories/update.json', params)
+            return RequestService.post('/shopproducts/update.json', params)
         }
 
         function create(data) {
-            return RequestService.post('/shopcategories/create.json', data);
+            return RequestService.post('/shopproducts/create.json', data);
         }
 
-        function remove(id) {
-            return RequestService.post('/shopcategories/remove.json', {ShopId: id});
+        function remove(productId, shopId) {
+            return RequestService.post('/shopproducts/remove.json', {ShopId: shopId, ProductId: productId});
+        }
+
+        function removeMany(productIds, shopId) {
+            return RequestService.post('/shopproducts/removeMany.json', {ShopId: shopId, ProductIds: productIds});
         }
     }
 })();

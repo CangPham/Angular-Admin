@@ -3,9 +3,9 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div ba-panel ba-panel-title="Category List" ba-panel-class="with-scroll">
+            <div ba-panel ba-panel-title="{{vm.shop.ShopName}} - Category List" ba-panel-class="with-scroll">
                 <div class="add-row-editable-table">
-                    <button class="btn btn-primary" ng-click="vm.addCategory()">Add row</button>
+                    <button class="btn btn-primary" ng-click="vm.todo()">Add row</button>
                 </div>
                 <table class="table table-bordered table-hover table-condensed">
                     <tr>
@@ -54,7 +54,7 @@
                                     Edit
                                 </button>
                                 <button class="btn btn-danger editable-table-button btn-xs"
-                                        ng-click="vm.removeCategory(category.CategoryId)">Delete
+                                        ng-click="vm.removeShopCategory(category.CategoryId, vm.shop.ShopId)">Delete
                                 </button>
                             </div>
                         </td>
@@ -71,7 +71,7 @@
 <div class="widgets">
     <div class="row">
         <div class="col-md-12">
-            <div ba-panel ba-panel-title="Product List" ba-panel-class="with-scroll">
+            <div ba-panel ba-panel-title="{{vm.shop.ShopName}} - Product List" ba-panel-class="with-scroll">
                 <div class="horizontal-scroll">
                     <div class="form-group select-page-size-wrap ">
                         <!--<label>Rows on page-->
@@ -116,7 +116,7 @@
                             <td>{{item.ProductPrice}}</td>
                             <td>
                                 <button class="btn btn-default btn-rounded btn-sm" ng-click="vm.viewProduct(item)"><span class="fa fa-pencil"></span></button>
-                                <button class="btn btn-danger btn-rounded btn-sm" ng-click="vm.deleteProduct(item.ProductId)"><span class="fa fa-times"></span></button>
+                                <button class="btn btn-danger btn-rounded btn-sm" ng-click="vm.removeShopProduct(item.ProductId, vm.shop.ShopId)"><span class="fa fa-times"></span></button>
                             </td>
                         </tr>
                         </tbody>

@@ -20,7 +20,9 @@
         service.getAll = getAll;
         service.save = save;
         service.create = create;
+        service.createMany = createMany;
         service.remove = remove;
+        service.removeMany = removeMany;
         service.getShopCategories = getShopCategories;
 
         return service;
@@ -54,12 +56,20 @@
             return RequestService.post('/shopcategories/update.json', params)
         }
 
-        function create(data) {
-            return RequestService.post('/shopcategories/create.json', data);
+        function create(categoryId, shopId) {
+            return RequestService.post('/shopcategories/create.json', {ShopId: shopId, CategoryId: categoryId});
         }
 
-        function remove(id) {
-            return RequestService.post('/shopcategories/remove.json', {ShopId: id});
+        function createMany(categoryIds, shopId) {
+            return RequestService.post('/shopcategories/create.json', {ShopId: shopId, CategoryId: categoryIds});
+        }
+
+        function remove(categoryId, shopId) {
+            return RequestService.post('/shopcategories/remove.json', {ShopId: shopId, CategoryId: categoryId});
+        }
+
+        function removeMany(categoryIds, shopId) {
+            return RequestService.post('/shopcategories/remove.json', {ShopId: shopId, CategoryIds: categoryIds});
         }
     }
 })();

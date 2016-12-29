@@ -5,26 +5,10 @@
         .module('MyApp.pages.products')
         .controller('showShopPageCtrl', ShowShopPageCtrl);
 
-    function ShowShopPageCtrl($scope, $state, ShopProductService, ShopCategoryService) {
+    function ShowShopPageCtrl($scope, $state, ShopProductService, ShopCategoryService, ShopService, toastr) {
         var vm = this;
         var shopId = $state.params.id;
 
-        // vm.saveCategory = function (validationForm) {
-        //     if (!validationForm.$valid) {
-        //         return false;
-        //     }
-        //     var data = {
-        //         "ProductId": productid,
-        //         "ProductName": category.CategoryName,
-        //         "ProductDescription": category.CategoryDescription,
-        //         "ProductPrice": 2000,
-        //         "ProductImage": ''
-        //     };
-        //     ShopProductService.save(data).then(function (result) {
-        //         console.log(result);
-        //     });
-        //
-        // };
 
         vm.getShopProducts = function () {
             var ret = ShopProductService.getShopProducts(shopId);
@@ -40,11 +24,35 @@
             });
         };
 
+        vm.getShop = function () {
+            var ret = ShopService.get(shopId);
+            ret.then(function (result) {
+                vm.shop = result.Shop;
+            });
+        };
+
+        vm.removeShopCategory = function (categoryId) {
+            var ret = ShopCategoryService.remove(categoryId, shopId);
+            ret.then(function (result) {
+                console.log(result);
+                toastr.success("Category removed from shop successfully");
+            });
+        };
+
+        vm.removeShopProduct = function (productId) {
+            var ret = ShopProductService.remove(productId, shopId);
+            ret.then(function (result) {
+                console.log(result);
+                toastr.success("Product removed from shop successfully");
+            });
+        };
+
         vm.Init = function () {
             vm.getShopCategories();
             vm.getShopProducts();
         };
 
+        vm.getShop();
         vm.Init();
     }
 
