@@ -26,7 +26,21 @@
             title: 'Shop Categories & Products',
 
         })
-        ;
+            .state('shopEdit', {
+                url: '/shops/edit/{id}',
+                templateUrl: 'app/pages/shops/editShop.html',
+                controller: 'editShopPageCtrl',
+                controllerAs: 'vm',
+                title: 'Edit Shop',
+            })
+            .state('shopCreate', {
+                url: '/shops/create',
+                templateUrl: 'app/pages/shops/editShop.html',
+                controller: 'createShopPageCtrl',
+                controllerAs: 'vm',
+                title: 'Create Shop',
+            });
+
     }
 
 })();

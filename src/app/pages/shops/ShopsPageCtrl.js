@@ -14,31 +14,13 @@
             });
         };
         vm.addShop = function() {
-            vm.inserted = {
-                ShopName: '',
-                ShopDescription: '',
-                ShopAddress: ''
-            };
-            vm.shops.push(vm.inserted);
+            $state.go('shopCreate')
         };
 
-        vm.saveShop = function (id, shop) {
-            var data = {
-                "ShopName": shop.ShopName,
-                "ShopDescription": shop.ShopDescription,
-                "ShopAddress": shop.ShopAddress
-            };
-            if(id){
-                data.ShopId = id;
-                ShopService.save(data).then(function (result) {
-                    console.log(result);
-                });
-            } else {
-                ShopService.create(data).then(function (result) {
-                    console.log(result);
-                });
-            }
+        vm.editShop = function(shopId) {
+            $state.go('shopEdit', {id: shopId})
         };
+
 
         vm.showShop = function (shopId) {
             $state.go('showShop', {id: shopId});
@@ -50,6 +32,8 @@
             var ret = ShopService.getAll();
             ret.then(function (result) {
                 vm.shops = result.Shops;
+                vm.displayShops = [].concat(vm.shops);
+
                 toastr.success('Shops load successfully!');
             });
         };

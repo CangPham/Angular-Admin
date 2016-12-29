@@ -21,8 +21,11 @@
 
         return service;
 
-        function get(categoryId) {
-            return RequestService.get('/shops/view', {categoryId: categoryId});
+        function get(shopId) {
+            var params = {
+                ShopId: shopId
+            };
+            return RequestService.get('/shops/view.json', {params: params});
         }
 
         function getAll() {

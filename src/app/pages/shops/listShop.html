@@ -1,66 +1,53 @@
-<div class="widgets">
 
+<div class="widgets">
     <div class="row">
         <div class="col-md-12">
-            <div ba-panel ba-panel-title="Category List" ba-panel-class="with-scroll">
-                <div class="add-row-editable-table">
-                    <button class="btn btn-primary" ng-click="vm.addShop()">Add row</button>
-                </div>
-                <table class="table table-bordered table-hover table-condensed">
-                    <tr>
-                        <td></td>
-                        <td>Shop Name</td>
-                        <td>Shop Description</td>
-                        <td>Shop Address</td>
-                        <td>Actions</td>
-                    </tr>
-                    <tr ng-repeat="shop in vm.shops" class="editable-row">
-                        <td>
-                            {{$index}}
-                        </td>
-                        <td>
-                            <span editable-text="shop.ShopName" e-name="ShopName" e-form="rowform" e-required>
-                              {{ shop.ShopName || 'empty' }}
-                            </span>
-                        </td>
-                        <td>
-                            <span editable-text="shop.ShopDescription" e-name="ShopDescription" e-form="rowform">
-                              {{ shop.ShopDescription }}
-                            </span>
-                        </td>
-                        <td>
-                            <span editable-text="shop.ShopAddress" e-name="ShopAddress" e-form="rowform">
-                              {{ shop.ShopAddress }}
-                            </span>
-                        </td>
-                        <td>
-                            <form editable-form name="rowform" ng-show="rowform.$visible"
-                                  class="form-buttons form-inline"
-                                  shown="vm.inserted == shop">
-                                <button type="submit" ng-click="vm.saveShop(shop.ShopId, rowform.$data)" ng-disabled="rowform.$waiting"
-                                        class="btn btn-primary editable-table-button btn-xs">
-                                    Save
-                                </button>
-                                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()"
-                                        class="btn btn-default editable-table-button btn-xs">
-                                    Cancel
-                                </button>
-                            </form>
-                            <div class="buttons" ng-show="!rowform.$visible">
-                                <button class="btn btn-primary editable-table-button btn-xs" ng-click="rowform.$show()">
-                                    Edit
-                                </button>
-                                <button class="btn btn-danger editable-table-button btn-xs"
-                                        ng-click="vm.showShop(shop.ShopId)">Products
-                                </button>
-                                <button class="btn btn-danger editable-table-button btn-xs"
-                                        ng-click="vm.removeShop(shop.ShopId)">Delete
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+            <div ba-panel ba-panel-title="Shop List" ba-panel-class="with-scroll">
+                <div class="horizontal-scroll">
+                    <div class="form-group select-page-size-wrap ">
+                        <!--<label>Rows on page-->
+                        <!--<select class="form-control selectpicker show-tick" title="Rows on page" selectpicker-->
+                        <!--ng-model="vm.productPageSize" ng-options="i for i in [5,10,15,20,25]">-->
+                        <!--</select>-->
+                        <!--</label>-->
+                        <div class="add-row-editable-table">
+                            <button class="btn btn-primary" ng-click="vm.addShop()">Create</button>
+                        </div>
+                    </div>
+                    <table class="table" st-table="vm.shops" st-safe-src="vm.displayShops">
+                        <thead>
+                        <tr class="sortable">
+                            <th st-sort="ShopName">Shop Name</th>
+                            <th st-sort="ShopDescription">Description</th>
+                            <th st-sort="ShopAddress">Address</th>
 
+                            <th></th>
+                        </tr>
+
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="shop in vm.displayShops">
+                            <td>{{shop.ShopName}}</td>
+                            <td>{{shop.ShopDescription}}</td>
+                            <td>{{shop.ShopAddress}}</td>
+
+                            <td>
+                                <button class="btn btn-default btn-rounded btn-sm" ng-click="vm.editShop(shop.ShopId)"><span class="fa fa-pencil"></span></button>
+                                <button class="btn btn-default btn-rounded btn-sm" ng-click="vm.showShop(shop.ShopId)">Details</button>
+                                <button class="btn btn-danger btn-rounded btn-sm" ng-click="vm.deleteShop(shop.ShopId)"><span class="fa fa-times"></span></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <div st-pagination="" st-items-by-page="vm.shopPageSize"
+                                     st-displayed-pages="5"></div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
