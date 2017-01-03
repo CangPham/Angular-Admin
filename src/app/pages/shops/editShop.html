@@ -1,0 +1,49 @@
+<div class="widgets">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div
+                    ba-panel
+                    ba-panel-title="Edit Shop"
+                    ba-panel-class="with-scroll">
+                <form class="form-horizontal" name="validationForm">
+                    <div class="form-group">
+                        <label for="ShopName" class="col-sm-2 control-label">Shop Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="vm.shop.ShopName" id="ShopName"
+                                   placeholder="Shop Name" required>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="ShopDescription" class="col-sm-2 control-label">Shop Description</label>
+                        <div class="col-sm-10">
+                            <textarea type="text" class="form-control" id="ShopDescription"
+                                      ng-model="vm.shop.ShopDescription"
+                                      placeholder="Shop Description"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ShopAddress" class="col-sm-2 control-label">Shop Address</label>
+                        <div class="col-sm-10">
+                            <textarea type="text" class="form-control" id="ShopAddress"
+                                      ng-model="vm.shop.ShopAddress"
+                                      placeholder="Shop Address"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" ng-click="vm.saveShop(validationForm)" class="btn btn-warning">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

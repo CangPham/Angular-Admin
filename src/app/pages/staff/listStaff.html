@@ -1,0 +1,68 @@
+
+
+<div class="widgets">
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="Staff List" ba-panel-class="with-scroll">
+                <div class="horizontal-scroll">
+                    <div class="form-group select-page-size-wrap ">
+
+                        <div class="add-row-editable-table">
+                            <button class="btn btn-primary" ng-click="vm.addStaff()">Create</button>
+                        </div>
+                    </div>
+                    <table class="table" st-table="vm.displayedData" st-safe-src="vm.products">
+                        <thead>
+                        <tr class="sortable ">
+                            <th st-sort="FirstName">First Name</th>
+                            <th st-sort="LastName">Last Name</th>
+                            <th st-sort="UserPhoneNumber">Phone</th>
+                            <th st-sort="UserName">Email</th>
+                            <th st-sort="UserStatus">Status</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th><input st-search="FirstName" placeholder="Search firstname"
+                                       class="input-sm form-control search-input"
+                                       type="search"/></th>
+                            <th><input st-search="LastName" placeholder="Search lastname"
+                                       class="input-sm form-control search-input"
+                                       type="search"/></th>
+                            <th><input st-search="UserPhoneNumber" placeholder="Search phone number"
+                                       class="input-sm form-control search-input"
+                                       type="search"/></th>
+                            <th><input st-search="UserName" placeholder="Search email"
+                                       class="input-sm form-control search-input" type="search"/>
+                            </th>
+                            <th></th>
+                            <th></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="staff in vm.staff">
+                            <td>{{staff.FirstName}}</td>
+                            <td>{{staff.LastName}}</td>
+                            <td>{{staff.UserPhoneNumber}}</td>
+                            <td>{{staff.UserName}}</td>
+                            <td>{{staff.UserStatus}}</td>
+                            <td>
+                                <button class="btn btn-default btn-rounded btn-sm" ng-click="vm.viewStaff(staff)"><span class="fa fa-pencil"></span></button>
+                                <button class="btn btn-danger btn-rounded btn-sm" ng-click="vm.deleteStaff(staff.UserId)"><span class="fa fa-times"></span></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <div st-pagination="" st-items-by-page="vm.staffPageSize"
+                                     st-displayed-pages="5"></div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
