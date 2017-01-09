@@ -16,11 +16,16 @@
                     </div>
                     <div class="form-group">
                         <label for="ProductImage" class="col-sm-2 control-label">Image</label>
-                        <div class="col-sm-10">
-                            <button id="ProductImage" type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)"
-                                    accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-                                Select File
-                            </button>
+                        <div class="col-sm-9">
+                            <div class="userpic">
+                                <div class="userpic-wrapper">
+                                    <img ng-src="{{vm.ImagePath}}{{ vm.product.ProductImage }}" ng-click="vm.uploadPicture()">
+                                </div>
+                                <i class="ion-ios-close-outline" ng-click="vm.removePicture()" ng-if="!noPicture"></i>
+                                <a href class="change-userpic" ng-click="vm.uploadPicture()">Change Profile Picture</a>
+                                <input id="ProductImage" ng-show="false" type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)"
+                                        accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">

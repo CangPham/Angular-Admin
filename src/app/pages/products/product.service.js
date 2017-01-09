@@ -18,6 +18,7 @@
         service.create = create;
         service.remove = remove;
         service.getCategoryById = getCategoryById;
+        service.getImagePath = getImagePath;
 
         return service;
 
@@ -33,7 +34,7 @@
         }
         
         function save(params) {
-            return RequestService.post('/products/edit.json', params)
+            return RequestService.post('/products/update.json', params)
         }
 
         function create(data) {
@@ -46,6 +47,10 @@
 
         function getCategoryById(id) {
             return RequestService.post('/categories/view.json', {CategoryId: id});
+        }
+
+        function getImagePath() {
+            return RequestService.get('/products/getProductImagePath.json');
         }
     }
 })();

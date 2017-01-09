@@ -5,7 +5,7 @@
         .module('MyApp.pages.products')
         .controller('createProductPageCtrl', CreateProductPageCtrl);
 
-    function CreateProductPageCtrl($scope, $rootScope, toastr, $state, Upload, $timeout, ProductService, CategoryService) {
+    function CreateProductPageCtrl($scope, $rootScope, toastr, $state, Upload, $timeout, $filter, ProductService, CategoryService) {
         var vm = this;
 
         vm.saveProduct = function (validationForm) {
@@ -31,6 +31,17 @@
         };
         vm.getCategories();
 
+        vm.uploadPicture = function () {
+            var fileInput = document.getElementById('ProductImage');
+            fileInput.click();
+
+        };
+
+        vm.removePicture = function () {
+            $scope.picture = $filter('appImage')('theme/no-photo.png');
+            $scope.noPicture = true;
+        };
+
         vm.uploadFiles = function(file, errFiles) {
             vm.f = file;
             vm.errFile = errFiles && errFiles[0];
@@ -52,7 +63,7 @@
                         evt.loaded / evt.total));
                 });
             }
-        }
+        };
     }
 
 })();
