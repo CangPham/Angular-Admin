@@ -1,0 +1,20 @@
+
+<div class="form-group">
+    <select class="form-control" data-live-search="true" title="Select shop"
+            ng-model="vm.shopSelectedItem"
+            ng-options="item as item.label for item in vm.shopSelectItems"
+            ng-change="vm.selectShop()">
+
+    </select>
+</div>
+
+<div class="row show-grid" ng-repeat="block in vm.shopTables">
+    <div>
+        <hr>
+        <h4 class="grid-h">{{block.BlockName}}</h4>
+    </div>
+    <div class="col-xs-3 col-md-1" ng-repeat="table in block.Seats">
+        <div>{{table.SeatName}}</div>
+    </div>
+
+</div>

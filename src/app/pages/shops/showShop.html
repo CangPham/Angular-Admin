@@ -86,6 +86,7 @@
                     <table class="table" st-table="vm.displayedData" st-safe-src="vm.products">
                         <thead>
                         <tr class="sortable ">
+                            <th> Product Image </th>
                             <th st-sort="ProductName">Product Name</th>
                             <th st-sort="ProductDescription">Description</th>
                             <th st-sort="CategoryId">Category</th>
@@ -93,6 +94,7 @@
                             <th></th>
                         </tr>
                         <tr>
+                            <th></th>
                             <th><input st-search="ProductName" placeholder="Search Product Name"
                                        class="input-sm form-control search-input"
                                        type="search"/></th>
@@ -110,6 +112,7 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="item in vm.shopProducts">
+                            <td><img src="https://cloudorder.vn/upload/images/{{item.ProductImage}}" class="img-rounded" alt="Cinque Terre" width="60" height="60"></td>
                             <td>{{item.ProductName}}</td>
                             <td>{{item.ProductDescription}}</td>
                             <td>{{item.CategoryId}}</td>
