@@ -1,0 +1,14 @@
+<div class="form-group">
+    <select class="form-control" data-live-search="true" title="Select shop"
+            ng-model="vm.shopSelectedItem"
+            ng-options="item as item.label for item in vm.shopSelectItems"
+            ng-change="">
+
+    </select>
+
+    <br>
+    <br>
+    <button class="btn btn-primary" ng-click="vm.addCateToShopCancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="vm.addCateToShop()">Submit</button>
+</div>
+

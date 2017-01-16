@@ -61,7 +61,7 @@
         }
 
         function createMany(categoryIds, shopId) {
-            return RequestService.post('/shopcategories/create.json', {ShopId: shopId, CategoryId: categoryIds});
+            return RequestService.post('/shopcategories/createMany.json', {ShopId: shopId, CategoryId: categoryIds});
         }
 
         function remove(categoryId, shopId) {
@@ -69,7 +69,8 @@
         }
 
         function removeMany(categoryIds, shopId) {
-            return RequestService.post('/shopcategories/remove.json', {ShopId: shopId, CategoryIds: categoryIds});
+
+            return RequestService.post('/shopcategories/removeMany.json', {ShopIds: [shopId], CategoryIds: categoryIds});
         }
     }
 })();

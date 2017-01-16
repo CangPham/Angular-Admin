@@ -3,10 +3,10 @@
 
     angular
         .module('MyApp.pages.tables')
-        .factory('TableService', Service)
+        .factory('BlockService', Service)
         // Decorate the service...
         .config(function (errorHandlerProvider, $provide) {
-            errorHandlerProvider.decorate($provide, ['TableService']);
+            errorHandlerProvider.decorate($provide, ['BlockService']);
         });
 
     /** @ngInject */
@@ -18,49 +18,38 @@
         service.save = save;
         service.create = create;
         service.remove = remove;
-        service.getOrderTableList = getOrderTableList;
+
         return service;
 
         function get(shopId) {
             var params = {
                 ShopId: shopId
             };
-            return RequestService.get('/shops/view.json', {params: params});
+            return RequestService.get('/blocks/view.json', {params: params});
         }
 
         function getAll(shopId) {
             var params = {
                 ShopId: shopId
             };
-            return RequestService.get('/seats/getSeatList.json', {params: params})
+            return RequestService.get('/blocks/getList.json', {params: params})
                 .then(function (result) {
                     return result;
                 });
         }
-
-        function getOrderTableList(shopId) {
-            var params = {
-                ShopId: shopId
-            };
-            return RequestService.get('/seats/getOrderTableList.json', {params: params})
-                .then(function (result) {
-                    return result;
-                });
-        }
-
         // Provide the description of each method, which also functions as documentation. :-)
         getAll.description = 'load shop tables';
 
         function save(data) {
-            return RequestService.post('/seats/update.json', data)
+            return RequestService.post('/blocks/update.json', data)
         }
 
         function create(data) {
-            return RequestService.post('/seats/create.json', data);
+            return RequestService.post('/blocks/create.json', data);
         }
 
         function remove(id) {
-            return RequestService.post('/seats/remove.json', {SeatId: id});
+            return RequestService.post('/blocks/remove.json', {BlockId: id});
         }
     }
 })();

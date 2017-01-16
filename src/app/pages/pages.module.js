@@ -7,7 +7,7 @@
     'MyApp.pages.errorHandler',
     'MyApp.pages.dashboard',
     'MyApp.pages.ui',
-    //'MyApp.pages.components',
+    'MyApp.pages.orders',
      'MyApp.pages.form',
      'MyApp.pages.tables',
     // 'MyApp.pages.charts',

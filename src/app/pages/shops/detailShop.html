@@ -6,9 +6,11 @@
             <div ba-panel ba-panel-title="{{vm.shop.ShopName}} - Category List" ba-panel-class="with-scroll">
                 <div class="add-row-editable-table">
                     <button class="btn btn-primary" ng-click="vm.todo()">Add row</button>
+                    <button class="btn btn-primary" ng-click="vm.removeMany()">Remove selected</button>
                 </div>
                 <table class="table table-bordered table-hover table-condensed">
                     <tr>
+                        <td><input type="checkbox" id="checkAllShopCategories" ng-model="checkAllShopCategories"></td>
                         <td></td>
                         <td>ShopCategory ID</td>
 
@@ -17,6 +19,7 @@
                         <td>Actions</td>
                     </tr>
                     <tr ng-repeat="category in vm.shopCategories" class="editable-row">
+                        <td><input type="checkbox" id="shopCategory-{{category.CategoryId}}" ng-checked="checkAllShopCategories"></td>
                         <td>
                             {{$index}}
                         </td>
@@ -81,11 +84,13 @@
                         <!--</label>-->
                         <div class="add-row-editable-table">
                             <button class="btn btn-primary" ng-click="vm.addProduct()">Create</button>
+                            <button class="btn btn-primary" ng-click="vm.removeManyShopProducts()">Remove selected</button>
                         </div>
                     </div>
                     <table class="table" st-table="vm.displayedData" st-safe-src="vm.products">
                         <thead>
                         <tr class="sortable ">
+                            <td><input type="checkbox" id="checkAllShopProducts" ng-model="checkAllShopProducts"></td>
                             <th> Product Image </th>
                             <th st-sort="ProductName">Product Name</th>
                             <th st-sort="ProductDescription">Description</th>
@@ -112,6 +117,7 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="item in vm.shopProducts">
+                            <td><input type="checkbox" id="shopProduct-{{item.ProductId}}" ng-checked="checkAllShopProducts"></td>
                             <td><img src="https://cloudorder.vn/upload/images/{{item.ProductImage}}" class="img-rounded" alt="Cinque Terre" width="60" height="60"></td>
                             <td>{{item.ProductName}}</td>
                             <td>{{item.ProductDescription}}</td>

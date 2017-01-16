@@ -17,7 +17,15 @@
                     icon: 'ion-grid',
                     order: 1,
                 },
-            });
+            })
+            .state('addCateToShop', {
+            url: '/categories/addCateToShop',
+            templateUrl: 'app/pages/categories/addCateToShop.html',
+            controller: 'AddCateToShopPageCtrl',
+            controllerAs: 'vm',
+            title: 'Add Categories To shop',
+
+        });
     }
 
 })();

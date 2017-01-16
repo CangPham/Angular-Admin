@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('MyApp.pages.products')
-        .controller('showShopPageCtrl', ShowShopPageCtrl);
+        .module('MyApp.pages.shops')
+        .controller('detailShopPageCtrl', DetailShopPageCtrl);
 
-    function ShowShopPageCtrl($scope, $state, ShopProductService, ShopCategoryService, ShopService, toastr) {
+    function DetailShopPageCtrl($scope, $state, ShopProductService, ShopCategoryService, ShopService, toastr) {
         var vm = this;
         var shopId = $state.params.id;
 
@@ -30,20 +30,45 @@
                 vm.shop = result.Shop;
             });
         };
+        vm.removeMany = function () {
+           console.log(vm.selectedCategories);
+           console.log($scope);
+        };
+
 
         vm.removeShopCategory = function (categoryId) {
             var ret = ShopCategoryService.remove(categoryId, shopId);
             ret.then(function (result) {
-                console.log(result);
+
                 toastr.success("Category removed from shop successfully");
+                vm.getShopCategories();
+            });
+        };
+
+        vm.removeManyShopCategories = function (categoryIds) {
+            var ret = ShopCategoryService.removeMany(categoryIds, shopId);
+            ret.then(function (result) {
+
+                toastr.success("Category removed from shop successfully");
+                vm.getShopCategories();
             });
         };
 
         vm.removeShopProduct = function (productId) {
             var ret = ShopProductService.remove(productId, shopId);
             ret.then(function (result) {
-                console.log(result);
+
                 toastr.success("Product removed from shop successfully");
+                vm.getShopProducts();
+            });
+        };
+
+        vm.removeManyShopProducts = function (productId) {
+            var ret = ShopProductService.removeMany(productIds, shopId);
+            ret.then(function (result) {
+
+                toastr.success("Products removed from shop successfully");
+                vm.getShopProducts();
             });
         };
 

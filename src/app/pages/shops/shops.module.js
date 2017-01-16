@@ -18,10 +18,10 @@
                     order: 1,
                 },
             })
-            .state('showShop', {
-            url: '/shops/show/{id}',
-            templateUrl: 'app/pages/shops/showShop.html',
-            controller: 'showShopPageCtrl',
+            .state('detailShop', {
+            url: '/shops/detail/{id}',
+            templateUrl: 'app/pages/shops/detailShop.html',
+            controller: 'detailShopPageCtrl',
             controllerAs: 'vm',
             title: 'Shop Categories & Products',
 

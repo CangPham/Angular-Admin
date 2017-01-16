@@ -23,7 +23,7 @@
 
 
         vm.showShop = function (shopId) {
-            $state.go('showShop', {id: shopId});
+            $state.go('detailShop', {id: shopId});
 
         };
 

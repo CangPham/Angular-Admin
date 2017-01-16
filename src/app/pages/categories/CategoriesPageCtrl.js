@@ -5,7 +5,7 @@
         .module('MyApp.pages.categories')
         .controller('CategoriesPageCtrl', CategoriesPageCtrl);
 
-    function CategoriesPageCtrl($scope, $filter, editableOptions, editableThemes, CategoryService, toastr) {
+    function CategoriesPageCtrl($scope, $filter, editableOptions, editableThemes, ShopService, CategoryService, toastr, $state) {
         var vm = this;
         vm.removeCategory = function(id) {
             //vm.categories.splice(index, 1);
@@ -45,6 +45,29 @@
                 toastr.success('Categories load successfully!');
             });
         };
+
+        vm.getShops = function () {
+            var ret = ShopService.getAll();
+            ret.then(function (result) {
+                vm.shops = result.Shops;
+                vm.displayShops = [].concat(vm.shops);
+
+                vm.shopSelectItems = vm.displayShops.map(function (item) {
+                    var obj = {};
+                    obj.label = item.ShopName;
+                    obj.value = item.ShopId;
+                    return obj;
+                });
+
+                toastr.success('Shops load successfully!');
+            });
+        };
+        vm.addCateToShop = function() {
+
+            $state.go('addCateToShop');
+
+        };
+
 
         vm.getCategories();
 
