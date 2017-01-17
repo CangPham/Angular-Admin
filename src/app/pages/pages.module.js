@@ -18,7 +18,8 @@
     'MyApp.pages.products',
       'MyApp.pages.shops',
       'MyApp.pages.staff',
-      'MyApp.pages.assignments'
+      'MyApp.pages.assignments',
+      'MyApp.pages.menus'
   ])
       .config(routeConfig);
 

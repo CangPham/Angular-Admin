@@ -1,0 +1,30 @@
+
+<div class="form-group">
+    <select class="form-control" data-live-search="true" title="Select shop"
+
+            ng-model="vm.shopSelectedItem"
+            ng-options="item as item.label for item in vm.shopSelectItems"
+            ng-change="vm.selectShop()">
+
+    </select>
+</div>
+
+<div class="container-fluid">
+<div class="row" >
+
+    <div class="col-xs-6 col-sm-4 col-md-3" height="280" width="280" ng-repeat="product in vm.shopProducts">
+        <div>
+    <a href="">
+        <img class="img-responsive" src="https://cloudorder.vn/upload/images/{{product.ProductImage}}" alt>
+    </a>
+        </div>
+        <div>
+            {{product.ProductName}}
+        </div>
+        <div>
+            {{product.ProductPrice | currency}}
+        </div>
+    </div>
+
+</div>
+</div>
