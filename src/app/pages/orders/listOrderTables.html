@@ -14,7 +14,7 @@
         <h4 class="grid-h">{{block.BlockName}}</h4>
     </div>
     <div class="col-xs-3 col-md-1" ng-repeat="table in block.Seats">
-        <button class="{{vm.classByStatus(table.SeatStatus)}}" ng-click="vm.viewOrder(table.OrderId)">{{table.SeatName}}</button>
+        <button class="{{vm.classByStatus(table.SeatStatus)}}" ng-click="vm.viewOrderTable(table)">{{table.SeatName}}</button>
     </div>
 
 </div>

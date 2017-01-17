@@ -26,7 +26,7 @@
                 OrderId: orderId,
                 ShopId: shopId
             };
-            return RequestService.get('/orders/view.json', {params: params});
+            return RequestService.get('/orders/viewOrder.json', {params: params});
         }
 
         function getAll(shopId) {

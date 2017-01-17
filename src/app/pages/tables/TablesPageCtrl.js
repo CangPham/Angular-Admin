@@ -40,8 +40,9 @@
                     obj.value = item.ShopId;
                     return obj;
                 });
-                console.log(vm.shopSelectItems);
+
                 if (vm.shopSelectItems.length > 0) {
+                    vm.shopSelectedItem = vm.shopSelectItems[0];
                     vm.getShopTables(vm.shopSelectItems[0].value);
                 }
                 toastr.success('Shops load successfully!');

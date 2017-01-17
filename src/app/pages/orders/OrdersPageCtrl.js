@@ -7,19 +7,6 @@
 
     function OrdersPageCtrl($scope, $filter, editableOptions, editableThemes, ShopService, toastr, $state, TableService, BlockService) {
         var vm = this;
-        vm.removeShop = function(id) {
-            //vm.categories.splice(index, 1);
-            ShopService.remove(id).then(function (result) {
-                console.log(result);
-            });
-        };
-        vm.addShop = function() {
-            $state.go('shopCreate')
-        };
-
-        vm.editShop = function(shopId) {
-            $state.go('shopEdit', {id: shopId})
-        };
 
 
         vm.showShop = function (shopId) {
@@ -42,6 +29,8 @@
                 });
                 console.log(vm.shopSelectItems);
                 if (vm.shopSelectItems.length > 0) {
+                    vm.shopSelectedItem = vm.shopSelectItems[0];
+                    vm.shopId = vm.shopSelectedItem.value;
                     vm.getShopTables(vm.shopSelectItems[0].value);
                 }
                 toastr.success('Shops load successfully!');
@@ -52,7 +41,19 @@
         vm.selectShop = function () {
 
            vm.getShopTables(vm.shopSelectedItem.value);
+
         };
+
+        vm.viewOrderTable = function (table) {
+            if (table.OrderId == null || angular.isUndefined(table.OrderId)) {
+                toastr.success('Table empty!');
+            } else {
+                console.log(table);
+                $state.go('orderDetails', {OrderId: table.OrderId, ShopId: vm.shopId});
+
+            }
+        };
+
 
         vm.classByStatus = function (status) {
             if (status == 4) {

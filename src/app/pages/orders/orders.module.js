@@ -18,6 +18,18 @@
                     order: 1,
                 },
             })
+            .state('orderDetails', {
+                params: {
+                    'OrderId': null,
+                    'ShopId': null
+
+                },
+                templateUrl: 'app/pages/orders/orderDetails.html',
+                controller: 'OrderDetailsPageCtrl',
+                controllerAs: 'vm',
+                title: 'Order Details',
+
+            })
             ;
 
     }
