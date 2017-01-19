@@ -61,7 +61,7 @@
         }
 
         function createMany(categoryIds, shopId) {
-            return RequestService.post('/shopcategories/createMany.json', {ShopId: shopId, CategoryId: categoryIds});
+            return RequestService.post('/shopcategories/createMany.json', {ShopId: shopId, CategoryIds: categoryIds});
         }
 
         function remove(categoryId, shopId) {

@@ -11,10 +11,16 @@
                         <!--</label>-->
                         <div class="add-row-editable-table">
                             <button class="btn btn-primary" ng-click="vm.addProduct()">Create</button>
+                            <button class="btn btn-primary" ng-click="vm.addProductToShop()">Add to shop</button>
+                            <button class="btn btn-danger" ng-click="vm.removeMany()">Remove</button>
                         </div>
                     </div>
                     <table class="table" st-table="vm.displayedData" st-safe-src="vm.products">
                         <thead>
+                        <td><input type="checkbox"
+                                   ng-click="vm.selectAll($event)"
+                                   ng-checked="vm.isSelectedAll()">
+                        </td>
                         <tr class="sortable ">
                             <th> Product Image </th>
                             <th st-sort="ProductName">Product Name</th>
@@ -42,7 +48,11 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="item in vm.displayedData">
-
+                            <td>
+                                <input type="checkbox" name="selected"
+                                       ng-checked="vm.isSelected(item.ProductId)"
+                                       ng-click="vm.updateSelection($event, item.ProductId)">
+                            </td>
                             <td><img src="https://cloudorder.vn/upload/images/{{item.ProductImage}}" class="img-rounded" alt="Cinque Terre" width="60" height="60"></td>
                             <td>{{item.ProductName}}</td>
                             <td>{{item.ProductDescription}}</td>

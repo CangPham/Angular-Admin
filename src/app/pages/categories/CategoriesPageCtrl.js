@@ -13,6 +13,18 @@
                 console.log(result);
             });
         };
+
+        vm.removeMany = function() {
+            if (vm.selected.length < 1) {
+                toastr.error("Please select categories");
+                return;
+            }
+            var categoryIds = vm.selected;
+            CategoryService.removeMany(categoryIds).then(function (result) {
+                toastr.success("Categories removed successfully!");
+                vm.getCategories();
+            });
+        };
         vm.addCategory = function() {
             vm.inserted = {
                 CategoryName: '',
@@ -63,12 +75,54 @@
             });
         };
         vm.addCateToShop = function() {
-
-            $state.go('addCateToShop');
+            if (vm.selected.length < 1) {
+                toastr.error("Please select categories");
+                return;
+            }
+            $state.go('addCateToShop', {CategoryIds: vm.selected});
 
         };
 
 
+        vm.updateSelected = function(action, id) {
+            if (action === 'add' && vm.selected.indexOf(id) === -1) {
+                vm.selected.push(id);
+            }
+            if (action === 'remove' && vm.selected.indexOf(id) !== -1) {
+                vm.selected.splice(vm.selected.indexOf(id), 1);
+            }
+        };
+
+        vm.updateSelection = function($event, id) {
+            var checkbox = $event.target;
+            var action = (checkbox.checked ? 'add' : 'remove');
+            vm.updateSelected(action, id);
+        };
+
+        vm.selectAll = function($event) {
+            var checkbox = $event.target;
+            var action = (checkbox.checked ? 'add' : 'remove');
+            for ( var i = 0; i < vm.categories.length; i++) {
+                var entity = vm.categories[i];
+                vm.updateSelected(action, entity.CategoryId);
+            }
+        };
+
+        vm.getSelectedClass = function(entity) {
+            return vm.isSelected(entity.CategoryId) ? 'selected' : '';
+        };
+
+        vm.isSelected = function(id) {
+            return vm.selected.indexOf(id) >= 0;
+        };
+
+        vm.isSelectedAll = function() {
+
+            return vm.selected.length === vm.categories.length;
+        };
+
+        vm.selected = [];
+        vm.categories = [];
         vm.getCategories();
 
         editableOptions.theme = 'bs3';

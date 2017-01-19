@@ -31,7 +31,15 @@
                 controller: 'createProductPageCtrl',
                 controllerAs: 'vm',
                 title: 'Create Product',
-            });
+            })
+    .state('addProductToShop', {
+            url: '/product/addToShop',
+            params: {ProductIds: null},
+            templateUrl: 'app/pages/products/addProductToShop.html',
+            controller: 'AddProductToShopPageCtrl',
+            controllerAs: 'vm',
+            title: 'Add Product To Shop',
+        });
     }
 
 })();

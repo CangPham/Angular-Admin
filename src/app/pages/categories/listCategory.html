@@ -6,15 +6,25 @@
                 <div class="add-row-editable-table">
                     <button class="btn btn-primary" ng-click="vm.addCategory()">Add row</button>
                     <button class="btn btn-primary" ng-click="vm.addCateToShop()">Add to shop</button>
+                    <button class="btn btn-danger" ng-click="vm.removeMany()">Remove selected</button>
                 </div>
                 <table class="table table-bordered table-hover table-condensed">
                     <tr>
+                        <td><input type="checkbox"
+                                   ng-click="vm.selectAll($event)"
+                                   ng-checked="vm.isSelectedAll()">
+                        </td>
                         <td></td>
                         <td>Name</td>
                         <td>Description</td>
                         <td>Actions</td>
                     </tr>
                     <tr ng-repeat="category in vm.categories" class="editable-row">
+                        <td>
+                            <input type="checkbox" name="selected"
+                                   ng-checked="vm.isSelected(category.CategoryId)"
+                                   ng-click="vm.updateSelection($event, category.CategoryId)">
+                        </td>
                         <td>
                             {{$index}}
                         </td>

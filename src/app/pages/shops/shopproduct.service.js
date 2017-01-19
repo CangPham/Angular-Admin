@@ -20,6 +20,8 @@
         service.getAll = getAll;
         service.save = save;
         service.create = create;
+        service.createMany = createMany;
+
         service.remove = remove;
         service.removeMany = removeMany;
         service.getShopProducts = getShopProducts;
@@ -53,6 +55,10 @@
 
         function save(params) {
             return RequestService.post('/shopproducts/update.json', params)
+        }
+
+        function createMany(productIds, shopId) {
+            return RequestService.post('/shopproducts/createMany.json', {ShopId: shopId, ProductIds: productIds});
         }
 
         function create(data) {

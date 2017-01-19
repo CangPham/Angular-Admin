@@ -5,7 +5,7 @@
         .module('MyApp.pages.shops')
         .controller('detailShopPageCtrl', DetailShopPageCtrl);
 
-    function DetailShopPageCtrl($scope, $state, ShopProductService, ShopCategoryService, ShopService, toastr) {
+    function DetailShopPageCtrl($scope, $state, ShopProductService, ShopCategoryService, ShopService, CheckboxService, toastr) {
         var vm = this;
         var shopId = $state.params.id;
 

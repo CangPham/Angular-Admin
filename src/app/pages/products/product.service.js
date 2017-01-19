@@ -45,6 +45,10 @@
             return RequestService.post('/products/remove.json', {ProductId: id});
         }
 
+        function removeMany(ids) {
+            return RequestService.post('/products/remove.json', {ProductId: id});
+        }
+
         function getCategoryById(id) {
             return RequestService.post('/categories/view.json', {CategoryId: id});
         }

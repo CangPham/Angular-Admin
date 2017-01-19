@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('MyApp.pages.categories')
-        .controller('AddCateToShopPageCtrl', AddCateToShopPageCtrl);
+        .module('MyApp.pages.products')
+        .controller('AddProductToShopPageCtrl', AddProductToShopPageCtrl);
 
-    function AddCateToShopPageCtrl($scope, $filter, editableThemes, ShopService, ShopCategoryService, toastr, $state) {
+    function AddProductToShopPageCtrl($scope, $filter, editableThemes, ShopService, ShopProductService, toastr, $state) {
         var vm = this;
 
         vm.getShops = function () {
@@ -25,17 +25,17 @@
             });
         };
 
-        vm.addCateToShopCancel = function () {
-            $state.go('listCategory');
+        vm.addProductToShopCancel = function () {
+            $state.go('listProduct');
         };
 
-        vm.addCateToShop = function () {
-            var categoryIds = $state.params.CategoryIds;
+        vm.addProductToShop = function () {
+            var productIds = $state.params.ProductIds;
             var shopId = vm.shopSelectedItem.value;
-            var ret = ShopCategoryService.createMany(categoryIds, shopId);
+            var ret = ShopProductService.createMany(productIds, shopId);
             ret.then(function (result) {
                 toastr.success('added to shop successfully!');
-                $state.go('listCategory');
+                $state.go('listProduct');
             });
 
         };

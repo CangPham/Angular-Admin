@@ -18,6 +18,7 @@
         service.save = save;
         service.create = create;
         service.remove = remove;
+        service.removeMany = removeMany;
 
         return service;
 
@@ -44,6 +45,10 @@
 
         function remove(id) {
             return RequestService.post('/categories/remove.json', {CategoryId: id});
+        }
+
+        function removeMany(ids) {
+            return RequestService.post('/categories/removeMany.json', {CategoryIds: ids});
         }
     }
 })();
