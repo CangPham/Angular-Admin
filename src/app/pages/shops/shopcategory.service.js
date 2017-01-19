@@ -70,7 +70,7 @@
 
         function removeMany(categoryIds, shopId) {
 
-            return RequestService.post('/shopcategories/removeMany.json', {ShopIds: [shopId], CategoryIds: categoryIds});
+            return RequestService.post('/shopcategories/removeMany.json', {ShopId: shopId, CategoryIds: categoryIds});
         }
     }
 })();

@@ -9,7 +9,6 @@
         var vm = this;
         var shopId = $state.params.id;
 
-
         vm.getShopProducts = function () {
             var ret = ShopProductService.getShopProducts(shopId);
             ret.then(function (result) {
@@ -31,8 +30,12 @@
             });
         };
         vm.removeMany = function () {
-           console.log(vm.selectedCategories);
-           console.log($scope);
+            var ret = ShopCategoryService.removeMany( vm.selected, shopId);
+            ret.then(function (result) {
+
+                toastr.success("Category removed from shop successfully");
+                vm.getShopCategories();
+            });
         };
 
 
@@ -72,7 +75,49 @@
             });
         };
 
+        vm.updateSelected = function(action, id) {
+            if (action === 'add' && vm.selected.indexOf(id) === -1) {
+                vm.selected.push(id);
+            }
+            if (action === 'remove' && vm.selected.indexOf(id) !== -1) {
+                vm.selected.splice(vm.selected.indexOf(id), 1);
+            }
+        };
+
+        vm.updateSelection = function($event, id) {
+            var checkbox = $event.target;
+            console.log($event.target);
+            console.log(id);
+            var action = (checkbox.checked ? 'add' : 'remove');
+            vm.updateSelected(action, id);
+        };
+
+        vm.selectAll = function($event) {
+            var checkbox = $event.target;
+            var action = (checkbox.checked ? 'add' : 'remove');
+            for ( var i = 0; i < vm.shopCategories.length; i++) {
+                var entity = vm.shopCategories[i];
+                vm.updateSelected(action, entity.CategoryId);
+            }
+        };
+
+        vm.getSelectedClass = function(entity) {
+            return vm.isSelected(entity.CategoryId) ? 'selected' : '';
+        };
+
+        vm.isSelected = function(id) {
+            return vm.selected.indexOf(id) >= 0;
+        };
+
+        vm.isSelectedAll = function() {
+
+            return vm.selected.length === vm.shopCategories.length;
+        };
+
+
         vm.Init = function () {
+            vm.selected = [];
+            vm.shopCategories = [];
             vm.getShopCategories();
             vm.getShopProducts();
         };

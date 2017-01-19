@@ -10,7 +10,10 @@
                 </div>
                 <table class="table table-bordered table-hover table-condensed">
                     <tr>
-                        <td><input type="checkbox" id="checkAllShopCategories" ng-model="checkAllShopCategories"></td>
+                        <td><input type="checkbox"
+                                   ng-click="vm.selectAll($event)"
+                                   ng-checked="vm.isSelectedAll()">
+                        </td>
                         <td></td>
                         <td>ShopCategory ID</td>
 
@@ -19,7 +22,11 @@
                         <td>Actions</td>
                     </tr>
                     <tr ng-repeat="category in vm.shopCategories" class="editable-row">
-                        <td><input type="checkbox" id="shopCategory-{{category.CategoryId}}" ng-checked="checkAllShopCategories"></td>
+                        <td>
+                            <input type="checkbox" name="selected"
+                                   ng-checked="vm.isSelected(category.CategoryId)"
+                                   ng-click="vm.updateSelection($event, category.CategoryId)">
+                        </td>
                         <td>
                             {{$index}}
                         </td>
