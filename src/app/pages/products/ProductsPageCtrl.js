@@ -18,7 +18,7 @@
         };
 
         vm.addProductToShop = function () {
-            $state.go('addProductToShop', {ProductIds: vm.selected});
+            $state.go('addProductToShop', {products: vm.prodCheckbox.selected});
         };
 
         vm.deleteProduct = function (id) {
@@ -30,7 +30,11 @@
         };
 
         vm.removeMany = function () {
-            var ret = ProductService.removeMany(vm.selected);
+            var productIds = vm.prodCheckbox.selected.map(function (item) {
+                return item.ProductId;
+            });
+            console.log(productIds);
+            var ret = ProductService.removeMany(productIds);
             ret.then(function (result) {
                 vm.getProducts();
                 toastr.success('Delete product successfully!');
@@ -47,44 +51,28 @@
             });
         };
 
-        vm.updateSelected = function(action, id) {
-            if (action === 'add' && vm.selected.indexOf(id) === -1) {
-                vm.selected.push(id);
-            }
-            if (action === 'remove' && vm.selected.indexOf(id) !== -1) {
-                vm.selected.splice(vm.selected.indexOf(id), 1);
-            }
+        vm.prodCheckbox = {
+            selected: []
+        };
+        vm.checkAllProd = function() {
+            vm.prodCheckbox.selected = angular.copy(vm.products);
+
         };
 
-        vm.updateSelection = function($event, id) {
+        vm.uncheckAllProd = function() {
+            vm.prodCheckbox.selected = [];
+        };
+
+        vm.checkAll = function($event) {
             var checkbox = $event.target;
-            var action = (checkbox.checked ? 'add' : 'remove');
-            vm.updateSelected(action, id);
-        };
-
-        vm.selectAll = function($event) {
-            var checkbox = $event.target;
-            var action = (checkbox.checked ? 'add' : 'remove');
-            for ( var i = 0; i < vm.products.length; i++) {
-                var entity = vm.products[i];
-                vm.updateSelected(action, entity.ProductId);
+            if (checkbox.checked) {
+                vm.checkAllProd();
+            } else {
+                vm.uncheckAllProd();
             }
+
         };
 
-        vm.getSelectedClass = function(entity) {
-            return vm.isSelected(entity.ProductId) ? 'selected' : '';
-        };
-
-        vm.isSelected = function(id) {
-            return vm.selected.indexOf(id) >= 0;
-        };
-
-        vm.isSelectedAll = function() {
-
-            return vm.selected.length === vm.products.length;
-        };
-
-        vm.selected = [];
         vm.products = [];
 
         vm.getProducts();

@@ -17,6 +17,7 @@
         service.save = save;
         service.create = create;
         service.remove = remove;
+        service.removeMany = removeMany;
         service.getCategoryById = getCategoryById;
         service.getImagePath = getImagePath;
 
@@ -46,7 +47,7 @@
         }
 
         function removeMany(ids) {
-            return RequestService.post('/products/remove.json', {ProductId: id});
+            return RequestService.post('/products/removeMany.json', {ProductIds: ids});
         }
 
         function getCategoryById(id) {

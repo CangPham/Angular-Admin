@@ -5,7 +5,7 @@
         .module('MyApp.pages.products')
         .controller('AddProductToShopPageCtrl', AddProductToShopPageCtrl);
 
-    function AddProductToShopPageCtrl($scope, $filter, editableThemes, ShopService, ShopProductService, toastr, $state) {
+    function AddProductToShopPageCtrl($scope, $filter, editableThemes, ShopService, ShopProductService, ProductService, toastr, $state) {
         var vm = this;
 
         vm.getShops = function () {
@@ -30,7 +30,9 @@
         };
 
         vm.addProductToShop = function () {
-            var productIds = $state.params.ProductIds;
+            var productIds = $state.params.products.map(function (item) { return item.ProductId;
+
+            });
             var shopId = vm.shopSelectedItem.value;
             var ret = ShopProductService.createMany(productIds, shopId);
             ret.then(function (result) {
@@ -40,7 +42,24 @@
 
         };
 
+        vm.loadProdTags = function (query) {
+            return vm.products;
+
+        };
+
+        vm.loadProducts = function () {
+            var ret = ProductService.getAll();
+            //console.log(ret);
+            ret.then(function (result) {
+                vm.products = result.Products;
+            });
+
+        };
+
         vm.getShops();
+        vm.loadProducts();
+        vm.prodTags = $state.params.products;
+
 
 
 

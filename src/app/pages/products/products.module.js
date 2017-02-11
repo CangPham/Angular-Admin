@@ -34,7 +34,7 @@
             })
     .state('addProductToShop', {
             url: '/product/addToShop',
-            params: {ProductIds: null},
+            params: {products: null},
             templateUrl: 'app/pages/products/addProductToShop.html',
             controller: 'AddProductToShopPageCtrl',
             controllerAs: 'vm',

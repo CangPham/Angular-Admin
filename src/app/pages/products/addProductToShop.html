@@ -1,3 +1,21 @@
+<div>
+    <h4> Adding products to shops</h4>
+</div>
+
+<div>
+    <tags-input ng-model="vm.prodTags" display-property="ProductName">
+        <auto-complete source="vm.loadProdTags($query)"></auto-complete>
+    </tags-input>
+
+</div>
+
+<br>
+
+
+<div>
+    <h4> Select a shop</h4>
+</div>
+
 <div class="form-group">
     <select class="form-control" data-live-search="true" title="Select shop"
             ng-model="vm.shopSelectedItem"
