@@ -20,7 +20,7 @@
             })
             .state('addCateToShop', {
                 params: {
-                    'CategoryIds': null
+                    'categories': null
                 },
             url: '/categories/addCateToShop',
             templateUrl: 'app/pages/categories/addCateToShop.html',

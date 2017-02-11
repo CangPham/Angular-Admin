@@ -15,11 +15,11 @@
         };
 
         vm.removeMany = function() {
-            if (vm.selected.length < 1) {
+            if (vm.cateCheckbox.selected.length < 1) {
                 toastr.error("Please select categories");
                 return;
             }
-            var categoryIds = vm.selected;
+            var categoryIds = vm.cateCheckbox.selected.map(function (item) { return item.CategoryId;});
             CategoryService.removeMany(categoryIds).then(function (result) {
                 toastr.success("Categories removed successfully!");
                 vm.getCategories();
@@ -75,53 +75,38 @@
             });
         };
         vm.addCateToShop = function() {
-            if (vm.selected.length < 1) {
+            if (vm.cateCheckbox.selected.length < 1) {
                 toastr.error("Please select categories");
                 return;
             }
-            $state.go('addCateToShop', {CategoryIds: vm.selected});
+            $state.go('addCateToShop', {categories: vm.cateCheckbox.selected});
 
         };
 
 
-        vm.updateSelected = function(action, id) {
-            if (action === 'add' && vm.selected.indexOf(id) === -1) {
-                vm.selected.push(id);
-            }
-            if (action === 'remove' && vm.selected.indexOf(id) !== -1) {
-                vm.selected.splice(vm.selected.indexOf(id), 1);
-            }
+        vm.cateCheckbox = {
+            selected: []
+        };
+        vm.checkAllCate = function() {
+            vm.cateCheckbox.selected = angular.copy(vm.categories);
+
         };
 
-        vm.updateSelection = function($event, id) {
+        vm.uncheckAllCate = function() {
+            vm.cateCheckbox.selected = [];
+        };
+
+        vm.checkAll = function($event) {
             var checkbox = $event.target;
-            var action = (checkbox.checked ? 'add' : 'remove');
-            vm.updateSelected(action, id);
-        };
-
-        vm.selectAll = function($event) {
-            var checkbox = $event.target;
-            var action = (checkbox.checked ? 'add' : 'remove');
-            for ( var i = 0; i < vm.categories.length; i++) {
-                var entity = vm.categories[i];
-                vm.updateSelected(action, entity.CategoryId);
+            if (checkbox.checked) {
+                vm.checkAllCate();
+            } else {
+                vm.uncheckAllCate();
             }
+
         };
 
-        vm.getSelectedClass = function(entity) {
-            return vm.isSelected(entity.CategoryId) ? 'selected' : '';
-        };
 
-        vm.isSelected = function(id) {
-            return vm.selected.indexOf(id) >= 0;
-        };
-
-        vm.isSelectedAll = function() {
-
-            return vm.selected.length === vm.categories.length;
-        };
-
-        vm.selected = [];
         vm.categories = [];
         vm.getCategories();
 

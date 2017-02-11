@@ -11,8 +11,8 @@
                 <table class="table table-bordered table-hover table-condensed">
                     <tr>
                         <td><input type="checkbox"
-                                   ng-click="vm.selectAll($event)"
-                                   ng-checked="vm.isSelectedAll()">
+                                   ng-click="vm.checkAll($event)"
+                                   >
                         </td>
                         <td></td>
                         <td>Name</td>
@@ -21,9 +21,7 @@
                     </tr>
                     <tr ng-repeat="category in vm.categories" class="editable-row">
                         <td>
-                            <input type="checkbox" name="selected"
-                                   ng-checked="vm.isSelected(category.CategoryId)"
-                                   ng-click="vm.updateSelection($event, category.CategoryId)">
+                            <input type="checkbox" data-checklist-model="vm.cateCheckbox.selected" data-checklist-value="category">
                         </td>
                         <td>
                             {{$index}}

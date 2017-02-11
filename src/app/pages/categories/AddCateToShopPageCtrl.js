@@ -5,7 +5,7 @@
         .module('MyApp.pages.categories')
         .controller('AddCateToShopPageCtrl', AddCateToShopPageCtrl);
 
-    function AddCateToShopPageCtrl($scope, $filter, editableThemes, ShopService, ShopCategoryService, toastr, $state) {
+    function AddCateToShopPageCtrl($scope, $filter, editableThemes, ShopService, ShopCategoryService, CategoryService, toastr, $state) {
         var vm = this;
 
         vm.getShops = function () {
@@ -30,7 +30,7 @@
         };
 
         vm.addCateToShop = function () {
-            var categoryIds = $state.params.CategoryIds;
+            var categoryIds = $state.params.categories.map(function(item){ return item.CategoryId});
             var shopId = vm.shopSelectedItem.value;
             var ret = ShopCategoryService.createMany(categoryIds, shopId);
             ret.then(function (result) {
@@ -40,10 +40,26 @@
 
         };
 
+
+
+        vm.loadCateTags = function (query) {
+            return vm.categories;
+
+        };
+
+        vm.loadCategories = function () {
+            var ret = CategoryService.getAll();
+            //console.log(ret);
+            ret.then(function (result) {
+                vm.categories = result.Categories;
+            });
+
+        };
+
         vm.getShops();
+        vm.loadCategories();
 
-
-
+        vm.cateTags = $state.params.categories;
 
     }
 

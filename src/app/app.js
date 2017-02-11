@@ -1,6 +1,8 @@
 'use strict';
 
 angular.module('MyApp', [
+    'checklist-model',
+    'ngTagsInput',
     'ngAnimate',
     'ui.bootstrap',
     'ui.sortable',
