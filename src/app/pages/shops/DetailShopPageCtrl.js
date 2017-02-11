@@ -48,7 +48,10 @@
             });
         };
 
-        vm.removeManyShopCategories = function (categoryIds) {
+        vm.removeManyShopCategories = function () {
+            var categoryIds = vm.cateCheckbox.selected.map(function (item) {
+                return item.CategoryId;
+            });
             var ret = ShopCategoryService.removeMany(categoryIds, shopId);
             ret.then(function (result) {
 
@@ -66,7 +69,10 @@
             });
         };
 
-        vm.removeManyShopProducts = function (productId) {
+        vm.removeManyShopProducts = function () {
+            var productIds = vm.prodCheckbox.selected.map(function (item) {
+                return item.ProductId;
+            });
             var ret = ShopProductService.removeMany(productIds, shopId);
             ret.then(function (result) {
 
@@ -75,49 +81,53 @@
             });
         };
 
-        vm.updateSelected = function(action, id) {
-            if (action === 'add' && vm.selected.indexOf(id) === -1) {
-                vm.selected.push(id);
-            }
-            if (action === 'remove' && vm.selected.indexOf(id) !== -1) {
-                vm.selected.splice(vm.selected.indexOf(id), 1);
-            }
+        vm.prodCheckbox = {
+            selected: []
+        };
+        vm.checkAllProd = function() {
+            vm.prodCheckbox.selected = angular.copy(vm.shopProducts);
+
         };
 
-        vm.updateSelection = function($event, id) {
+        vm.uncheckAllProd = function() {
+            vm.prodCheckbox.selected = [];
+        };
+
+        vm.checkAllShopProd = function($event) {
             var checkbox = $event.target;
-            console.log($event.target);
-            console.log(id);
-            var action = (checkbox.checked ? 'add' : 'remove');
-            vm.updateSelected(action, id);
-        };
-
-        vm.selectAll = function($event) {
-            var checkbox = $event.target;
-            var action = (checkbox.checked ? 'add' : 'remove');
-            for ( var i = 0; i < vm.shopCategories.length; i++) {
-                var entity = vm.shopCategories[i];
-                vm.updateSelected(action, entity.CategoryId);
+            if (checkbox.checked) {
+                vm.checkAllProd();
+            } else {
+                vm.uncheckAllProd();
             }
+
         };
 
-        vm.getSelectedClass = function(entity) {
-            return vm.isSelected(entity.CategoryId) ? 'selected' : '';
+        vm.cateCheckbox = {
+            selected: []
+        };
+        vm.checkAllCate = function() {
+            vm.cateCheckbox.selected = angular.copy(vm.shopCategories);
+
         };
 
-        vm.isSelected = function(id) {
-            return vm.selected.indexOf(id) >= 0;
+        vm.uncheckAllCate = function() {
+            vm.cateCheckbox.selected = [];
         };
 
-        vm.isSelectedAll = function() {
+        vm.checkAllShopCate = function($event) {
+            var checkbox = $event.target;
+            if (checkbox.checked) {
+                vm.checkAllCate();
+            } else {
+                vm.uncheckAllCate();
+            }
 
-            return vm.selected.length === vm.shopCategories.length;
         };
 
 
         vm.Init = function () {
-            vm.selected = [];
-            vm.shopCategories = [];
+
             vm.getShopCategories();
             vm.getShopProducts();
         };

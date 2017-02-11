@@ -6,26 +6,24 @@
             <div ba-panel ba-panel-title="{{vm.shop.ShopName}} - Category List" ba-panel-class="with-scroll">
                 <div class="add-row-editable-table">
                     <button class="btn btn-primary" ng-click="vm.todo()">Add row</button>
-                    <button class="btn btn-primary" ng-click="vm.removeMany()">Remove selected</button>
+                    <button class="btn btn-primary" ng-click="vm.removeManyShopCategories()">Remove selected</button>
                 </div>
                 <table class="table table-bordered table-hover table-condensed">
                     <tr>
-                        <td><input type="checkbox"
-                                   ng-click="vm.selectAll($event)"
-                                   ng-checked="vm.isSelectedAll()">
+                        <td>
+                            <input type="checkbox"
+                                   ng-click="vm.checkAllShopCate($event)">
                         </td>
                         <td></td>
                         <td>ShopCategory ID</td>
 
                         <td>Category Name</td>
-                        <td>CategoryId</td>
+
                         <td>Actions</td>
                     </tr>
                     <tr ng-repeat="category in vm.shopCategories" class="editable-row">
                         <td>
-                            <input type="checkbox" name="selected"
-                                   ng-checked="vm.isSelected(category.CategoryId)"
-                                   ng-click="vm.updateSelection($event, category.CategoryId)">
+                            <input type="checkbox" data-checklist-model="vm.cateCheckbox.selected" data-checklist-value="category">
                         </td>
                         <td>
                             {{$index}}
@@ -41,11 +39,7 @@
                               {{ category.CategoryName || 'empty' }}
                             </span>
                         </td>
-                        <td>
-                            <span editable-text="category.CategoryDescription" e-name="CategoryDescription" e-form="rowform">
-                              {{ category.CategoryId }}
-                            </span>
-                        </td>
+
                         <td>
                             <form editable-form name="rowform" ng-show="rowform.$visible"
                                   class="form-buttons form-inline"
@@ -82,6 +76,10 @@
     <div class="row">
         <div class="col-md-12">
             <div ba-panel ba-panel-title="{{vm.shop.ShopName}} - Product List" ba-panel-class="with-scroll">
+                <div>
+                    <button class="btn btn-primary" ng-click="vm.addProduct()">Create</button>
+                    <button class="btn btn-primary" ng-click="vm.removeManyShopProducts()">Remove selected</button>
+                </div>
                 <div class="horizontal-scroll">
                     <div class="form-group select-page-size-wrap ">
                         <!--<label>Rows on page-->
@@ -89,15 +87,15 @@
                         <!--ng-model="vm.productPageSize" ng-options="i for i in [5,10,15,20,25]">-->
                         <!--</select>-->
                         <!--</label>-->
-                        <div class="add-row-editable-table">
-                            <button class="btn btn-primary" ng-click="vm.addProduct()">Create</button>
-                            <button class="btn btn-primary" ng-click="vm.removeManyShopProducts()">Remove selected</button>
-                        </div>
+
                     </div>
                     <table class="table" st-table="vm.displayedData" st-safe-src="vm.products">
                         <thead>
                         <tr class="sortable ">
-                            <td><input type="checkbox" id="checkAllShopProducts" ng-model="checkAllShopProducts"></td>
+                            <td>
+                                <input type="checkbox"
+                                       ng-click="vm.checkAllShopProd($event)">
+                            </td>
                             <th> Product Image </th>
                             <th st-sort="ProductName">Product Name</th>
                             <th st-sort="ProductDescription">Description</th>
@@ -124,7 +122,9 @@
                         </thead>
                         <tbody>
                         <tr ng-repeat="item in vm.shopProducts">
-                            <td><input type="checkbox" id="shopProduct-{{item.ProductId}}" ng-checked="checkAllShopProducts"></td>
+                            <td>
+                                <input type="checkbox" data-checklist-model="vm.prodCheckbox.selected" data-checklist-value="item">
+                            </td>
                             <td><img src="https://cloudorder.vn/upload/images/{{item.ProductImage}}" class="img-rounded" alt="Cinque Terre" width="60" height="60"></td>
                             <td>{{item.ProductName}}</td>
                             <td>{{item.ProductDescription}}</td>

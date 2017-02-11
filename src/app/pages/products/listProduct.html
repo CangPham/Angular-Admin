@@ -2,6 +2,12 @@
     <div class="row">
         <div class="col-md-12">
             <div ba-panel ba-panel-title="Product List" ba-panel-class="with-scroll">
+
+                <div>
+                    <button class="btn btn-primary" ng-click="vm.addProduct()">Create</button>
+                    <button class="btn btn-primary" ng-click="vm.addProductToShop()">Add to shop</button>
+                    <button class="btn btn-danger" ng-click="vm.removeMany()">Remove</button>
+                </div>
                 <div class="horizontal-scroll">
                     <div class="form-group select-page-size-wrap ">
                         <!--<label>Rows on page-->
@@ -9,18 +15,15 @@
                         <!--ng-model="vm.productPageSize" ng-options="i for i in [5,10,15,20,25]">-->
                         <!--</select>-->
                         <!--</label>-->
-                        <div class="add-row-editable-table">
-                            <button class="btn btn-primary" ng-click="vm.addProduct()">Create</button>
-                            <button class="btn btn-primary" ng-click="vm.addProductToShop()">Add to shop</button>
-                            <button class="btn btn-danger" ng-click="vm.removeMany()">Remove</button>
-                        </div>
+
                     </div>
                     <table class="table" st-table="vm.displayedData" st-safe-src="vm.products">
                         <thead>
-                        <td><input type="checkbox"
-                                   ng-click="vm.checkAll($event)">
-                        </td>
+
                         <tr class="sortable ">
+                            <th><input type="checkbox"
+                                       ng-click="vm.checkAll($event)">
+                            </th>
                             <th> Product Image </th>
                             <th st-sort="ProductName">Product Name</th>
                             <th st-sort="ProductDescription">Description</th>
@@ -29,6 +32,7 @@
                             <th></th>
                         </tr>
                         <tr>
+                            <th></th>
                             <th></th>
                             <th><input st-search="ProductName" placeholder="Search Product Name"
                                        class="input-sm form-control search-input"
