@@ -21,14 +21,14 @@
             .state('productEdit', {
                 url: '/product/edit/{id}',
                 templateUrl: 'app/pages/products/editProduct.html',
-                controller: 'editProductPageCtrl',
+                controller: 'EditProductPageCtrl',
                 controllerAs: 'vm',
                 title: 'Edit Product',
             })
             .state('productCreate', {
                 url: '/product/create',
-                templateUrl: 'app/pages/products/editProduct.html',
-                controller: 'createProductPageCtrl',
+                templateUrl: 'app/pages/products/createProduct.html',
+                controller: 'CreateProductPageCtrl',
                 controllerAs: 'vm',
                 title: 'Create Product',
             })

@@ -3,7 +3,7 @@
 
     angular
         .module('MyApp.pages.products')
-        .controller('createProductPageCtrl', CreateProductPageCtrl);
+        .controller('CreateProductPageCtrl', CreateProductPageCtrl);
 
     function CreateProductPageCtrl($scope, $rootScope, toastr, $state, Upload, $timeout, $filter, ProductService, CategoryService) {
         var vm = this;

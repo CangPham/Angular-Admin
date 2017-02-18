@@ -3,13 +3,14 @@
 
     angular
         .module('MyApp.pages.products')
-        .controller('editProductPageCtrl', EditProductPageCtrl);
+        .controller('EditProductPageCtrl', EditProductPageCtrl);
 
     function EditProductPageCtrl($scope, $rootScope, toastr, $state, Upload, $timeout, $filter, ProductService, CategoryService) {
         var vm = this;
         var productid = $state.params.id;
 
         vm.saveProduct = function (validationForm) {
+            console.log(validationForm);
             var data = {
                 "ProductId": productid,
                 "ProductName": vm.product.ProductName,
@@ -22,6 +23,11 @@
             ProductService.save(data).then(function (result) {
                 toastr.success('Product save successfully!');
             });
+        };
+
+
+        vm.testClick = function () {
+            console.log("click me");
         };
 
         vm.getProduct = function () {
@@ -83,6 +89,7 @@
             vm.getImagePath();
             vm.getProduct();
             vm.getCategories();
+
         };
 
         vm.Init();

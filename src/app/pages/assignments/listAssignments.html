@@ -36,6 +36,10 @@
                         </td><td>
                             <span editable-text="staff.UserName" e-name="UserName" e-form="rowform">
                               {{ staff.RoleName }}
+                                <div ng-repeat="role in staff.Roles">
+                                    {{role.RoleName}}
+
+                                </div>
                             </span>
                     </td>
 
@@ -61,7 +65,7 @@
                                 </button>
                             </div>
                         </td>
-                    </tr>
+                    </div>
                 </table>
 
             </div>
