@@ -13,15 +13,17 @@
     function Service($http, $rootScope, RequestService) {
         var service = {};
 
-        service.get = get;
+
         service.getAll = getAll;
         service.save = save;
         service.create = create;
-        service.remove = remove;
+
 
         service.getShops = getShops;
         service.getRoles = getRoles;
         service.getAssignments = getAssignments;
+        service.unassignStaffFromShop = unassignStaffFromShop;
+        service.assignStaffToShop = assignStaffToShop;
 
 
         return service;
@@ -48,9 +50,6 @@
                 });
         }
 
-        function get(categoryId) {
-            return RequestService.get('/users/view', {categoryId: categoryId});
-        }
 
         function getAll() {
             return RequestService.get('/users/getListStaff.json')
@@ -69,8 +68,12 @@
             return RequestService.post('/users/createStaff.json', data);
         }
 
-        function remove(id) {
-            return RequestService.post('/users/remove.json', {UserId: id});
+        function unassignStaffFromShop(staffKey, shopId) {
+            return RequestService.post('/shop_staff/removeStaff.json', {ShopId: shopId, UserKey: staffKey});
+        }
+
+        function assignStaffToShop(staffKey, shopId, roleIds) {
+            return RequestService.post('/shop_staff/assignStaff.json', {ShopId: shopId, UserKey: staffKey, RoleIds: roleIds });
         }
     }
 })();

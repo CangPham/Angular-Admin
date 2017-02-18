@@ -30,48 +30,13 @@
         };
 
 
-        vm.removeStaff = function(id) {
-            //vm.categories.splice(index, 1);
-            StaffService.remove(id).then(function (result) {
+        vm.unassignStaffFromShop = function(staffKey, shopId) {
+
+            AssignmentsService.unassignStaffFromShop(staffKey, shopId).then(function (result) {
                 console.log(result);
+                vm.getAssignments();
             });
         };
-        vm.addStaff = function() {
-            vm.inserted = {
-                FirstName: '',
-                LastName: '',
-                UserPhoneNumber: '',
-                UserName: ''
-            };
-            vm.staff.push(vm.inserted);
-        };
-
-        vm.saveStaff = function (id, staff) {
-            var data = {
-                "FirstName": staff.FirstName,
-                "LastName": staff.LastName,
-                "UserPhoneNumber": staff.UserPhoneNumber
-            };
-            if(id){
-                data.UserId = id;
-                StaffService.save(data).then(function (result) {
-                    console.log(result);
-                });
-            } else {
-                StaffService.create(data).then(function (result) {
-                    console.log(result);
-                });
-            }
-        };
-
-        vm.getStaff = function () {
-            var ret = StaffService.getAll();
-            ret.then(function (result) {
-                vm.staff = result.StaffList;
-                toastr.success('Staff load successfully!');
-            });
-        };
-
 
 
         vm.getAssignments();
