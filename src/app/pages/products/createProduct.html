@@ -14,20 +14,30 @@
                                    placeholder="Product Name" required>
                         </div>
                     </div>
-                   <!-- <div class="form-group">
-                        <label for="ProductImage" class="col-sm-2 control-label">Image</label>
-                        <div class="col-sm-9">
-                            <div class="userpic">
-                                <div class="userpic-wrapper">
-                                    <img ng-src="{{vm.ImagePath}}{{ vm.product.ProductImage }}" ng-click="vm.uploadPicture()">
-                                </div>
-                                <i class="ion-ios-close-outline" ng-click="vm.removePicture()" ng-if="!noPicture"></i>
-                                <a href class="change-userpic" ng-click="vm.uploadPicture()">Change Profile Picture</a>
-                                <input id="ProductImage" ng-show="false" type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)"
-                                        accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-                            </div>
-                        </div>
-                    </div>-->
+
+                    <div class="form-group">
+                        <label for="ImageSelect" class="col-sm-2 control-label">Select an image</label>
+                        <input id="ImageSelect" type="file" ngf-select="vm.selectFiles($file, $invalidFiles)" ng-model="vm.productImageUrl" name="file" ngf-accept="'image/*'" required="">
+                    </div>
+                    <div class="form-group">
+                        <label for="ProductImage" class="col-sm-2 control-label">Image preview</label>
+                        <img id="ProductImage" ngf-src="vm.productImageUrl" class="thumb">
+                    </div>
+
+                    <!-- <div class="form-group">
+                         <label for="ProductImage" class="col-sm-2 control-label">Image</label>
+                         <div class="col-sm-9">
+                             <div class="userpic">
+                                 <div class="userpic-wrapper">
+                                     <img ng-src="{{vm.ImagePath}}{{ vm.product.ProductImage }}" ng-click="vm.uploadPicture()">
+                                 </div>
+                                 <i class="ion-ios-close-outline" ng-click="vm.removePicture()" ng-if="!noPicture"></i>
+                                 <a href class="change-userpic" ng-click="vm.uploadPicture()">Change Profile Picture</a>
+                                 <input id="ProductImage" ng-show="false" type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)"
+                                         accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
+                             </div>
+                         </div>
+                     </div>-->
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Category</label>
                         <div class="col-sm-10">
@@ -59,8 +69,12 @@
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button class="btn btn-success" ng-click="vm.saveProduct(ProductForm)">
-                                Save
+                                Create
                             </button>
+                            <button class="btn btn-warning" ng-click="vm.backToProductList()">
+                                Cancel
+                            </button>
+
 
                         </div>
                     </div>

@@ -9,19 +9,38 @@
         var vm = this;
 
         vm.saveProduct = function (validationForm) {
+
             var data = {
                 "ProductName": vm.product.ProductName,
                 "ProductPrice": vm.product.ProductPrice,
                 "ProductDescription": vm.product.ProductDescription,
-                "ProductImage": "2b7422c75d1ff5131126504ef20c837558295897",
-                "CategoryId": vm.product.CategoryId
+                "CategoryId": vm.product.CategoryId,
+                "IsAddedToAssociatedShops": 0
             };
 
-            ProductService.create(data).then(function (result) {
-                toastr.success('Product save successfully!');
-                $state.go('listProduct');
-            });
+            if (vm.selectedFile) {
+                var upload = vm.fileUploadPromise(vm.selectedFile, vm.errFiles);
+                console.log(upload);
+
+                upload.then(function (response) {
+                    $timeout(function () {
+                        vm.newProductImage = response.data.ImageFileName;
+                        data["ProductImage"] = vm.newProductImage;
+                        ProductService.create(data).then(function (result) {
+                            toastr.success('Product save successfully!');
+                            vm.backToProductList()
+                        });
+                    });
+                });
+            } else {
+                ProductService.create(data).then(function (result) {
+                    toastr.success('Product save successfully!');
+                    vm.backToProductList();
+                });
+            }
         };
+
+
 
         vm.getCategories = function () {
             var ret = CategoryService.getAll();
@@ -29,7 +48,13 @@
                 vm.categories = result.Categories;
             });
         };
-        vm.getCategories();
+
+        vm.getImagePath = function () {
+            var ret = ProductService.getImagePath();
+            ret.then(function (result) {
+                vm.ImagePath = result.ImagePath;
+            });
+        };
 
         vm.uploadPicture = function () {
             var fileInput = document.getElementById('ProductImage');
@@ -42,18 +67,29 @@
             $scope.noPicture = true;
         };
 
+        vm.selectFiles = function(file, errFiles) {
+            console.log(file);
+            console.log(errFiles);
+            vm.selectedFile = file;
+            vm.errFiles = errFiles;
+        }
+
         vm.uploadFiles = function(file, errFiles) {
             vm.f = file;
             vm.errFile = errFiles && errFiles[0];
             if (file) {
                 file.upload = Upload.upload({
                     url: $rootScope.servicePrefix + '/products/uploadImage.json',
-                    data: {file: file}
+                    headers: {'Content-Type': undefined},
+                    data: {ProductImage: file},
                 });
 
                 file.upload.then(function (response) {
                     $timeout(function () {
                         file.result = response.data;
+                        console.log(response);
+                        vm.newProductImage = response.data.ImageFileName;
+
                     });
                 }, function (response) {
                     if (response.status > 0)
@@ -64,6 +100,35 @@
                 });
             }
         };
+
+
+        vm.fileUploadPromise = function(file, errFiles) {
+            vm.f = file;
+            vm.errFile = errFiles && errFiles[0];
+            if (file) {
+                file.upload = Upload.upload({
+                    url: $rootScope.servicePrefix + '/products/uploadImage.json',
+                    headers: {'Content-Type': undefined},
+                    data: {ProductImage: file},
+                });
+                return file.upload;
+
+            }
+        };
+        vm.backToProductList = function () {
+            $state.go('listProduct');
+        }
+
+        vm.Init = function () {
+            vm.getCategories();
+
+        };
+
+        vm.Init();
+
+
     }
+
+
 
 })();

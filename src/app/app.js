@@ -38,6 +38,9 @@ function run($rootScope, $http, $location, $localStorage, errorHandler) {
     });
 
     $rootScope.servicePrefix = 'https://cloudorder.vn/api';
+    $rootScope.host = 'https://cloudorder.vn';
+    $rootScope.productImagePath = '/upload/images/';
+    $rootScope.productImageUrl = $rootScope.host + $rootScope.productImagePath;
     $rootScope.settings = {hideMenus: false};
     //$rootScope.isPlainPages = MyApp.pages.authentication.isPlainPages;
 }
