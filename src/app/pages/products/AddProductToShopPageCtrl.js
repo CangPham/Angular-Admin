@@ -49,7 +49,7 @@
 
         vm.loadProducts = function () {
             var ret = ProductService.getAll();
-            //console.log(ret);
+
             ret.then(function (result) {
                 vm.products = result.Products;
             });

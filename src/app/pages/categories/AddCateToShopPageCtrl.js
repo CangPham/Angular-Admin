@@ -49,7 +49,7 @@
 
         vm.loadCategories = function () {
             var ret = CategoryService.getAll();
-            //console.log(ret);
+
             ret.then(function (result) {
                 vm.categories = result.Categories;
             });

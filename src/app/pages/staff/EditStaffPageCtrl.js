@@ -21,7 +21,7 @@
                 "ProductImage": ''
             };
             ProductService.save(data).then(function (result) {
-                console.log(result);
+
             });
 
         };

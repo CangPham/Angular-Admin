@@ -11,7 +11,7 @@
         vm.removeStaff = function(id) {
             //vm.categories.splice(index, 1);
             StaffService.remove(id).then(function (result) {
-                console.log(result);
+
             });
         };
 

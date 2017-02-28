@@ -34,8 +34,7 @@
 
         function updateSelection($event, id) {
             var checkbox = $event.target;
-            console.log($event.target);
-            console.log(id);
+
             var action = (checkbox.checked ? 'add' : 'remove');
             return updateSelected(action, id);
         }
