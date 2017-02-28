@@ -10,7 +10,7 @@
         vm.removeCategory = function(id) {
             //vm.categories.splice(index, 1);
             CategoryService.remove(id).then(function (result) {
-                console.log(result);
+
             });
         };
 
@@ -41,11 +41,11 @@
             if(id){
                 data.CategoryId = id;
                 CategoryService.save(data).then(function (result) {
-                    console.log(result);
+
                 });
             } else {
                 CategoryService.create(data).then(function (result) {
-                    console.log(result);
+
                 });
             }
         };

@@ -33,7 +33,7 @@
             var productIds = vm.prodCheckbox.selected.map(function (item) {
                 return item.ProductId;
             });
-            console.log(productIds);
+
             var ret = ProductService.removeMany(productIds);
             ret.then(function (result) {
                 vm.getProducts();

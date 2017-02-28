@@ -33,7 +33,6 @@
         vm.unassignStaffFromShop = function(staffKey, shopId) {
 
             AssignmentsService.unassignStaffFromShop(staffKey, shopId).then(function (result) {
-                console.log(result);
                 vm.getAssignments();
             });
         };

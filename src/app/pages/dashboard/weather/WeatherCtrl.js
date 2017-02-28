@@ -56,7 +56,7 @@
         saveWeatherData(response.data);
         makeChart($scope.weather.days[$scope.weather.current].timeTemp)
       }, function error() {
-        console.log("WEATHER FAILED")
+
       });
     };
 
@@ -65,7 +65,7 @@
         $scope.geoData = response.data;
         $scope.updateWeather();
       }, function error() {
-        console.log("GEO FAILED")
+
       });
     }
 
@@ -131,7 +131,7 @@
           lastItem.date.setMinutes(0);
         }
       });
-      console.log(weather.days[weather.current].date);
+
       weather.days = weather.days.slice(0, $element.attr('forecast') || 5);
       $scope.weather = weather;
     }

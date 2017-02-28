@@ -20,7 +20,6 @@
 
             if (vm.selectedFile) {
                 var upload = vm.fileUploadPromise(vm.selectedFile, vm.errFiles);
-                console.log(upload);
 
                 upload.then(function (response) {
                     $timeout(function () {
@@ -68,8 +67,7 @@
         };
 
         vm.selectFiles = function(file, errFiles) {
-            console.log(file);
-            console.log(errFiles);
+
             vm.selectedFile = file;
             vm.errFiles = errFiles;
         }
@@ -87,7 +85,7 @@
                 file.upload.then(function (response) {
                     $timeout(function () {
                         file.result = response.data;
-                        console.log(response);
+
                         vm.newProductImage = response.data.ImageFileName;
 
                     });

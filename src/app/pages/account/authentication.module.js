@@ -25,6 +25,15 @@
                 controller: 'RegisterPageCtrl',
                 controllerAs: 'vm'
             })
+            .state('verify', {
+            url: '/verify',
+            settings: {
+                hideMenus: true
+            },
+            templateUrl: 'app/pages/account/verify.html',
+            controller: 'VerifyPageCtrl',
+            controllerAs: 'vm'
+        })
             .state('logout', {
                 url: '/logout',
                 settings: {

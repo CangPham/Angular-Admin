@@ -27,7 +27,7 @@
                     obj.value = item.ShopId;
                     return obj;
                 });
-                console.log(vm.shopSelectItems);
+
                 if (vm.shopSelectItems.length > 0) {
                     vm.shopSelectedItem = vm.shopSelectItems[0];
                     vm.shopId = vm.shopSelectedItem.value;
@@ -48,7 +48,7 @@
             if (table.OrderId == null || angular.isUndefined(table.OrderId)) {
                 toastr.success('Table empty!');
             } else {
-                console.log(table);
+
                 $state.go('orderDetails', {OrderId: table.OrderId, ShopId: vm.shopId});
 
             }

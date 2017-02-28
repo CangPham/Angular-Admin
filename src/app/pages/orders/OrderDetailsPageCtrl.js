@@ -17,7 +17,7 @@
 
 
         vm.viewOrder = function () {
-            console.log($state.params);
+
             var ret = OrderService.get(shopId, orderId);
             ret.then(function (result) {
                 vm.order = result.Order;

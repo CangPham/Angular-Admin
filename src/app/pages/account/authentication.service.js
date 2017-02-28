@@ -11,6 +11,8 @@
 
         service.Login = Login;
         service.Logout = Logout;
+        service.register = register;
+        service.verify = verify;
 
         return service;
 
@@ -28,6 +30,49 @@
 
                         $rootScope.settings.hideMenus = false;
                         // execute callback with true to indicate successful login
+                        callback(true);
+                    } else {
+                        // execute callback with false to indicate failed login
+                        callback(false);
+                    }
+                });
+        }
+
+
+        function register(data, callback) {
+
+            $http.post($rootScope.servicePrefix + '/users/register.json', data)
+                .success(function (response) {
+
+                    // login successful if there's a token in the response
+                    if (response.Status) {
+                        //console.log(response);
+                        // store username and token in local storage to keep user logged in between page refreshes
+                        $localStorage.registeredUser = {
+                            UserPhoneNumber: response.UserData.UserPhoneNumber,
+                            UserKey: response.UserData.UserKey
+                        };
+
+                        callback(true);
+                    } else {
+                        // execute callback with false to indicate failed login
+                        callback(false);
+                    }
+                });
+        }
+
+
+        function verify(phone, smsCode, callback) {
+            var data = {
+                SmsCodeValue: smsCode,
+                UserPhoneNumber: phone
+            };
+
+            $http.post($rootScope.servicePrefix + '/users/verify.json', data)
+                .success(function (response) {
+                    //console.log(response);
+                    // login successful if there's a token in the response
+                    if (response.Status) {
                         callback(true);
                     } else {
                         // execute callback with false to indicate failed login

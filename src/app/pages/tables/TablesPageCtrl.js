@@ -10,7 +10,7 @@
         vm.removeShop = function(id) {
             //vm.categories.splice(index, 1);
             ShopService.remove(id).then(function (result) {
-                console.log(result);
+
             });
         };
         vm.addShop = function() {

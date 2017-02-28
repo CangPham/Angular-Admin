@@ -31,7 +31,7 @@
                     obj.value = item.ShopId;
                     return obj;
                 });
-                console.log(vm.shopSelectItems);
+
                 if (vm.shopSelectItems.length > 0) {
                     vm.shopSelectedItem = vm.shopSelectItems[0];
                     vm.getShopProducts(vm.shopSelectItems[0].value);
