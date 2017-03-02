@@ -15,7 +15,7 @@
                 title: 'Products',
                 sidebarMeta: {
                     icon: 'ion-ios-pricetags-outline',
-                    order: 2,
+                    order: 3,
                 },
             })
             .state('productEdit', {

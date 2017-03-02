@@ -1,15 +1,15 @@
 (function () {
     'use strict';
 
-    angular.module('MyApp.pages.assignments', [])
+    angular.module('MyApp.pages.staff.assignments', [])
         .config(routeConfig);
 
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('listAssignments', {
+            .state('staff.listAssignments', {
                 url: '/assignments',
-                templateUrl: 'app/pages/assignments/listAssignments.html',
+                templateUrl: 'app/pages/staff/assignments/listAssignments.html',
                 controller: 'assignmentsPageCtrl',
                 controllerAs: 'vm',
                 title: 'Assignments',

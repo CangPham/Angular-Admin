@@ -9,7 +9,7 @@
     'MyApp.pages.ui',
     'MyApp.pages.orders',
      'MyApp.pages.form',
-     'MyApp.pages.tables',
+
     // 'MyApp.pages.charts',
     // 'MyApp.pages.maps',
     // 'MyApp.pages.profile',
@@ -18,7 +18,6 @@
     'MyApp.pages.products',
       'MyApp.pages.shops',
       'MyApp.pages.staff',
-      'MyApp.pages.assignments',
       'MyApp.pages.menus'
   ])
       .config(routeConfig);

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('MyApp.pages.staff')
+        .module('MyApp.pages.staff.list')
         .controller('createStaffPageCtrl', CreateStaffPageCtrl);
 
     function CreateStaffPageCtrl($scope, $rootScope, toastr, $state, StaffService) {
@@ -19,7 +19,7 @@
 
             StaffService.create(data).then(function (result) {
                 toastr.success('Staff saved successfully!');
-                $state.go('listStaff');
+                $state.go('staff.listStaff');
             });
         };
 

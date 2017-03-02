@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('MyApp.pages.staff')
+        .module('MyApp.pages.staff.assignments')
         .factory('AssignmentsService', Service)
         // Decorate the service...
         .config(function (errorHandlerProvider, $provide) {

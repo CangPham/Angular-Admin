@@ -1,37 +1,30 @@
+/**
+ * @author k.danovsky
+ * created on 12.01.2016
+ */
 (function () {
-    'use strict';
+  'use strict';
 
-    angular.module('MyApp.pages.staff', [])
-        .config(routeConfig);
+  angular.module('MyApp.pages.staff', [
+    'MyApp.pages.staff.list',
+    'MyApp.pages.staff.assignments',
 
-    /** @ngInject */
-    function routeConfig($stateProvider) {
-        $stateProvider
-            .state('listStaff', {
-                url: '/staff',
-                templateUrl: 'app/pages/staff/listStaff.html',
-                controller: 'StaffPageCtrl',
-                controllerAs: 'vm',
-                title: 'Staff',
-                sidebarMeta: {
-                    icon: 'ion-grid',
-                    order: 1,
-                },
-            })
-            .state('staffEdit', {
-            url: '/staff/edit/{id}',
-            templateUrl: 'app/pages/staff/editStaff.html',
-            controller: 'editStaffPageCtrl',
-            controllerAs: 'vm',
-            title: 'Edit Staff',
-            })
-            .state('staffCreate', {
-                url: '/staff/create',
-                templateUrl: 'app/pages/staff/createStaff.html',
-                controller: 'createStaffPageCtrl',
-                controllerAs: 'vm',
-                title: 'Create Staff',
-            });
-    }
+  ])
+      .config(routeConfig);
+
+  /** @ngInject */
+  function routeConfig($stateProvider) {
+    $stateProvider
+        .state('staff', {
+          url: '/staff',
+          template : '<ui-view></ui-view>',
+          abstract: true,
+          title: 'Staff',
+          sidebarMeta: {
+            icon: 'ion-android-laptop',
+            order: 10,
+          },
+        });
+  }
 
 })();

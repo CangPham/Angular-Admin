@@ -2,10 +2,10 @@
     'use strict';
 
     angular
-        .module('MyApp.pages.products')
-        .controller('editProductPageCtrl', EditProductPageCtrl);
+        .module('MyApp.pages.staff.list')
+        .controller('EditStaffPageCtrl', EditStaffPageCtrl);
 
-    function EditProductPageCtrl($scope, $state, ProductService, CategoryService) {
+    function EditStaffPageCtrl($scope, $state, ProductService, CategoryService) {
         var vm = this;
         var productid = $state.params.id;
 
