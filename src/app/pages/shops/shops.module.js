@@ -1,46 +1,30 @@
+/**
+ * @author k.danovsky
+ * created on 12.01.2016
+ */
 (function () {
-    'use strict';
+  'use strict';
 
-    angular.module('MyApp.pages.shops', [])
-        .config(routeConfig);
+  angular.module('MyApp.pages.shops', [
+    'MyApp.pages.shops.list',
+    'MyApp.pages.shops.tables',
 
-    /** @ngInject */
-    function routeConfig($stateProvider) {
-        $stateProvider
-            .state('listShop', {
-                url: '/shops',
-                templateUrl: 'app/pages/shops/listShop.html',
-                controller: 'ShopsPageCtrl',
-                controllerAs: 'vm',
-                title: 'Shops',
-                sidebarMeta: {
-                    icon: 'ion-grid',
-                    order: 1,
-                },
-            })
-            .state('detailShop', {
-            url: '/shops/detail/{id}',
-            templateUrl: 'app/pages/shops/detailShop.html',
-            controller: 'detailShopPageCtrl',
-            controllerAs: 'vm',
-            title: 'Shop Categories & Products',
+  ])
+      .config(routeConfig);
 
-        })
-            .state('shopEdit', {
-                url: '/shops/edit/{id}',
-                templateUrl: 'app/pages/shops/editShop.html',
-                controller: 'editShopPageCtrl',
-                controllerAs: 'vm',
-                title: 'Edit Shop',
-            })
-            .state('shopCreate', {
-                url: '/shops/create',
-                templateUrl: 'app/pages/shops/editShop.html',
-                controller: 'createShopPageCtrl',
-                controllerAs: 'vm',
-                title: 'Create Shop',
-            });
-
-    }
+  /** @ngInject */
+  function routeConfig($stateProvider) {
+    $stateProvider
+        .state('shops', {
+          url: '/shops',
+          template : '<ui-view></ui-view>',
+          abstract: true,
+          title: 'Shops',
+          sidebarMeta: {
+            icon: 'ion-android-laptop',
+            order: 4,
+          },
+        });
+  }
 
 })();

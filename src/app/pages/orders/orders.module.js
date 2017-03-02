@@ -12,7 +12,7 @@
                 templateUrl: 'app/pages/orders/listOrderTables.html',
                 controller: 'OrdersPageCtrl',
                 controllerAs: 'vm',
-                title: 'Order Tables',
+                title: 'Orders',
                 sidebarMeta: {
                     icon: 'ion-grid',
                     order: 1,

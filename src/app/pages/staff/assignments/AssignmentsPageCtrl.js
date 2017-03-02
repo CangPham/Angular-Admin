@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('MyApp.pages.assignments')
+        .module('MyApp.pages.staff.assignments')
         .controller('assignmentsPageCtrl', AssignmentsPageCtrl);
 
     function AssignmentsPageCtrl($scope, $filter, editableOptions, editableThemes, AssignmentsService, toastr) {

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('MyApp.pages.staff')
+        .module('MyApp.pages.staff.list')
         .factory('StaffService', Service)
         // Decorate the service...
         .config(function (errorHandlerProvider, $provide) {

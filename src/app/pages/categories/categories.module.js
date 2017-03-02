@@ -15,7 +15,7 @@
                 title: 'Categories',
                 sidebarMeta: {
                     icon: 'ion-grid',
-                    order: 1,
+                    order: 2,
                 },
             })
             .state('addCateToShop', {

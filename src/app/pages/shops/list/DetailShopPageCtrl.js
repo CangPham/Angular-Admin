@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('MyApp.pages.shops')
+        .module('MyApp.pages.shops.list')
         .controller('detailShopPageCtrl', DetailShopPageCtrl);
 
     function DetailShopPageCtrl($scope, $state, ShopProductService, ShopCategoryService, ShopService, CheckboxService, toastr) {

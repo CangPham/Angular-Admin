@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('MyApp.pages.shops')
+        .module('MyApp.pages.shops.list')
         .controller('createShopPageCtrl', CreateShopPageCtrl);
 
     function CreateShopPageCtrl($scope, $rootScope, toastr, $state, ShopService) {
@@ -18,7 +18,7 @@
 
             ShopService.create(data).then(function (result) {
                 toastr.success('Shop saved successfully!');
-                $state.go('listShop');
+                $state.go('shops.listShop');
             });
         };
 

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('MyApp.pages.shops')
+        .module('MyApp.pages.shops.list')
         .controller('ShopsPageCtrl', ShopsPageCtrl);
 
     function ShopsPageCtrl($scope, $filter, editableOptions, editableThemes, ShopService, toastr, $state, ShopProductService, ShopCategoryService) {
@@ -13,16 +13,16 @@
             });
         };
         vm.addShop = function() {
-            $state.go('shopCreate')
+            $state.go('shops.shopCreate')
         };
 
         vm.editShop = function(shopId) {
-            $state.go('shopEdit', {id: shopId})
+            $state.go('shops.shopEdit', {id: shopId})
         };
 
 
         vm.showShop = function (shopId) {
-            $state.go('detailShop', {id: shopId});
+            $state.go('shops.detailShop', {id: shopId});
 
         };
 

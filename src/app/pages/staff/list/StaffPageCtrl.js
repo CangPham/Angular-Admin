@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('MyApp.pages.staff')
+        .module('MyApp.pages.staff.list')
         .controller('StaffPageCtrl', StaffPageCtrl);
 
     function StaffPageCtrl($scope, $filter, editableOptions, editableThemes, StaffService, toastr, $state) {
@@ -17,11 +17,11 @@
 
 
         vm.addStaff = function () {
-            $state.go('staffCreate');
+            $state.go('staff.staffCreate');
         };
 
         vm.viewStaff = function () {
-            $state.go('staffEdit');
+            $state.go('staff.staffEdit');
         };
 
         vm.getStaff = function () {
