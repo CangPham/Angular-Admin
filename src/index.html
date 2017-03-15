@@ -18,9 +18,16 @@
   <!-- run `gulp inject` to automatically populate bower styles dependencies -->
   <!-- endbower -->
   <!-- endbuild -->
-  <link rel="stylesheet" type="text/css" href="bower_components/ng-tags-input/ng-tags-input.css">
-  <link rel="stylesheet" ng-href="{{settings.hideMenus ? 'app/auth.css':'app/main.css'}}">
 
+  <!-- build:css({.tmp/serve,src}) styles/app.css -->
+  <!-- inject:css -->
+  <!-- css files will be automatically insert here -->
+  <!-- endinject -->
+  <!-- endbuild -->
+
+  <!-- <link rel="stylesheet" type="text/css" href="bower_components/ng-tags-input/ng-tags-input.css">
+  <link rel="stylesheet" ng-href="{{settings.hideMenus ? 'app/auth.css':'app/main.css'}}">
+-->
 </head>
 <body>
 <div class="body-bg"></div>
@@ -54,18 +61,23 @@
   <div></div>
 </div>
 
+
+<!--
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.6/lodash.min.js"></script>
+<script type="text/javascript" src="bower_components/checklist-model/checklist-model.js"></script>
+<script src="bower_components/ng-tags-input/ng-tags-input.js"></script>
+-->
+
+
+
 <!-- build:js(src) scripts/vendor.js -->
 <!-- bower:js -->
 <!-- run `gulp inject` to automatically populate bower script dependencies -->
 <!-- endbower -->
 <!-- endbuild -->
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.6/lodash.min.js"></script>
-<script type="text/javascript" src="bower_components/checklist-model/checklist-model.js"></script>
-<script src="bower_components/ng-tags-input/ng-tags-input.js"></script>
 
-
-
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
 <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
 <!-- inject:js -->
 <!-- js files will be automatically insert here -->
