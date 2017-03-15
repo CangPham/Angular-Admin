@@ -23,6 +23,11 @@
           jqWindow.off('resize', _onWindowResize);
         });
 
+        //wait for menu item added to DOM then set menu height by call _onWindowResize
+        $timeout(function () {
+            _onWindowResize();
+        }, 500);
+
         function _onWindowClick($evt) {
           if (!baUtil.isDescendant(el[0], $evt.target) &&
               !$evt.originalEvent.$sidebarEventProcessed &&
