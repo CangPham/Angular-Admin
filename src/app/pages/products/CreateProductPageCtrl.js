@@ -15,6 +15,8 @@
                 "ProductPrice": vm.product.ProductPrice,
                 "ProductDescription": vm.product.ProductDescription,
                 "CategoryId": vm.product.CategoryId,
+                "ProductUnit": vm.product.ProductUnit,
+                "IsAllowedQtyDecimal": vm.product.IsAllowedQtyDecimal,
                 "IsAddedToAssociatedShops": 0
             };
 

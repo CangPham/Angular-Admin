@@ -17,8 +17,11 @@
                 "ProductName": vm.product.ProductName,
                 "ProductPrice": vm.product.ProductPrice,
                 "ProductDescription": vm.product.ProductDescription,
-                "CategoryId": vm.product.CategoryId
+                "CategoryId": vm.product.CategoryId,
+                "ProductUnit": vm.product.ProductUnit,
+                "IsAllowedQtyDecimal": vm.product.IsAllowedQtyDecimal
             };
+
 
             if (vm.selectedFile) {
                 var upload = vm.fileUploadPromise(vm.selectedFile, vm.errFiles);
@@ -46,6 +49,9 @@
             var ret = ProductService.get(productid);
             ret.then(function (result) {
                 vm.product = result.Product;
+                if (vm.product.ProductUnit !== null) {
+                    vm.product.SelectProductUnit = true;
+                }
                 vm.productImageUrl = $rootScope.productImageUrl + vm.product.ProductImage;
             });
         };
