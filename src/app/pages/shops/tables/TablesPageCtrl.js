@@ -5,8 +5,74 @@
         .module('MyApp.pages.shops.tables')
         .controller('TablesPageCtrl', TablesPageCtrl);
 
-    function TablesPageCtrl($scope, $filter, editableOptions, editableThemes, ShopService, toastr, $state, TableService, BlockService) {
+    function TablesPageCtrl($scope, $uibModal, $filter, editableOptions, editableThemes, ShopService, toastr, $state, TableService, BlockService) {
         var vm = this;
+
+        vm.items = [1,2,3];
+        vm.open = function (page, size) {
+            vm.createTableInstance = $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                scope: $scope
+
+            });
+        };
+
+        vm.createShopBlock = function () {
+            var data = {
+                "ShopId": vm.shopSelectedItem.value,
+                "Blocks": [{"BlockName": vm.shopTable.BlockName}]
+            };
+            var ret = BlockService.create(data);
+            ret.then(function (result) {
+
+                toastr.success('Shops load successfully!');
+                vm.createTableInstance.close(result);
+                vm.getShopTables(vm.shopSelectedItem.value);
+
+            });
+        };
+
+        vm.createShopTable = function () {
+            var data = {
+                "ShopId": vm.shopSelectedItem.value,
+                "BlockId": vm.shopBlockSelectedItem.value
+            };
+            var ret;
+            if (vm.shopTableRange) {
+                data['StartNumber'] = vm.shopTable.StartNumber;
+                data['EndNumber'] = vm.shopTable.EndNumber;
+                ret = TableService.createRange(data);
+            } else {
+                data['SeatName'] = vm.shopTable.TableName;
+                ret = TableService.create(data);
+            }
+            ret.then(function (result) {
+
+                toastr.success('Shops load successfully!');
+                vm.createTableInstance.close(result);
+                vm.getShopTables(vm.shopSelectedItem.value);
+
+            });
+        };
+
+        vm.getShopBlocks = function () {
+            var ret = BlockService.getAll(vm.shopSelectedItem.value);
+            ret.then(function (result) {
+                vm.shopBlocks = result.Blocks;
+                var selectItem = [];
+                vm.shopBlockSelectItems = vm.shopBlocks.map(function (item) {
+                    var obj = {};
+                    obj.label = item.BlockName;
+                    obj.value = item.BlockId;
+                    return obj;
+                });
+
+                toastr.success('Shops load successfully!');
+            });
+        };
+
         vm.removeShop = function(id) {
             //vm.categories.splice(index, 1);
             ShopService.remove(id).then(function (result) {
@@ -31,6 +97,7 @@
                     vm.shopSelectedItem = vm.shopSelectItems[0];
                     vm.getShopTables(vm.shopSelectItems[0].value);
                 }
+
                 toastr.success('Shops load successfully!');
             });
         };
@@ -39,6 +106,7 @@
         vm.selectShop = function () {
 
            vm.getShopTables(vm.shopSelectedItem.value);
+
         };
 
         vm.getShopTables = function (shopId) {
@@ -47,6 +115,7 @@
                 vm.shopTablesTmp = result.Blocks;
                 vm.shopTables = [].concat(vm.shopTablesTmp);
             });
+            vm.getShopBlocks();
         };
         vm.getShops();
 
