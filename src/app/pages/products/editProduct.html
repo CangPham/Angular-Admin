@@ -58,7 +58,31 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="ProductPrice" class="col-sm-2 control-label">Price</label>
+
+                        <div class="col-sm-10 col-sm-offset-2">
+                            <div class="input-group">
+                                <label class="checkbox-inline custom-checkbox nowrap">
+                                    <input type="checkbox" id="SelectProductUnit" value="option3" ng-model="vm.product.SelectProductUnit">
+                                    <span>Select Product Unit</span>
+                                </label>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="vm.product.SelectProductUnit">
+                        <label for="ProductPrice" class="col-sm-2 control-label">Product Unit</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input type="text" class="form-control with-success-addon" id="ProductUnit"
+                                       placeholder="Product Unit" aria-label="amount"  ng-model="vm.product.ProductUnit">
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ProductPrice" class="col-sm-2 control-label">Unit Price</label>
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <input type="number" class="form-control with-success-addon" id="ProductPrice"
@@ -68,6 +92,21 @@
 
                         </div>
                     </div>
+
+                    <div class="form-group">
+
+                        <div class="col-sm-10 col-sm-offset-2">
+                            <div class="input-group">
+                                <label class="checkbox-inline custom-checkbox nowrap">
+                                    <input type="checkbox" id="IsAllowedQtyDecimal" value="option3" ng-model="vm.product.IsAllowedQtyDecimal">
+                                    <span>Allow Quantity in Decimal?</span>
+                                </label>
+
+                            </div>
+
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button class="btn btn-warning" ng-click="vm.saveProduct(ProductForm)">
