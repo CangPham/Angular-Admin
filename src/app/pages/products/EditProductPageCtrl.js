@@ -18,10 +18,12 @@
                 "ProductPrice": vm.product.ProductPrice,
                 "ProductDescription": vm.product.ProductDescription,
                 "CategoryId": vm.product.CategoryId,
-                "ProductUnit": vm.product.ProductUnit,
                 "IsAllowedQtyDecimal": vm.product.IsAllowedQtyDecimal
             };
 
+            if (vm.product.SelectProductUnit) {
+                data['ProductUnit'] = vm.product.ProductUnit;
+            }
 
             if (vm.selectedFile) {
                 var upload = vm.fileUploadPromise(vm.selectedFile, vm.errFiles);
