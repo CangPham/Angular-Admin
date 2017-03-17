@@ -1,0 +1,43 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel"> Create Block</h4>
+    </div>
+    <div class="modal-body">
+
+
+        <form class="form-horizontal" name="ProductForm">
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Select Shop</label>
+                <div class="col-sm-6">
+                <div class="input-group">
+                <select class="form-control" data-live-search="true" title="Select shop"
+                        ng-model="vm.shopSelectedItem"
+                        ng-options="item as item.label for item in vm.shopSelectItems"
+                        ng-change="vm.selectShop()">
+
+                </select>
+                </div>
+                </div>
+            </div>
+
+
+                <div class="form-group" >
+                    <label for="BlockName" class="col-sm-2 control-label">Block name</label>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control" ng-model="vm.shopTable.BlockName" id="BlockName"
+                                   required>
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="$dismiss()">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="vm.createShopBlock()">Create</button>
+    </div>
+</div>

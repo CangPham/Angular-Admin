@@ -1,4 +1,13 @@
-
+<div>
+    <button type="button" class="btn btn-success" data-toggle="modal" ng-click="vm.open('app/pages/shops/tables/createBlockModal.html', 'lg')">
+        Create Block
+    </button>
+    <button type="button" class="btn btn-success" data-toggle="modal" ng-click="vm.open('app/pages/shops/tables/createTableModal.html', 'lg')">
+        Create Table
+    </button>
+</div>
+<br>
+<br>
 <div class="form-group">
     <select class="form-control" data-live-search="true" title="Select shop"
             ng-model="vm.shopSelectedItem"
@@ -18,7 +27,3 @@
     </div>
 
 </div>
-
-<button type="button" class="btn btn-success" data-toggle="modal" ng-click="open('app/pages/shops/tables/createTableModal.html', 'lg')">
-Create
-</button>

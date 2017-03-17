@@ -19,6 +19,8 @@
         service.create = create;
         service.remove = remove;
         service.getOrderTableList = getOrderTableList;
+        service.createRange = createRange;
+
         return service;
 
         function get(shopId) {
@@ -58,6 +60,11 @@
         function create(data) {
             return RequestService.post('/seats/create.json', data);
         }
+
+        function createRange(data) {
+            return RequestService.post('/seats/createRange.json', data);
+        }
+
 
         function remove(id) {
             return RequestService.post('/seats/remove.json', {SeatId: id});
