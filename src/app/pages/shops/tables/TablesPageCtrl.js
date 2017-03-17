@@ -5,8 +5,25 @@
         .module('MyApp.pages.shops.tables')
         .controller('TablesPageCtrl', TablesPageCtrl);
 
-    function TablesPageCtrl($scope, $filter, editableOptions, editableThemes, ShopService, toastr, $state, TableService, BlockService) {
+    function TablesPageCtrl($scope, $uibModal, $filter, editableOptions, editableThemes, ShopService, toastr, $state, TableService, BlockService) {
         var vm = this;
+
+        vm.items = [1,2,3];
+        vm.open = function (page, size) {
+            $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                resolve: {
+                    items: function () {
+                        return vm.items;
+                    }
+                }
+            });
+        };
+
+
+
         vm.removeShop = function(id) {
             //vm.categories.splice(index, 1);
             ShopService.remove(id).then(function (result) {
