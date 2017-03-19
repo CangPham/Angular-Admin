@@ -67,6 +67,9 @@
                                 <button class="btn btn-danger editable-table-button btn-xs"
                                         ng-click="vm.unassignStaffFromShop(staff.UserKey, staff.ShopId)">Delete
                                 </button>
+                                <button type="button" class="btn btn-success" data-toggle="modal" ng-click="vm.openAssignmentPopup('app/pages/staff/assignments/assignStaffModal.html', 'lg', staff)">
+                                    Assign
+                                </button>
                             </div>
                         </td>
                     </div>

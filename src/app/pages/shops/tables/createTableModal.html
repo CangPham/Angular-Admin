@@ -22,7 +22,6 @@
                 </div>
             <div>
 
-
             <div class="form-group">
                 <div class="col-sm-6 col-sm-offset-2">
                     <div class="input-group">
@@ -31,7 +30,6 @@
                             <span>Create Range</span>
                         </label>
                     </div>
-
                 </div>
             </div>
 
@@ -56,6 +54,7 @@
 
                 </div>
             </div>
+
             <div class="form-group" ng-show="vm.shopTableRange">
                 <label for="TableEndRange" class="col-sm-2 control-label">End Range</label>
                 <div class="col-sm-6">
@@ -68,7 +67,10 @@
                 </div>
             </div>
 
+            </form>
+
     </div>
+
     <div class="modal-footer">
         <button type="button" class="btn btn-primary" ng-click="$dismiss()">Cancel</button>
         <button type="button" class="btn btn-primary" ng-click="vm.createShopTable()">Create</button>
