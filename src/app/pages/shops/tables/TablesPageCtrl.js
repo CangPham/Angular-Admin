@@ -34,6 +34,60 @@
             });
         };
 
+        vm.updateShopBlock = function ($blockName, block) {
+            var data = {
+                "BlockName": $blockName,
+                "BlockId": block.BlockId,
+                "ShopId": vm.shopSelectedItem.value
+            };
+            var ret = BlockService.save(data);
+            ret.then(function (result) {
+                if (result.Success) {
+                    toastr.success('Block updated successfully!');
+                } else {
+                    toastr.error(result.Message);
+                }
+
+            });
+            return ret;
+        };
+
+        vm.removeShopBlock = function (block) {
+            var data = {
+                "BlockId": block.BlockId,
+                "ShopId": vm.shopSelectedItem.value
+            };
+            var ret = BlockService.remove(data);
+            ret.then(function (result) {
+                if (result.Success) {
+                    toastr.success('Block removed successfully!');
+                    vm.getShopTables(vm.shopSelectedItem.value)
+                } else {
+                    toastr.error(result.Message);
+                }
+
+            });
+            return ret;
+        };
+
+        vm.updateShopTable = function ($tableName, table) {
+            var data = {
+                "SeatName": $tableName,
+                "SeatId": table.SeatId,
+                "ShopId": vm.shopSelectedItem.value
+            };
+            var ret = TableService.save(data);
+            ret.then(function (result) {
+                if (result.Success) {
+                    toastr.success('Table updated successfully!');
+                } else {
+                    toastr.error(result.Message);
+                }
+
+            });
+            return ret;
+        };
+
         vm.createShopTable = function () {
             var data = {
                 "ShopId": vm.shopSelectedItem.value,
