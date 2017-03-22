@@ -22,7 +22,7 @@
         service.getShops = getShops;
         service.getRoles = getRoles;
         service.getAssignments = getAssignments;
-        service.unassignStaffFromShop = unassignStaffFromShop;
+        service.unassignStaff = unassignStaff;
         service.assignStaffToShop = assignStaffToShop;
 
 
@@ -68,8 +68,8 @@
             return RequestService.post('/users/createStaff.json', data);
         }
 
-        function unassignStaffFromShop(staffKey, shopId) {
-            return RequestService.post('/shop_staff/removeStaff.json', {ShopId: shopId, UserKey: staffKey});
+        function unassignStaff(staffKey) {
+            return RequestService.post('/shop_staff/unassignStaff.json', {UserKey: staffKey});
         }
 
         function assignStaffToShop(staffKey, shopId, roleIds) {

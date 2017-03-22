@@ -1,0 +1,47 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel"> Assign Staff</h4>
+    </div>
+    <div class="modal-body">
+
+
+        <div class="form-horizontal" name="StaffAssignment">
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Select Shop</label>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <select class="form-control" data-live-search="true" title="Select shop"
+                                ng-model="vm.shopSelectedItem"
+                                ng-options="item as item.label for item in vm.shopSelectItems">
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-group" >
+                        <label >Select Roles</label>
+                    </div>
+                    <div class="form-group" >
+
+                        <div class="col-sm-6 col-sm-offset-2">
+                            <div class="input-group" ng-repeat="role in vm.roles">
+                                <label class="checkbox-inline custom-checkbox nowrap">
+                                    <input type="checkbox" data-checklist-model="vm.RolesCheckbox.selected" data-checklist-value="role">
+                                    <span>{{role.RoleName}}</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+        </form>
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="$dismiss()">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="vm.assignStaff()">Assign</button>
+    </div>
+</div>
