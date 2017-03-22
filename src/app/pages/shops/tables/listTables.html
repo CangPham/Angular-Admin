@@ -20,10 +20,25 @@
 <div class="row show-grid" ng-repeat="block in vm.shopTables">
     <div>
         <hr>
-        <h4 class="grid-h">{{block.BlockName}}</h4>
+        <div class="col-sm-6">
+        <span editable-text="block.BlockName" onbeforesave="vm.updateShopBlock($data, block)" e-required>
+            <h4 class="grid-h">{{block.BlockName}}</h4>
+        </span>
+        </div>
+        <div class="col-sm-6">
+            <button type="button" class="btn btn-danger" ng-click="vm.removeShopBlock(block)">
+                Remove block
+            </button>
+        </div>
+
     </div>
     <div class="col-xs-3 col-md-1" ng-repeat="table in block.Seats">
-        <div>{{table.SeatName}}</div>
+            <div class="popover-wrapper">
+            <span editable-text="table.SeatName" onbeforesave="vm.updateShopTable($data, table)" e-required>
+                {{table.SeatName}}
+            </span>
+
+        </div>
     </div>
 
 </div>
