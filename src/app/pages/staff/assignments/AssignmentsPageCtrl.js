@@ -41,6 +41,18 @@
             });
         };
 
+        vm.unassignStaff = function (staffKey) {
+            var ret = AssignmentsService.unassignStaff(staffKey);
+            ret.then(function (result) {
+                if (result.Success) {
+                    toastr.success('Staff unassigned successfully!');
+                    vm.getAssignments();
+                } else {
+                    toastr.error(result.Message);
+                }
+            });
+        };
+
         vm.getAssignments = function () {
             var ret = AssignmentsService.getAssignments();
             ret.then(function (result) {
