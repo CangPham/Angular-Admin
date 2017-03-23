@@ -17,7 +17,7 @@
                 controllerAs: 'vm'
             })
             .state('register', {
-                url: '/register',
+                url: '/account/register',
                 settings: {
                     hideMenus: true
                 },
@@ -26,7 +26,7 @@
                 controllerAs: 'vm'
             })
             .state('verify', {
-            url: '/verify',
+            url: '/account/verify',
             settings: {
                 hideMenus: true
             },

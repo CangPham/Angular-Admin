@@ -7,6 +7,9 @@
 
     function LoginPageCtrl($location, $state, $rootScope, AuthenticationService) {
         $rootScope.settings = $state.current.settings;
+        $rootScope.$state = $state;
+        $rootScope.$location = $location;
+
         var vm = this;
 
         vm.login = login;
