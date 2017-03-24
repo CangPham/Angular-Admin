@@ -1,6 +1,6 @@
 <div class="auth-block">
     <h1>Sign in to Admin</h1>
-    <a ui-sref="register" class="auth-link">New to Account? Sign up!</a>
+    <a ng-click="vm.register()" class="auth-link">New to Account? Sign up!</a>
 
     <form class="form-horizontal" name="form" ng-submit="form.$valid && vm.login()" novalidate>
         <div class="form-group" ng-class="{ 'has-error': form.$submitted && form.username.$invalid }">

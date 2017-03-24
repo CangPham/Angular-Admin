@@ -62,12 +62,27 @@
         }
 
 
-        function verify(phone, smsCode) {
+        function verify(phone, smsCode, callback) {
             var data = {
                 SmsCodeValue: smsCode,
                 UserPhoneNumber: phone
             };
-            return $http.post($rootScope.servicePrefix + '/users/verify.json', data);
+            $http.post($rootScope.servicePrefix + '/users/verify.json', data)
+                .success(function (response) {
+
+                    // login successful if there's a token in the response
+                    if (response.Success) {
+                        callback(true);
+                    } else {
+                        // execute callback with false to indicate failed login
+                        callback(false);
+                    }
+                })
+                .error(function (response) {
+                        callback(false);
+                    }
+
+                );
 
         }
 

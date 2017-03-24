@@ -15,24 +15,15 @@
 
         vm.verify = function verify() {
             vm.loading = true;
-            var ret = AuthenticationService.verify(vm.UserPhoneNumber, vm.smsCode);
-
-
-            ret.then(function (result) {
-                    if (result.Success) {
-                        $state.go('login', {}, {location: true});
-                    } else {
-                        vm.error = 'Invalid code';
-                        vm.loading = false;
-                    }
-                },
-                function (result) {
-                    // failure callback
-                    console.log(result);
+            var ret = AuthenticationService.verify(vm.UserPhoneNumber, vm.smsCode, function (success) {
+                if (success == true) {
+                    $state.go('login', {});
+                } else {
                     vm.error = 'Invalid code';
                     vm.loading = false;
+                }
+            });
 
-                });
         };
     }
 
