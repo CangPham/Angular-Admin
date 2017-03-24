@@ -45,12 +45,12 @@
                 .success(function (response) {
 
                     // login successful if there's a token in the response
-                    if (response.Status) {
-                        //console.log(response);
+                    if (response.Success) {
+                        console.log(response);
                         // store username and token in local storage to keep user logged in between page refreshes
                         $localStorage.registeredUser = {
-                            UserPhoneNumber: response.UserData.UserPhoneNumber,
-                            UserKey: response.UserData.UserKey
+                            UserPhoneNumber: response.User.UserPhoneNumber,
+                            UserKey: response.User.UserKey
                         };
 
                         callback(true);
@@ -67,18 +67,23 @@
                 SmsCodeValue: smsCode,
                 UserPhoneNumber: phone
             };
-
             $http.post($rootScope.servicePrefix + '/users/verify.json', data)
                 .success(function (response) {
-                    //console.log(response);
+
                     // login successful if there's a token in the response
-                    if (response.Status) {
+                    if (response.Success) {
                         callback(true);
                     } else {
                         // execute callback with false to indicate failed login
                         callback(false);
                     }
-                });
+                })
+                .error(function (response) {
+                        callback(false);
+                    }
+
+                );
+
         }
 
         function Logout() {

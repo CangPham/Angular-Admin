@@ -5,8 +5,12 @@
         .module('MyApp.pages.authentication')
         .controller('RegisterPageCtrl', RegisterPageCtrl);
 
-    function RegisterPageCtrl($location, $state, $rootScope, AuthenticationService) {
+    function RegisterPageCtrl( $state, $rootScope, AuthenticationService, $location) {
         $rootScope.settings = $state.current.settings;
+        //$scope.$state = $state;
+       $rootScope.$state = $state;
+        $rootScope.$location = $location;
+
         var vm = this;
 
         vm.register = register;
@@ -22,7 +26,7 @@
             };
             AuthenticationService.register(user, function (result) {
                 if (result === true) {
-                    $state.go('verify', {});
+                    $state.go('verify', {}, { location: false });
                 } else {
                     vm.error = 'Failed to register';
                     vm.loading = false;
@@ -31,7 +35,7 @@
         };
 
         vm.testGo = function testGo() {
-            $state.go('verify', {});
+            $state.go('verify', {}, { location: true });
         };
     }
 
