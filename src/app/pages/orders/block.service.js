@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('MyApp.pages.tables')
+        .module('MyApp.pages.orders')
         .factory('BlockService', Service)
         // Decorate the service...
         .config(function (errorHandlerProvider, $provide) {

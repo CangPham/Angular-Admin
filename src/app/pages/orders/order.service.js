@@ -18,6 +18,7 @@
         service.save = save;
         service.create = create;
         service.remove = remove;
+        service.getOrderList = getOrderList;
 
         return service;
 
@@ -38,6 +39,22 @@
                     return result;
                 });
         }
+
+        function getOrderList(shopId, start, end) {
+            if (start == null) {
+                start = '2016-01-01';
+            }
+            var params = {
+                ShopId: shopId,
+                StartDate: start
+            };
+            if (end) {
+                params['EndDate'] = end;
+            }
+            return RequestService.get('/orders/getList.json', {params: params});
+
+        }
+
         // Provide the description of each method, which also functions as documentation. :-)
         getAll.description = 'load shop tables';
 

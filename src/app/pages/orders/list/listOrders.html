@@ -1,0 +1,49 @@
+
+<div class="widgets">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="Order Details" ba-panel-class="with-scroll">
+
+                <div class="form-group">
+                    <select class="form-control" data-live-search="true" title="Select shop"
+                            ng-model="vm.shopSelectedItem"
+                            ng-options="item as item.label for item in vm.shopSelectItems"
+                            ng-change="vm.selectShop()">
+
+                    </select>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>#</th>
+                            <th>Block</th>
+                            <th>Table</th>
+                            <th>OrderId</th>
+                            <th>Order Status</th>
+                            <th>Order Waiting Time</th>
+
+                        </tr>
+                        <tr ng-repeat="order in vm.shopOrderList">
+                            <td></td>
+                            <td>{{order.BlockName}}</td>
+                            <td>{{order.SeatName}}</td>
+                            <td>
+                                <a href="" class="btn btn-success" ng-click="vm.viewOrderDetail(order.OrderId)">
+                                    {{order.OrderId}}
+                                </a>
+                            </td>
+                            <td>{{order.OrderStatus}}</td>
+                            <td>{{order.OrderWaitTime}}</td>
+
+                        </tr>
+
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
