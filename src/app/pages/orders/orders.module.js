@@ -1,37 +1,30 @@
+/**
+ * @author k.danovsky
+ * created on 12.01.2016
+ */
 (function () {
     'use strict';
 
-    angular.module('MyApp.pages.orders', [])
+    angular.module('MyApp.pages.orders', [
+        'MyApp.pages.orders.tables',
+        'MyApp.pages.orders.list',
+
+    ])
         .config(routeConfig);
 
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('listOrderTables', {
+            .state('orders', {
                 url: '/orders',
-                templateUrl: 'app/pages/orders/listOrderTables.html',
-                controller: 'OrdersPageCtrl',
-                controllerAs: 'vm',
+                template : '<ui-view></ui-view>',
+                abstract: true,
                 title: 'Orders',
                 sidebarMeta: {
-                    icon: 'ion-grid',
-                    order: 1,
+                    icon: 'ion-android-laptop',
+                    order: 2,
                 },
-            })
-            .state('orderDetails', {
-                params: {
-                    'OrderId': null,
-                    'ShopId': null
-
-                },
-                templateUrl: 'app/pages/orders/orderDetails.html',
-                controller: 'OrderDetailsPageCtrl',
-                controllerAs: 'vm',
-                title: 'Order Details',
-
-            })
-            ;
-
+            });
     }
 
 })();

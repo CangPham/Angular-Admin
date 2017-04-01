@@ -1,30 +1,50 @@
 
 
-<div class="table-responsive">
-    <table class="table">
-        <tr>
-            <th>#</th>
-            <th>Product Name</th>
-            <th>Qty</th>
-            <th>Unit Price</th>
-            <th>Sub Total</th>
-            <th>Actions</th>
-        </tr>
-        <tr ng-repeat="orderItem in vm.orderItems">
-            <td></td>
-            <td>{{orderItem.Product.ProductName}}</td>
-            <td>{{orderItem.OrderItemQuantity}}</td>
-            <td>{{orderItem.Product.ProductPrice}}</td>
-            <td>{{orderItem.OrderItemQuantity*orderItem.Product.ProductPrice}}</td>
-            <td></td>
-        </tr>
-        <tr>
-            <th></th>
-            <th>Total</th>
-            <th></th>
-            <th></th>
-            <th>{{vm.orderSum}}</th>
-            <th></th>
-        </tr>
-    </table>
+<div class="widgets">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="Order Details" ba-panel-class="with-scroll">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>#</th>
+                            <th>Product Name</th>
+                            <th>Qty</th>
+                            <th>Unit Price</th>
+                            <th>Status</th>
+                            <th>Sub Total</th>
+
+                            <th>Actions</th>
+                        </tr>
+                        <tr ng-repeat="orderItem in vm.orderItems">
+                            <td></td>
+                            <td>{{orderItem.Product.ProductName}}</td>
+                            <td>{{orderItem.OrderItemQuantity}}</td>
+                            <td>{{orderItem.Product.ProductPrice}}</td>
+                            <td>{{orderItem.OrderItemStatus}}</td>
+                            <td>{{orderItem.OrderItemQuantity*orderItem.Product.ProductPrice}}</td>
+
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th>Total</th>
+                            <th></th>
+                            <th></th>
+                            <th>{{vm.orderSum}}</th>
+                            <th></th>
+                        </tr>
+                    </table>
+                </div>
+
+                <div>
+                    <button class="btn btn-primary" ng-click="">Bill</button>
+                    <button class="btn btn-primary" ng-click="">Print</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>

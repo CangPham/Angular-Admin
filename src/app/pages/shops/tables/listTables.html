@@ -1,44 +1,73 @@
 <div>
-    <button type="button" class="btn btn-success" data-toggle="modal" ng-click="vm.open('app/pages/shops/tables/createBlockModal.html', 'lg')">
+    <button type="button" class="btn btn-success" data-toggle="modal"
+            ng-click="vm.open('app/pages/shops/tables/createBlockModal.html', 'lg')">
         Create Block
     </button>
-    <button type="button" class="btn btn-success" data-toggle="modal" ng-click="vm.open('app/pages/shops/tables/createTableModal.html', 'lg')">
+    <button type="button" class="btn btn-success" data-toggle="modal"
+            ng-click="vm.open('app/pages/shops/tables/createTableModal.html', 'lg')">
         Create Table
     </button>
 </div>
+
 <br>
 <br>
-<div class="form-group">
-    <select class="form-control" data-live-search="true" title="Select shop"
-            ng-model="vm.shopSelectedItem"
-            ng-options="item as item.label for item in vm.shopSelectItems"
-            ng-change="vm.selectShop()">
 
-    </select>
-</div>
 
-<div class="row show-grid" ng-repeat="block in vm.shopTables">
-    <div>
-        <hr>
-        <div class="col-sm-6">
-        <span editable-text="block.BlockName" onbeforesave="vm.updateShopBlock($data, block)" e-required>
-            <h4 class="grid-h">{{block.BlockName}}</h4>
-        </span>
-        </div>
-        <div class="col-sm-6">
-            <button type="button" class="btn btn-danger" ng-click="vm.removeShopBlock(block)">
-                Remove block
-            </button>
-        </div>
+<div class="widgets">
 
-    </div>
-    <div class="col-xs-3 col-md-1" ng-repeat="table in block.Seats">
-            <div class="popover-wrapper">
-            <span editable-text="table.SeatName" onbeforesave="vm.updateShopTable($data, table)" e-required>
-                {{table.SeatName}}
-            </span>
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="Select A Shop" ba-panel-class="with-scroll">
 
+                <div class="form-group">
+                    <select class="form-control" data-live-search="true" title="Select shop"
+                            ng-model="vm.shopSelectedItem"
+                            ng-options="item as item.label for item in vm.shopSelectItems"
+                            ng-change="vm.selectShop()">
+
+                    </select>
+                </div>
+
+            </div>
         </div>
     </div>
-
 </div>
+
+
+<div class="widgets">
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="Shop Tables - {{vm.shopSelectedItem.label}}" ba-panel-class="with-scroll">
+                <div class="row" style="margin-top: 40px; margin-left: 50px" ng-repeat="block in vm.shopTables">
+
+                    <div class="row">
+                        <section class="col-md-12">
+                            <a href="" ng-click="vm.removeShopBlock(block)">
+                                <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+                            </a>
+                            <label editable-text="block.BlockName" onbeforesave="vm.updateShopBlock($data, block)">
+                                {{block.BlockName}}
+                            </label>
+                        </section>
+                    </div>
+
+                    <div class="row">
+                        <section class="col-xs-6 col-sm-4 col-md-2 col-lg-1" ng-repeat="table in block.Seats"
+                                 style="margin-top: 40px">
+                            <div class="popover-wrapper">
+                                <a href="#" class="btn btn-success btn-lg" editable-text="table.SeatName"
+                                   onbeforesave="vm.updateShopTable($data, table)">
+
+                                    {{table.SeatName}}
+
+                                </a>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
