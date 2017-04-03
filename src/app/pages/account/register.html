@@ -42,8 +42,9 @@
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
                 <button type="submit" ng-click="vm.register()" class="btn btn-default btn-auth">Sign up</button>
-                <button type="submit" ng-click="vm.testGo()" class="btn btn-default btn-auth">Go to verify</button>
+
             </div>
         </div>
+        <div ng-if="vm.error" class="alert alert-danger">{{vm.error}}</div>
     </form>
 </div>

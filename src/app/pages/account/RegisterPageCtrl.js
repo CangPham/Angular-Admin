@@ -24,19 +24,16 @@
                 UserPhoneNumber: vm.user.UserPhoneNumber,
                 Password: vm.user.Password
             };
-            AuthenticationService.register(user, function (result) {
-                if (result === true) {
+            AuthenticationService.register(user, function (success, message) {
+                if (success === true) {
                     $state.go('verify', {}, { location: false });
                 } else {
-                    vm.error = 'Failed to register';
+                    vm.error = message;
                     vm.loading = false;
                 }
             });
         };
 
-        vm.testGo = function testGo() {
-            $state.go('verify', {}, { location: true });
-        };
     }
 
 })();

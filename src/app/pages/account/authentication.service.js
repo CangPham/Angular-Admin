@@ -35,6 +35,9 @@
                         // execute callback with false to indicate failed login
                         callback(false);
                     }
+                })
+                .error(function (response) {
+                    callback(false);
                 });
         }
 
@@ -42,11 +45,11 @@
         function register(data, callback) {
 
             $http.post($rootScope.servicePrefix + '/users/register.json', data)
-                .success(function (response) {
+                .then(function (response) {
 
                     // login successful if there's a token in the response
                     if (response.Success) {
-                        console.log(response);
+                        //console.log(response);
                         // store username and token in local storage to keep user logged in between page refreshes
                         $localStorage.registeredUser = {
                             UserPhoneNumber: response.User.UserPhoneNumber,
@@ -56,9 +59,14 @@
                         callback(true);
                     } else {
                         // execute callback with false to indicate failed login
-                        callback(false);
+                        callback(false, response.Message);
                     }
-                });
+                },
+                function (response, status) {
+
+                    callback(false, "Failed to register - please try again");
+                }
+                );
         }
 
 
