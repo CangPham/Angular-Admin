@@ -9,6 +9,10 @@
         var vm = this;
 
         vm.saveStaff = function (validationForm) {
+            if (vm.staff.Password != vm.staff.ConfirmPassword) {
+                toastr.error("Password does not match");
+                return;
+            }
             var data = {
                 "FirstName": vm.staff.FirstName,
                 "LastName": vm.staff.LastName,
@@ -21,6 +25,10 @@
                 toastr.success('Staff saved successfully!');
                 $state.go('staff.listStaff');
             });
+        };
+
+        vm.backToStaffList = function () {
+            $state.go('staff.listStaff');
         };
 
 

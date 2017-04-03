@@ -8,11 +8,22 @@
     function StaffPageCtrl($scope, $filter, editableOptions, editableThemes, StaffService, toastr, $state) {
         var vm = this;
         this.staffPageSize = 10;
-        vm.removeStaff = function(id) {
+        vm.removeStaff = function(userKey) {
             //vm.categories.splice(index, 1);
-            StaffService.remove(id).then(function (result) {
+            StaffService.removeStaff(userKey)
+                .then(function (result) {
+                    if (result.Success){
+                        toastr.success("Staff removed successfully");
+                        vm.getStaff();
+                    } else {
+                        toastr.error("Failed to staff");
+                    }
 
-            });
+            },
+                    function (result) {
+                        toastr.error("Error in removing staff");
+                    }
+            );
         };
 
 

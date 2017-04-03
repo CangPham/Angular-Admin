@@ -17,7 +17,7 @@
         service.getAll = getAll;
         service.save = save;
         service.create = create;
-        service.remove = remove;
+        service.removeStaff = removeStaff;
 
         return service;
 
@@ -42,8 +42,8 @@
             return RequestService.post('/users/createStaff.json', data);
         }
 
-        function remove(id) {
-            return RequestService.post('/users/remove.json', {UserId: id});
+        function removeStaff(userKey) {
+            return RequestService.post('/users/removeStaff.json', {UserKey: userKey});
         }
     }
 })();
