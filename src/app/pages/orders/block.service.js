@@ -48,8 +48,8 @@
             return RequestService.post('/blocks/create.json', data);
         }
 
-        function remove(id) {
-            return RequestService.post('/blocks/remove.json', {BlockId: id});
+        function remove(blockId, shopId) {
+            return RequestService.post('/blocks/remove.json', {BlockId: blockId, ShopId: shopId});
         }
     }
 })();

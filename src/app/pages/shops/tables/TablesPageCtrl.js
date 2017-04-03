@@ -53,11 +53,7 @@
         };
 
         vm.removeShopBlock = function (block) {
-            var data = {
-                "BlockId": block.BlockId,
-                "ShopId": vm.shopSelectedItem.value
-            };
-            var ret = BlockService.remove(data);
+            var ret = BlockService.remove(block.BlockId, vm.shopSelectedItem.value);
             ret.then(function (result) {
                 if (result.Success) {
                     toastr.success('Block removed successfully!');
