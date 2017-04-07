@@ -45,8 +45,8 @@
         function register(data, callback) {
 
             $http.post($rootScope.servicePrefix + '/users/register.json', data)
-                .then(function (response) {
-
+                .then(function (resp) {
+                    var response = resp.data;
                     // login successful if there's a token in the response
                     if (response.Success) {
                         //console.log(response);

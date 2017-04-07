@@ -26,7 +26,7 @@
             };
             AuthenticationService.register(user, function (success, message) {
                 if (success === true) {
-                    $state.go('verify', {}, { location: false });
+                    $state.go('verify');
                 } else {
                     vm.error = message;
                     vm.loading = false;
