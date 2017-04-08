@@ -43,6 +43,15 @@ function run($rootScope, $http, $location, $localStorage, errorHandler) {
         }
     });
 
+    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+        if(toState.settings && $rootScope.settings){
+            $rootScope.settings.hideMenus = toState.settings.hideMenus;
+        } else {
+            $rootScope.settings.hideMenus = false;
+        }
+
+    });
+
     $rootScope.servicePrefix = 'https://cloudorder.vn/api';
     $rootScope.host = 'https://cloudorder.vn';
     $rootScope.productImagePath = '/upload/images/';
