@@ -26,20 +26,22 @@
                 controllerAs: 'vm'
             })
             .state('verify', {
-            url: '/account/verify',
-            settings: {
-                hideMenus: true
-            },
-            templateUrl: 'app/pages/account/verify.html',
-            controller: 'VerifyPageCtrl',
-            controllerAs: 'vm'
-        })
+                url: '/account/verify',
+                settings: {
+                    hideMenus: true
+                },
+                templateUrl: 'app/pages/account/verify.html',
+                controller: 'VerifyPageCtrl',
+                controllerAs: 'vm'
+            })
             .state('logout', {
                 url: '/logout',
                 settings: {
                     hideMenus: true
                 },
-                controller: 'LoginPageCtrl',
+                controller: function ($scope, $state) {
+                    $state.go('login');
+                },
                 controllerAs: 'vm'
             });
     }

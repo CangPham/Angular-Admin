@@ -30,11 +30,26 @@ function run($rootScope, $http, $location, $localStorage, errorHandler) {
 
     // redirect to login page if not logged in and trying to access a restricted page
     $rootScope.$on('$locationChangeStart', function (event, next, current) {
-        var publicPages = ['/login'];
-        var restrictedPage = publicPages.indexOf($location.path()) === -1;
-        if (restrictedPage && !$localStorage.currentUser) {
+        var publicPages = [
+            /^\/login/gi, //login page
+            /^\/logout/gi, //logout page
+            /^\/account\//gi, //all authentication pages
+        ];
+        var isPublicPage = publicPages.some(function (pattern) {
+            return pattern.test($location.path());
+        });
+        if (!isPublicPage && !$localStorage.currentUser) {
             $location.path('/login');
         }
+    });
+
+    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+        if(toState.settings && $rootScope.settings){
+            $rootScope.settings.hideMenus = toState.settings.hideMenus;
+        } else {
+            $rootScope.settings.hideMenus = false;
+        }
+
     });
 
     $rootScope.servicePrefix = 'https://cloudorder.vn/api';

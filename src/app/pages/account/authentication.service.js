@@ -28,7 +28,6 @@
                         // add jwt token to auth header for all requests made by the $http service
                         $http.defaults.headers.common.Authorization = 'Bearer ' + response.UserData.token;
 
-                        $rootScope.settings.hideMenus = false;
                         // execute callback with true to indicate successful login
                         callback(true);
                     } else {
@@ -45,8 +44,8 @@
         function register(data, callback) {
 
             $http.post($rootScope.servicePrefix + '/users/register.json', data)
-                .then(function (response) {
-
+                .then(function (resp) {
+                    var response = resp.data;
                     // login successful if there's a token in the response
                     if (response.Success) {
                         //console.log(response);
