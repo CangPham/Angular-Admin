@@ -19,8 +19,12 @@
                         <br>
                         <h4 class="grid-h">{{block.BlockName}}</h4>
                     </div>
-                    <div class="col-xs-3 col-md-1" ng-repeat="table in block.Seats">
-                        <button class="{{vm.classByStatus(table.SeatStatus)}}" ng-click="vm.viewOrderTable(table)">{{table.SeatName}}</button>
+                    <div class="col-xs-3 col-md-2" ng-repeat="table in block.Seats">
+                        <button class="{{vm.classByStatus(table.SeatStatus)}} btn-block" ng-click="vm.viewOrderTable(table)">
+                            <strong class="list-table-seatname">{{table.SeatName}}</strong>
+                            <p>Status: {{CONSTANT.SEAT_STATUS_ID_NAME_MAP[table.SeatStatus + '']}}</p>
+                            <p>{{table.Order}}</p>
+                        </button>
                     </div>
 
                 </div>
