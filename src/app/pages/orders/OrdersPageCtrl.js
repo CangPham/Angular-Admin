@@ -5,7 +5,7 @@
         .module('MyApp.pages.orders')
         .controller('OrdersPageCtrl', OrdersPageCtrl);
 
-    function OrdersPageCtrl($scope, $q, $filter, editableOptions, editableThemes, ShopService, toastr, $state, TableService, BlockService, OrderService) {
+    function OrdersPageCtrl($scope, $q, $filter, $timeout, editableOptions, editableThemes, ShopService, toastr, $state, TableService, BlockService, OrderService) {
         var vm = this;
 
 
@@ -60,7 +60,7 @@
 
         vm.viewOrderTable = function (table) {
             if (table.OrderId == null || angular.isUndefined(table.OrderId)) {
-                toastr.success('Table empty!');
+                $state.go('menuList', {});
             } else {
 
                 $state.go('orders.orderDetails', {OrderId: table.OrderId, ShopId: vm.shopId});
@@ -104,12 +104,12 @@
             });
         };
 
-        vm.orderTimeCount = function () {
-            
-        }
-
         vm.getShops();
 
+        //auto refresh list every 1 minute
+        $timeout(function () {
+            vm.selectShop();
+        }, 60000);
 
     }
 

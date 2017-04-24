@@ -16,6 +16,7 @@ angular.module('MyApp', [
     'angular-progress-button-styles',
     'ngStorage',
     'ngFileUpload',
+    'timer',
 
     'MyApp.theme',
     'MyApp.pages'
