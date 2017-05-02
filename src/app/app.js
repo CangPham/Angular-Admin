@@ -17,6 +17,7 @@ angular.module('MyApp', [
     'ngStorage',
     'ngFileUpload',
     'timer',
+    'ngDialog',
 
     'MyApp.theme',
     'MyApp.pages'

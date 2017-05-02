@@ -59,15 +59,15 @@
         getAll.description = 'load shop tables';
 
         function save(data) {
-            return RequestService.post('/seats/update.json', data)
+            return RequestService.post('/orders/update.json', data)
         }
 
         function create(data) {
-            return RequestService.post('/seats/create.json', data);
+            return RequestService.post('/orders/create.json', data);
         }
 
         function remove(id) {
-            return RequestService.post('/seats/remove.json', {SeatId: id});
+            return RequestService.post('/orders/remove.json', {SeatId: id});
         }
     }
 })();

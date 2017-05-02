@@ -5,7 +5,7 @@
         .module('MyApp.pages.orders')
         .controller('OrdersPageCtrl', OrdersPageCtrl);
 
-    function OrdersPageCtrl($scope, $q, $filter, $timeout, editableOptions, editableThemes, ShopService, toastr, $state, TableService, BlockService, OrderService) {
+    function OrdersPageCtrl($scope, $q, $filter, $timeout, editableOptions, editableThemes, ShopService, toastr, $state, TableService, BlockService, OrderService, ngDialog) {
         var vm = this;
 
 
@@ -60,12 +60,32 @@
 
         vm.viewOrderTable = function (table) {
             if (table.OrderId == null || angular.isUndefined(table.OrderId)) {
-                $state.go('menuList', {});
+                vm.openTableOrderDialog(table);
             } else {
 
                 $state.go('orders.orderDetails', {OrderId: table.OrderId, ShopId: vm.shopId});
 
             }
+        };
+
+        vm.openTableOrderDialog = function (table) {
+            ngDialog.open({
+                template: 'app/pages/orders/tables/tableOrderDialog.html',
+                controller: 'TableOrderDialogCtrl as vm',
+                className: 'ngdialog-theme-default dlg-table-order',
+                preCloseCallback: function () {
+                    vm.refresh();
+                    return true;
+                },
+                resolve: {
+                    table: function () {
+                        return table
+                    },
+                    shop: function () {
+                        return vm.shopSelectedItem
+                    }
+                }
+            });
         };
 
         vm.viewOrderDetail = function (orderId) {
@@ -106,9 +126,13 @@
 
         vm.getShops();
 
+        vm.refresh = function () {
+            vm.selectShop();
+        }
+
         //auto refresh list every 1 minute
         $timeout(function () {
-            vm.selectShop();
+            vm.refresh();
         }, 60000);
 
     }
