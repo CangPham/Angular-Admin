@@ -16,13 +16,16 @@ angular.module('MyApp', [
     'angular-progress-button-styles',
     'ngStorage',
     'ngFileUpload',
+    'timer',
+    'ngDialog',
 
     'MyApp.theme',
     'MyApp.pages'
 ]).run(run);
 
-function run($rootScope, $http, $location, $localStorage, errorHandler) {
+function run($rootScope, $http, $location, $localStorage, errorHandler, ConstantService) {
     $rootScope.errorHandler = errorHandler;
+    $rootScope.CONSTANT = ConstantService;
     // keep user logged in after page refresh
     if ($localStorage.currentUser) {
         $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;

@@ -1,26 +1,33 @@
 
-<div class="widgets">
+<div class="widgets list-order-tables">
 
     <div class="row">
         <div class="col-md-12">
             <div ba-panel ba-panel-title="Orders List by Tables" ba-panel-class="with-scroll">
                 <div class="row">
-                <div class="col-sm-12">
-                    <select class="form-control" data-live-search="true" title="Select shop"
-                            ng-model="vm.shopSelectedItem"
-                            ng-options="item as item.label for item in vm.shopSelectItems"
-                            ng-change="vm.selectShop()">
+                    <div class="col-sm-10">
+                        <select class="form-control" data-live-search="true" title="Select shop"
+                                ng-model="vm.shopSelectedItem"
+                                ng-options="item as item.label for item in vm.shopSelectItems"
+                                ng-change="vm.selectShop()">
 
-                    </select>
-                </div>
+                        </select>
+                    </div>
+                    <div class="col-sm-2 ">
+                        <button class="btn btn-default btn-block" ng-click="vm.selectShop()">Refresh</button>
+                    </div>
                 </div>
                 <div class="row show-grid" ng-repeat="block in vm.shopTables">
                     <div>
                         <br>
                         <h4 class="grid-h">{{block.BlockName}}</h4>
                     </div>
-                    <div class="col-xs-3 col-md-1" ng-repeat="table in block.Seats">
-                        <button class="{{vm.classByStatus(table.SeatStatus)}}" ng-click="vm.viewOrderTable(table)">{{table.SeatName}}</button>
+                    <div class="col-xs-3 col-md-2" ng-repeat="table in block.Seats">
+                        <button class="{{vm.classByStatus(table.SeatStatus)}} btn-block list-order-tables-table" ng-click="vm.viewOrderTable(table)">
+                            <p class="seat-name"><strong>{{table.SeatName}}</strong></p>
+                            <p class="seat-status">Status: {{CONSTANT.SEAT_STATUS_ID_NAME_MAP[table.SeatStatus + '']}}</p>
+                            <p class="seat-timer" ng-if="table.Order"><timer start-time="table.Order.OrderCreatedTime">{{hours}} : {{minutes}} : {{seconds}}</timer></p>
+                        </button>
                     </div>
 
                 </div>

@@ -1,0 +1,74 @@
+<div class="dlg-table-order-content">
+    <h2>Order for table {{vm.table.SeatName}}</h2>
+    <div class="alert alert-danger" ng-repeat="err in vm.errors">
+        {{err}}
+    </div>
+    <div class="container-fluid">
+        <div class="row" >
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="search-bar">
+                            <div class="form-group">
+                                <input class="form-control" type="text" ng-model="vm.searchString" placeholder="Search product">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-list product-list-unselected">
+                    <div class="product-item row" ng-repeat="product in vm.shopProducts | filter:vm.searchString"
+                         ng-click="vm.addProductToCart(product)"
+                    >
+                        <div class="col-md-3">
+                            <img class="img-responsive" src="https://cloudorder.vn/upload/images/{{product.ProductImage}}" alt>
+                        </div>
+                        <div class="col-md-9">
+                            <p class="name">{{product.ProductName}}</p>
+                            <p class="price">{{product.ProductPrice | currency}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="ordered-bar">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p>Total Items: <span class="total-items">{{vm.cartProducts.length}}</span></p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>Total Costs:  <span class="total-costs">{{vm.getCartTotalCosts() | currency}}</span></p>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <button class="btn btn-primary"
+                                ng-disabled="vm.cartProducts.length == 0"
+                                ng-click="vm.createOrder()"
+                            >Order</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-list product-list-selected">
+                    <div class="text-center" ng-if="!vm.cartProducts || !vm.cartProducts.length">Cart empty</div>
+                    <div class="product-item row" ng-repeat="product in vm.cartProducts">
+                        <div class="col-md-3">
+                            <img class="img-responsive" src="https://cloudorder.vn/upload/images/{{product.ProductImage}}" alt>
+                        </div>
+                        <div class="col-md-5">
+                            <p class="name">{{product.ProductName}}</p>
+                            <p class="price">{{product.ProductPrice | currency}}</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p class="qty"><number-picker value="product.OrderItemQuantity" min="1" max="100" step="1">
+                                <input type="text" ng-model="product.OrderItemQuantity">
+                            </number-picker></p>
+                        </div>
+                        <div class="col-md-1">
+                            <a ng-click="vm.removeProductFromCart(product)">X</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

@@ -5,7 +5,7 @@
         .module('MyApp.pages.orders')
         .controller('OrdersPageCtrl', OrdersPageCtrl);
 
-    function OrdersPageCtrl($scope, $filter, editableOptions, editableThemes, ShopService, toastr, $state, TableService, BlockService, OrderService) {
+    function OrdersPageCtrl($scope, $q, $filter, $timeout, editableOptions, editableThemes, ShopService, toastr, $state, TableService, BlockService, OrderService, ngDialog) {
         var vm = this;
 
 
@@ -31,8 +31,7 @@
                 if (vm.shopSelectItems.length > 0) {
                     vm.shopSelectedItem = vm.shopSelectItems[0];
                     vm.shopId = vm.shopSelectedItem.value;
-                    vm.getShopTables(vm.shopSelectItems[0].value);
-                    vm.getOrderList(vm.shopSelectItems[0].value);
+                    vm.selectShop();
                 }
                 toastr.success('Shops load successfully!');
             });
@@ -40,20 +39,53 @@
 
 
         vm.selectShop = function () {
+            var tasks = [
+                vm.getShopTables(vm.shopSelectedItem.value),
+                vm.getOrderList(vm.shopSelectedItem.value)
+            ];
+            $q.all(tasks).then(function (vals) {
+                vm.shopTables.forEach(function (block) {
+                    block.Seats.forEach(function (seat) {
+                        if(seat.OrderId > 0){
+                            seat.Order = _.find(vm.shopOrderList, function (o) {
+                                return o.OrderId == seat.OrderId;
+                            });
+                        }
+                    });
 
-           vm.getShopTables(vm.shopSelectedItem.value);
-            vm.getOrderList(vm.shopSelectedItem.value);
+                });
+            });
 
         };
 
         vm.viewOrderTable = function (table) {
             if (table.OrderId == null || angular.isUndefined(table.OrderId)) {
-                toastr.success('Table empty!');
+                vm.openTableOrderDialog(table);
             } else {
 
                 $state.go('orders.orderDetails', {OrderId: table.OrderId, ShopId: vm.shopId});
 
             }
+        };
+
+        vm.openTableOrderDialog = function (table) {
+            ngDialog.open({
+                template: 'app/pages/orders/tables/tableOrderDialog.html',
+                controller: 'TableOrderDialogCtrl as vm',
+                className: 'ngdialog-theme-default dlg-table-order',
+                preCloseCallback: function () {
+                    vm.refresh();
+                    return true;
+                },
+                resolve: {
+                    table: function () {
+                        return table
+                    },
+                    shop: function () {
+                        return vm.shopSelectedItem
+                    }
+                }
+            });
         };
 
         vm.viewOrderDetail = function (orderId) {
@@ -78,7 +110,7 @@
 
         vm.getShopTables = function (shopId) {
             var ret = TableService.getOrderTableList(shopId);
-            ret.then(function (result) {
+            return ret.then(function (result) {
                 vm.shopTablesTmp = result.Blocks;
                 vm.shopTables = [].concat(vm.shopTablesTmp);
 
@@ -87,14 +119,21 @@
 
         vm.getOrderList = function (shopId, start, end) {
             var ret = OrderService.getOrderList(shopId, start, end);
-            ret.then(function (result) {
+            return ret.then(function (result) {
                 vm.shopOrderList = result.Orders;
             });
         };
 
-
         vm.getShops();
 
+        vm.refresh = function () {
+            vm.selectShop();
+        }
+
+        //auto refresh list every 1 minute
+        $timeout(function () {
+            vm.refresh();
+        }, 60000);
 
     }
 
