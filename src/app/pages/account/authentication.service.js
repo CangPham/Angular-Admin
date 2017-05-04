@@ -18,7 +18,7 @@
 
         function Login(username, password, callback) {
 
-            $http.post($rootScope.servicePrefix + '/users/login.json', {UserPhoneNumber: username, Password: password})
+            $http.post($rootScope.servicePrefix + '/users/login.json', {Username: username, Password: password})
                 .success(function (response) {
                     // login successful if there's a token in the response
                     if (response.UserData.token) {
