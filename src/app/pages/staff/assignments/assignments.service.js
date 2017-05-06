@@ -76,8 +76,8 @@
             return RequestService.post('/shop_staff/unassignStaff.json', data);
         }
 
-        function assignStaffToShop(staffKey, shopId, roleIds) {
-            return RequestService.post('/shop_staff/assignStaff.json', {ShopId: shopId, UserKey: staffKey, RoleIds: roleIds });
+        function assignStaffToShop(staffKey, shopId) {
+            return RequestService.post('/shop_staff/assignStaff.json', {ShopId: shopId, UserKey: staffKey });
         }
     }
 })();

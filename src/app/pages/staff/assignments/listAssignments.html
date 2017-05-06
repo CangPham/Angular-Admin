@@ -9,11 +9,11 @@
                         <td>Staff Name</td>
                         <td>Username</td>
                         <td>Phone</td>
-                        <td>Shop name</td>
-                        <td>Roles</td>
+                        <td>Staff Role</td>
+                        <td>Assigned Shops</td>
                         <td>Actions</td>
                     </tr>
-                    <tr ng-repeat="staff in vm.assignments">
+                    <tr ng-repeat="staff in vm.assignments track by $index">
                         <td>
                             {{$index}}
                         </td>
@@ -31,25 +31,28 @@
                         </td>
                         <td>
 
-                        <p ng-repeat="shop in staff.ShopList">
-                            {{ shop.ShopName }}
-                        </p>
-                            <br>
+                            {{CONSTANT.STAFF_ROLE_MAP[staff.RoleCode]}}
 
                         </td>
                         <td>
+                            <div>
+                                <tags-input ng-model="vm.staffAssignedShops[staff.UserKey]"
+                                            display-property="ShopName"
+                                            key-property="ShopId"
+                                            placeholder="Type shop name"
+                                            on-tag-adding="vm.assignStaffToShop(staff.UserKey, $tag)"
+                                            on-tag-removing="vm.unassignStaffFromShop(staff.UserKey, $tag)">
+                                    <auto-complete source="vm.loadShopTags($query)" load-on-empty="true"></auto-complete>
+                                </tags-input>
 
-                            {{staff.RoleCode}}
+                            </div>
 
                         </td>
+
 
                         <td>
 
                             <div class="buttons">
-                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                        ng-click="vm.openAssignmentPopup('app/pages/staff/assignments/assignStaffModal.html', 'lg', staff)">
-                                    Assign
-                                </button>
                                 <button type="button" class="btn btn-danger" data-toggle="modal"
                                         ng-click="vm.unassignStaff(staff.UserKey)">
                                     Unassign

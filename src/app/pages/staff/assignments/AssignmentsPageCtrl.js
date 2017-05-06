@@ -5,9 +5,9 @@
         .module('MyApp.pages.staff.assignments')
         .controller('assignmentsPageCtrl', AssignmentsPageCtrl);
 
-    function AssignmentsPageCtrl($scope, $uibModal, $filter, editableOptions, editableThemes, AssignmentsService, ShopService, toastr) {
+    function AssignmentsPageCtrl($scope, $rootScope, $uibModal, $filter, editableOptions, editableThemes, AssignmentsService, ShopService, toastr) {
         var vm = this;
-
+        vm.displayShops = [];
 
         vm.openAssignmentPopup = function (page, size, staff) {
             vm.assignStaffInstance = $uibModal.open({
@@ -41,6 +41,29 @@
             });
         };
 
+        vm.assignStaffToShop = function (staffKey, shopTag) {
+            if (!shopTag.ShopId) {
+                toastr.error('Invalid shop');
+                return false;
+            }
+
+            var ret = AssignmentsService.assignStaffToShop(staffKey, shopTag.ShopId);
+            ret.then(function (result) {
+                if (result.Success) {
+                    toastr.success('Staff assigned successfully!');
+                    return true;
+
+
+                } else {
+                    toastr.error(result.Message);
+                    return false;
+                }
+
+
+            });
+        };
+
+
         vm.unassignStaff = function (staffKey) {
             var ret = AssignmentsService.unassignStaff(staffKey);
             ret.then(function (result) {
@@ -53,10 +76,30 @@
             });
         };
 
+        vm.unassignStaffFromShop = function (staffKey, shopTag) {
+            if (!shopTag.ShopId) {
+                toastr.error('Invalid shops');
+                return false;
+            }
+            var ret = AssignmentsService.unassignStaff(staffKey, shopTag.ShopId);
+            ret.then(function (result) {
+                if (result.Success) {
+                    toastr.success('Staff unassigned successfully!');
+                } else {
+                    toastr.error(result.Message);
+                    return false;
+                }
+            });
+        };
+
         vm.getAssignments = function () {
             var ret = AssignmentsService.getAssignments();
             ret.then(function (result) {
                 vm.assignments = result.ShopStaffList;
+                vm.staffAssignedShops = [];
+                vm.assignments.forEach(function (item) {
+                    vm.staffAssignedShops[item.UserKey] = item.ShopList;
+                });
                 toastr.success('Staff load successfully!');
             });
         };
@@ -78,6 +121,17 @@
             });
         };
 
+        vm.loadShopTags = function (query) {
+
+            if (vm.displayShops.length < 1) {
+                toastr.error('Empty shop');
+                return [];
+            }
+
+            return _.filter(vm.displayShops, function (shop) {
+                return _.includes(shop.ShopName.toLowerCase(), query.toLowerCase());
+            });
+        }
 
         vm.getRoles = function () {
             var ret = AssignmentsService.getRoles();
@@ -87,20 +141,12 @@
         };
 
 
-        vm.unassignStaffFromShop = function(staffKey, shopId) {
-
-            AssignmentsService.unassignStaffFromShop(staffKey, shopId).then(function (result) {
-                vm.getAssignments();
-            });
-        };
-
         vm.RolesCheckbox = {
             selected: []
         };
 
-        vm.getAssignments();
         vm.getShops();
-        vm.getRoles();
+        vm.getAssignments();
 
         editableOptions.theme = 'bs3';
         editableThemes['bs3'].submitTpl = '<button type="submit" class="btn btn-primary btn-with-icon"><i class="ion-checkmark-round"></i></button>';

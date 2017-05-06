@@ -21,11 +21,15 @@ angular.module('MyApp', [
 
     'MyApp.theme',
     'MyApp.pages'
-]).run(run);
+])
+    .constant('_', window._)
+    .run(run);
 
 function run($rootScope, $http, $location, $localStorage, errorHandler, ConstantService) {
     $rootScope.errorHandler = errorHandler;
     $rootScope.CONSTANT = ConstantService;
+    $rootScope._ = window._;
+
     // keep user logged in after page refresh
     if ($localStorage.currentUser) {
         $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
