@@ -16,6 +16,7 @@ body {
 
 $text-color: #ffffff;
 
+/*
 .form-control, .form-control:focus {
   @include placeholderStyle($text-color, 0.9);
   background-color: rgba(0, 0, 0, .4);
@@ -25,6 +26,7 @@ $text-color: #ffffff;
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
   @include placeholderStyle($text-color, 0.6);
 }
+*/
 
 .auth-main {
   display: flex;
