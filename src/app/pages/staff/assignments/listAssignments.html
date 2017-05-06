@@ -31,16 +31,15 @@
                         </td>
                         <td>
 
-                            {{ staff.ShopName }}
+                        <p ng-repeat="shop in staff.ShopList">
+                            {{ shop.ShopName }}
+                        </p>
+                            <br>
 
                         </td>
                         <td>
 
-
-                            <div ng-repeat="role in staff.Roles">
-                                {{role.RoleName}}
-
-                            </div>
+                            {{staff.RoleCode}}
 
                         </td>
 

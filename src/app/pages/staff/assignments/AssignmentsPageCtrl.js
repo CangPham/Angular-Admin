@@ -56,7 +56,7 @@
         vm.getAssignments = function () {
             var ret = AssignmentsService.getAssignments();
             ret.then(function (result) {
-                vm.assignments = result.ShopStaffRoleList;
+                vm.assignments = result.ShopStaffList;
                 toastr.success('Staff load successfully!');
             });
         };

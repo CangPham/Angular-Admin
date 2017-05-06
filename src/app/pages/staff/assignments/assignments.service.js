@@ -44,7 +44,7 @@
         }
 
         function getAssignments() {
-            return RequestService.get('/shop_staff/getShopStaffRoleList.json')
+            return RequestService.get('/shop_staff/getShopStaffList.json')
                 .then(function (result) {
                     return result;
                 });
@@ -68,8 +68,12 @@
             return RequestService.post('/users/createStaff.json', data);
         }
 
-        function unassignStaff(staffKey) {
-            return RequestService.post('/shop_staff/unassignStaff.json', {UserKey: staffKey});
+        function unassignStaff(staffKey, shopId) {
+            var data = {"UserKey": staffKey};
+            if (shopId) {
+                data["ShopId"] = shopId;
+            }
+            return RequestService.post('/shop_staff/unassignStaff.json', data);
         }
 
         function assignStaffToShop(staffKey, shopId, roleIds) {
