@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('MyApp', [
+    'angularMoment',
     'checklist-model',
     'ngTagsInput',
     'ngAnimate',
@@ -18,7 +19,6 @@ angular.module('MyApp', [
     'ngFileUpload',
     'timer',
     'ngDialog',
-
     'MyApp.theme',
     'MyApp.pages'
 ])
