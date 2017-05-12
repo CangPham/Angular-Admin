@@ -85,13 +85,37 @@
           //vm.lineChart.setData(data);
       };
 
+      vm.updateReportType = function updateReportType(value) {
+        vm.ReportPeriod = 0;
+        vm.getIncomeReport();
+      };
 
-    vm.getIncomeReport = function () {
-        var endDate = moment().format("YYYY-MM-DD");
-        console.log(endDate);
 
-        var startDate = moment().subtract(vm.ReportNumPerPeriod, vm.TypeTimeMap[vm.ReportType]).format("YYYY-MM-DD");
-        console.log(startDate)
+
+      vm.reportNext = function reportNext(data) {
+          //vm.lineChart.setData(data);
+          if (vm.ReportPeriod == 0) {
+            return;
+          }
+          vm.ReportPeriod = vm.ReportPeriod + 1;
+          vm.getIncomeReport();
+      };
+
+      vm.reportPrevious = function reportPrevious(data) {
+        vm.ReportPeriod = vm.ReportPeriod - 1;
+        vm.getIncomeReport();
+      };
+
+      function getData() {
+          var endDate = moment().subtract(Math.abs(vm.ReportPeriod) * vm.ReportNumPerPeriod, vm.TypeTimeMap[vm.ReportType]).format("YYYY-MM-DD");
+          var startDate = moment().subtract((Math.abs(vm.ReportPeriod) + 1) * vm.ReportNumPerPeriod, vm.TypeTimeMap[vm.ReportType]).format("YYYY-MM-DD");
+
+      };
+
+
+      vm.getIncomeReport = function () {
+          var endDate = moment().subtract(Math.abs(vm.ReportPeriod) * vm.ReportNumPerPeriod, vm.TypeTimeMap[vm.ReportType]).format("YYYY-MM-DD");
+          var startDate = moment().subtract((Math.abs(vm.ReportPeriod) + 1) * vm.ReportNumPerPeriod, vm.TypeTimeMap[vm.ReportType]).format("YYYY-MM-DD");
           var ret = ReportingService.incomeReport(startDate, endDate, vm.ReportType);
           ret.then(function (result) {
               vm.ReportData = result.Orders;

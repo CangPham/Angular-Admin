@@ -10,6 +10,32 @@
             line-labels='vm.ShopListNames'
             line-colors='colors'>
         </div>
+
+        <div class="input-demo radio-demo row">
+          <div class="col-md-4">
+            <label class="radio-inline custom-radio nowrap">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1"  ng-model="vm.ReportType" ng-change="vm.updateReportType(vm.ReportType)">
+              <span>By Day</span>
+            </label>
+          </div>
+          <div class="col-md-4">
+            <label class="radio-inline custom-radio nowrap">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2" ng-model="vm.ReportType" ng-change="vm.updateReportType(vm.ReportType)">
+              <span>By Week</span>
+            </label>
+          </div>
+          <div class="col-md-4">
+            <label class="radio-inline custom-radio nowrap">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3" ng-model="vm.ReportType" ng-change="vm.updateReportType(vm.ReportType)">
+              <span>By Month</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <button ng-click="vm.reportPrevious()">previous</button>
+          <button ng-click="vm.reportNext()">next</button>
+        </div>
       </div>
     </div>
   </div>
