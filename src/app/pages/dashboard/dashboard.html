@@ -1,63 +1,67 @@
-<!--<dashboard-pie-chart></dashboard-pie-chart>-->
+<div class="widgets">
+  <div class="row">
+    <div class="col-md-12">
+      <div ba-panel ba-panel-title="Line Chart" ba-panel-class="with-scroll">
+        <div id="line-chart-id"
+            line-chart
+            line-data='vm.ReportData'
+            line-xkey='Time'
+            line-ykeys='vm.ShopListNames'
+            line-labels='vm.ShopListNames'
+            line-colors='colors'>
+        </div>
 
-<!--<div class="row">-->
-  <!--<div class="col-lg-6 col-md-12 col-sm-12"-->
-       <!--ba-panel-->
-       <!--ba-panel-title="Acquisition Channels"-->
-       <!--ba-panel-class="medium-panel traffic-panel">-->
-    <!--<traffic-chart></traffic-chart>-->
-  <!--</div>-->
-  <!--<div class="col-lg-6 col-md-12 col-sm-12"-->
-       <!--ba-panel-->
-       <!--ba-panel-title="Users by Country"-->
-       <!--ba-panel-class="medium-panel">-->
-    <!--<dashboard-map></dashboard-map>-->
-  <!--</div>-->
-<!--</div>-->
+        <div class="input-demo radio-demo row">
+          <div class="col-md-4">
+            <label class="radio-inline custom-radio nowrap">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1"  ng-model="vm.ReportType" ng-change="vm.updateReportType(vm.ReportType)">
+              <span>By Day</span>
+            </label>
+          </div>
+          <div class="col-md-4">
+            <label class="radio-inline custom-radio nowrap">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2" ng-model="vm.ReportType" ng-change="vm.updateReportType(vm.ReportType)">
+              <span>By Week</span>
+            </label>
+          </div>
+          <div class="col-md-4">
+            <label class="radio-inline custom-radio nowrap">
+              <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3" ng-model="vm.ReportType" ng-change="vm.updateReportType(vm.ReportType)">
+              <span>By Month</span>
+            </label>
+          </div>
+        </div>
 
-<!--<div class="row">-->
-  <!--<div class="col-xlg-9 col-lg-6 col-md-6 col-sm-12 col-xs-12">-->
-    <!--<div class="row">-->
-      <!--<div class="col-xlg-8 col-lg-12 col-md-12 col-sm-7 col-xs-12"-->
-           <!--ba-panel-->
-           <!--ba-panel-title="Revenue"-->
-           <!--ba-panel-class="medium-panel">-->
-        <!--<dashboard-line-chart></dashboard-line-chart>-->
-      <!--</div>-->
-      <!--<div class="col-xlg-4 col-lg-12 col-md-12 col-sm-5 col-xs-12"-->
-           <!--ba-panel-->
-           <!--ba-panel-class="popular-app medium-panel">-->
-        <!--<popular-app></popular-app>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--<div class="col-xlg-3 col-lg-6 col-md-6 col-sm-12 col-xs-12"-->
-       <!--ba-panel-->
-       <!--ba-panel-title="Feed"-->
-       <!--ba-panel-class="large-panel with-scroll feed-panel">-->
-    <!--<blur-feed></blur-feed>-->
-  <!--</div>-->
-<!--</div>-->
-
-<!--<div class="row shift-up">-->
-  <!--<div class="col-xlg-3 col-lg-6 col-md-6 col-xs-12"-->
-       <!--ba-panel-->
-       <!--ba-panel-title="To Do List"-->
-       <!--ba-panel-class="xmedium-panel feed-comply-panel with-scroll todo-panel">-->
-    <!--<dashboard-todo></dashboard-todo>-->
-  <!--</div>-->
-  <!--<div class="col-xlg-6 col-lg-6 col-md-6 col-xs-12"-->
-       <!--ba-panel-->
-       <!--ba-panel-title="Calendar"-->
-       <!--ba-panel-class="xmedium-panel feed-comply-panel with-scroll calendar-panel">-->
-    <!--<dashboard-calendar></dashboard-calendar>-->
-  <!--</div>-->
-<!--</div>-->
-
-<!--<div class="row">
-  <div class="col-lg-4 col-sm-6 col-xs-12">
-    <div ba-panel ba-panel-title="Weather" ba-panel-class="medium-panel with-scroll">
-      <blur-weather forecast="5"></blur-weather>
+        <div>
+          <button ng-click="vm.reportPrevious()">previous</button>
+          <button ng-click="vm.reportNext()">next</button>
+        </div>
+      </div>
     </div>
   </div>
-</div>-->
+  <div class="row">
+    <div class="col-md-4">
+      <div ba-panel ba-panel-title="Donut" ba-panel-class="with-scroll">
+        <div
+                donut-chart
+                donut-data='vm.donutReportData'
+                donut-colors='colors'
+                donut-formatter='"currency"'>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div ba-panel ba-panel-title="Bar Chart" ba-panel-class="with-scroll ">
+        <div
+                bar-chart
+                bar-data='vm.barReportData'
+                bar-x='y'
+                bar-y="vm.ShopListNames"
+                bar-labels="vm.ShopListNames"
+                bar-colors='colors'>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
