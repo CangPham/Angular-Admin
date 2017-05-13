@@ -10,7 +10,7 @@
 
     vm.ReportType = 3;
     vm.ReportPeriod = 0;
-    vm.ReportNumPerPeriod = 7;
+    vm.ReportNumPerPeriod = 12;
     vm.TypeTimeMap = {
         1: 'days',
         2: 'weeks',
@@ -68,7 +68,7 @@
       {y: "2011", a: 75, b: 65},
       {y: "2012", a: 100, b: 90}
     ];
-    $scope.donutData = [
+    vm.donutReportData = [
       {label: "Download Sales", value: 12},
       {label: "In-Store Sales", value: 30},
       {label: "Mail-Order Sales", value: 20}
@@ -77,9 +77,6 @@
     angular.element($window).bind('resize', function () {
       //$window.Morris.Grid.prototype.redraw();
     });
-
-
-
 
       vm.updateChart = function updateChart(data) {
           //vm.lineChart.setData(data);

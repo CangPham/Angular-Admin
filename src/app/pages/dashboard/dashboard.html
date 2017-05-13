@@ -39,5 +39,29 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div ba-panel ba-panel-title="Donut" ba-panel-class="with-scroll">
+        <div
+                donut-chart
+                donut-data='vm.donutReportData'
+                donut-colors='colors'
+                donut-formatter='"currency"'>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div ba-panel ba-panel-title="Bar Chart" ba-panel-class="with-scroll ">
+        <div
+                bar-chart
+                bar-data='vm.barReportData'
+                bar-x='y'
+                bar-y="vm.ShopListNames"
+                bar-labels="vm.ShopListNames"
+                bar-colors='colors'>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
