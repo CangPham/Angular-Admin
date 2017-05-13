@@ -8,6 +8,8 @@
   angular.module('MyApp.pages.shops', [
     'MyApp.pages.shops.list',
     'MyApp.pages.shops.tables',
+      'MyApp.pages.shops.categories',
+      'MyApp.pages.shops.products',
 
   ])
       .config(routeConfig);

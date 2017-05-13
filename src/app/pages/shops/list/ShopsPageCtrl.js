@@ -20,13 +20,6 @@
             $state.go('shops.shopEdit', {id: shopId})
         };
 
-
-        vm.showShop = function (shopId) {
-            $state.go('shops.detailShop', {id: shopId});
-
-        };
-
-
         vm.getShops = function () {
             var ret = ShopService.getAll();
             ret.then(function (result) {

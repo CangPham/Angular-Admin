@@ -1,0 +1,88 @@
+
+<div class="widgets">
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="Shop Product List" ba-panel-class="with-scroll">
+                <div>
+                    <button class="btn btn-primary" ng-click="vm.removeManyShopProducts()">Remove selected</button>
+                </div>
+                <hr>
+                <div class="row">
+                    <label class="col-md-2"> Select a shop</label>
+                    <div class="col-md-offset-2">
+                        <select class="form-control" data-live-search="true" title="Select shop"
+                                        ng-model="vm.shopSelectedItem"
+                                        ng-options="item as item.label for item in vm.shopSelectItems"
+                                        ng-change="vm.onShopSelect()">
+                        </select>
+                    </div>
+                </div>
+                <hr>
+                <div class="horizontal-scroll">
+                    <div class="form-group select-page-size-wrap ">
+                    </div>
+                    <table class="table" st-table="vm.displayedData" st-safe-src="vm.products">
+                        <thead>
+                        <tr class="sortable ">
+                            <td>
+                                <input type="checkbox"
+                                       ng-click="vm.checkAllShopProd($event)">
+                            </td>
+                            <th> Product Image </th>
+                            <th st-sort="ProductName">Product Name</th>
+                            <th st-sort="ProductDescription">Description</th>
+                            <th st-sort="CategoryName">Category</th>
+                            <th >Product Unit</th>
+                            <th >Price</th>
+                            <th >In Stock</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th><input st-search="ProductName" placeholder="Search Product Name"
+                                       class="input-sm form-control search-input"
+                                       type="search"/></th>
+                            <th><input st-search="ProductDescription" placeholder="Search Description"
+                                       class="input-sm form-control search-input"
+                                       type="search"/></th>
+                            <th><input st-search="CategoryId" placeholder="Search Category"
+                                       class="input-sm form-control search-input"
+                                       type="search"/></th>
+                            <th><</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in vm.shopProducts">
+                            <td>
+                                <input type="checkbox" data-checklist-model="vm.prodCheckbox.selected" data-checklist-value="item">
+                            </td>
+                            <td><img src="https://cloudorder.vn/upload/images/{{item.ProductImage}}" class="img-rounded" alt="Cinque Terre" width="60" height="60"></td>
+                            <td>{{item.ProductName}}</td>
+                            <td>{{item.ProductDescription}}</td>
+                            <td>{{item.CategoryName}}</td>
+                            <td>{{item.ProductUnit || empty}}</td>
+                            <td>{{item.ProductPrice}}</td>
+                            <td>{{item.IsProductInStock}}</td>
+                            <td>
+                                <button class="btn btn-default btn-rounded btn-sm" ng-click="vm.viewProduct(item)"><span class="fa fa-pencil"></span></button>
+                                <button class="btn btn-danger btn-rounded btn-sm" ng-click="vm.removeShopProduct(item.ProductId, vm.shopSelectedItem.value)"><span class="fa fa-times"></span></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <div st-pagination="" st-items-by-page="vm.productPageSize"
+                                     st-displayed-pages="5"></div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

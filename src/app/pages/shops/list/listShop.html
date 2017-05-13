@@ -5,11 +5,6 @@
             <div ba-panel ba-panel-title="Shop List" ba-panel-class="with-scroll">
                 <div class="horizontal-scroll">
                     <div class="form-group select-page-size-wrap ">
-                        <!--<label>Rows on page-->
-                        <!--<select class="form-control selectpicker show-tick" title="Rows on page" selectpicker-->
-                        <!--ng-model="vm.productPageSize" ng-options="i for i in [5,10,15,20,25]">-->
-                        <!--</select>-->
-                        <!--</label>-->
                         <div class="add-row-editable-table">
                             <button class="btn btn-primary" ng-click="vm.addShop()">Create</button>
                         </div>
@@ -33,7 +28,6 @@
 
                             <td>
                                 <button class="btn btn-default btn-rounded btn-sm" ng-click="vm.editShop(shop.ShopId)"><span class="fa fa-pencil"></span></button>
-                                <button class="btn btn-default btn-rounded btn-sm" ng-click="vm.showShop(shop.ShopId)">Details</button>
                                 <button class="btn btn-danger btn-rounded btn-sm" ng-click="vm.deleteShop(shop.ShopId)"><span class="fa fa-times"></span></button>
                             </td>
                         </tr>

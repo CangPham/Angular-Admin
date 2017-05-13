@@ -18,14 +18,6 @@
                     order: 1,
                 },
             })
-            .state('shops.detailShop', {
-            url: '/list/detail/{id}',
-            templateUrl: 'app/pages/shops/list/detailShop.html',
-            controller: 'detailShopPageCtrl',
-            controllerAs: 'vm',
-            title: 'Shop Categories & Products',
-
-        })
             .state('shops.shopEdit', {
                 url: '/list/edit/{id}',
                 templateUrl: 'app/pages/shops/list/editShop.html',
