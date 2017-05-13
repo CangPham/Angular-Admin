@@ -1,0 +1,65 @@
+
+<div class="widgets">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="{{vm.shop.ShopName}} - Category List" ba-panel-class="with-scroll">
+                <div class="add-row-editable-table">
+                    <button class="btn btn-primary" ng-click="vm.removeManyShopCategories()">Remove selected</button>
+                </div>
+
+                <hr>
+                <div class="row">
+                    <label class="col-md-2"> Select a shop</label>
+                    <div class="col-md-offset-2">
+                        <select class="form-control" data-live-search="true" title="Select shop"
+                                ng-model="vm.shopSelectedItem"
+                                ng-options="item as item.label for item in vm.shopSelectItems"
+                                ng-change="vm.onShopSelect()">
+                        </select>
+                    </div>
+                </div>
+                <hr>
+
+                <table class="table table-bordered table-hover table-condensed">
+                    <tr>
+                        <td>
+                            <input type="checkbox"
+                                   ng-click="vm.checkAllShopCate($event)">
+                        </td>
+
+                        <td>Category Name</td>
+                        <td>Category Description</td>
+                        <td>Actions</td>
+                    </tr>
+                    <tr ng-repeat="category in vm.shopCategories" class="editable-row">
+                        <td>
+                            <input type="checkbox" data-checklist-model="vm.cateCheckbox.selected" data-checklist-value="category">
+                        </td>
+
+                        <td>
+                            <span editable-text="category.CategoryName" e-name="CategoryName" e-form="rowform" e-required>
+                              {{ category.CategoryName || empty }}
+                            </span>
+                        </td>
+                        <td>
+                            <span editable-text="category.CategoryName" e-name="CategoryName" e-form="rowform" e-required>
+                              {{ category.CategoryDescription || empty }}
+                            </span>
+                        </td>
+
+                        <td>
+                            <div class="buttons" ng-show="!rowform.$visible">
+                                <button class="btn btn-danger editable-table-button btn-xs"
+                                        ng-click="vm.removeShopCategory(category.CategoryId, vm.shopSelectedItem.value)">Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
