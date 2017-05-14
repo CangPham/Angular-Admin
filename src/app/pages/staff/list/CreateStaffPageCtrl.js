@@ -17,8 +17,10 @@
                 "FirstName": vm.staff.FirstName,
                 "LastName": vm.staff.LastName,
                 "UserName": vm.staff.UserName,
-                "UserPhoneNumber": vm.staff.UserPhoneNumber,
-                "Password": vm.staff.Password
+                "Email": vm.staff.Email,
+                "Password": vm.staff.Password,
+                "RoleCode": vm.SelectedRole.RoleCode,
+                "ManagerKey": vm.SelectedMananger.UserKey
             };
 
             StaffService.create(data).then(function (result) {
@@ -31,6 +33,22 @@
             $state.go('staff.listStaff');
         };
 
+        vm.selectRoleList = function () {
+            var roleList = $rootScope.CONSTANT.STAFF_ROLE_MAP;
+            var roleArray = [];
+            for (var roleCode in roleList) {
+                if (roleList.hasOwnProperty(roleCode)) {
+                    roleArray.push({RoleCode: roleCode, RoleName: roleList[roleCode]});
+                }
+            }
+            vm.RoleList = roleArray;
+            if(roleArray.length > 0) {
+                vm.SelectedRole = vm.RoleList[1];
+            }
+            //console.log(vm.SelectedRole);
+        };
+
+        vm.selectRoleList();
 
     }
 

@@ -1,5 +1,4 @@
 <div class="widgets">
-
     <div class="row">
         <div class="col-md-12">
             <div
@@ -24,18 +23,18 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="UserName" class="col-sm-2 control-label">Email</label>
+                        <label for="UserName" class="col-sm-2 control-label">Username</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" ng-model="vm.staff.UserName" id="UserName"
-                                   placeholder="Email" required>
+                                   placeholder="Username" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="UserPhoneNumber" class="col-sm-2 control-label">Phone number</label>
+                        <label for="UserName" class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" ng-model="vm.staff.UserPhoneNumber" id="UserPhoneNumber"
-                                   placeholder="Phone number" required>
+                            <input type="text" class="form-control" ng-model="vm.staff.Email" id="Email"
+                                   placeholder="Email" required>
                         </div>
                     </div>
 
@@ -52,6 +51,16 @@
                         <div class="col-sm-10">
                             <input type="password" class="form-control" ng-model="vm.staff.ConfirmPassword" id="Password2"
                                    placeholder="Confirm Password" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="StaffRole" class="col-sm-2 control-label">Staff Role</label>
+                        <div class="col-sm-10">
+                            <select id="StaffRole" class="form-control" data-live-search="true" title="Select role"
+                                    ng-model="vm.SeletedRole"
+                                    ng-options=" role as role.RoleName for role in vm.RoleList">
+                            </select>
                         </div>
                     </div>
 
